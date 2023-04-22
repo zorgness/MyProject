@@ -20,7 +20,7 @@ class SplashActivity : AppCompatActivity() {
                 (
                         getString(SHAREDPREF_SESSION, null)
                             ?.run {
-                                MainActivity::class.java
+                                CategoryActivity::class.java
                             }
                             ?: LoginActivity::class.java
                         )
