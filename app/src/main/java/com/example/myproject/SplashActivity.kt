@@ -1,7 +1,7 @@
 package com.example.myproject
 
 import SHAREDPREF_NAME
-import SHAREDPREF_SESSION
+import SHAREDPREF_SESSION_TOKEN
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -18,7 +18,7 @@ class SplashActivity : AppCompatActivity() {
             applicationContext.getSharedPreferences(SHAREDPREF_NAME, Context.MODE_PRIVATE).apply {
 
                 (
-                        getString(SHAREDPREF_SESSION, null)
+                        getString(SHAREDPREF_SESSION_TOKEN, null)
                             ?.run {
                                 CategoryActivity::class.java
                             }

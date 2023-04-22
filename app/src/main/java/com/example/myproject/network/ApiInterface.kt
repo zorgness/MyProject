@@ -1,6 +1,7 @@
 package com.example.myproject.network
 
 import com.example.myproject.dataclass.GetCategoriesDto
+import com.example.myproject.dataclass.LoginInfo
 import com.example.myproject.dataclass.RegisterDto
 import com.example.myproject.dataclass.SessionDto
 import retrofit2.Call
@@ -12,9 +13,9 @@ interface ApiInterface {
     @POST(ApiRoutes.REGISTER)
     fun register(@Field("email") email: String, @Field("password") password: String, @Field("username") username: String, @Field("city") city: String, @Field("description") description: String): Call<RegisterDto>?
 
-    @FormUrlEncoded
+    @Headers("Content-Type: application/json")
     @POST(ApiRoutes.LOGIN)
-    fun login(@Field("email") email: String, @Field("password") password: String): Call<SessionDto>?
+    fun login(@Body loginInfo: LoginInfo): Call<SessionDto>?
 
 
     @GET(ApiRoutes.CATEGORY)
