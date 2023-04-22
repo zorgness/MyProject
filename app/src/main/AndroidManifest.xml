@@ -16,7 +16,7 @@
         android:theme="@style/Theme.MyProject"
         tools:targetApi="31">
         <activity
-            android:name=".CategoryActivity"
+            android:name=".RecyclerViewCategoryActivity"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"

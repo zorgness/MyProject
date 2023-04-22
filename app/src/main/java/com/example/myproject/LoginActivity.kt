@@ -47,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
                         startActivity(
                             Intent(
                                 this@LoginActivity,
-                                CategoryActivity::class.java
+                                RecyclerViewCategoryActivity::class.java
                             )
                         )
                         finish()

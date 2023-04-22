@@ -20,7 +20,7 @@ class SplashActivity : AppCompatActivity() {
                 (
                         getString(SHAREDPREF_SESSION_TOKEN, null)
                             ?.run {
-                                CategoryActivity::class.java
+                                RecyclerViewCategoryActivity::class.java
                             }
                             ?: LoginActivity::class.java
                         )
