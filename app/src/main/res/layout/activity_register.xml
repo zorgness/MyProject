@@ -41,14 +41,37 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/et_user_login"
+            android:id="@+id/et_user_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:autofillHints=""
             android:background="@drawable/edit_text_background"
             android:ems="10"
-            android:hint="@string/enter_your_login"
+            android:hint="@string/enter_your_email"
+            android:inputType="textEmailAddress"
+            android:padding="16dp"
+            android:textSize="14sp" />
+
+
+
+        <TextView
+            android:id="@+id/tv_username_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/username_label"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/et_user_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:autofillHints=""
+            android:background="@drawable/edit_text_background"
+            android:ems="10"
+            android:hint="@string/enter_your_username"
             android:inputType="textPersonName"
             android:padding="16dp"
             android:textSize="14sp" />
@@ -70,27 +93,6 @@
             android:background="@drawable/edit_text_background"
             android:ems="10"
             android:hint="@string/enter_your_city"
-            android:inputType="textPersonName"
-            android:padding="16dp"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/tv_username_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/username_label"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/et_user_username"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:autofillHints=""
-            android:background="@drawable/edit_text_background"
-            android:ems="10"
-            android:hint="@string/enter_your_username"
             android:inputType="textPersonName"
             android:padding="16dp"
             android:textSize="14sp" />
