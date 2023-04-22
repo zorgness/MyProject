@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">MyProject</string>
+    <string name="fun4mate">Fun4Mate</string>
+    <string name="login">Login</string>
+    <string name="login_label">login</string>
+    <string name="enter_your_login">enter your login</string>
+    <string name="enter_your_password">enter your password</string>
+    <string name="password">password</string>
+    <string name="submit">Submit</string>
+    <string name="no_account_yet_register_here">no account yet, register here</string>
+    <string name="register">Register</string>
+    <string name="confirm_password">confirm password</string>
+    <string name="add_new_article">add new article</string>
+    <string name="welcome">Welcome</string>
+    <string name="logout">logout</string>
+    <string name="edit">edit</string>
+    <string name="delete">delete</string>
+    <string name="email_label">email</string>
+    <string name="enter_your_email">enter your email</string>
+    <string name="username_label">username</string>
+    <string name="enter_your_username">enter your username</string>
+    <string name="city_label">city</string>
+    <string name="enter_your_city">enter your city</string>
+</resources>
