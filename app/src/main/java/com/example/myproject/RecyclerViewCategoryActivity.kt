@@ -37,7 +37,7 @@ class RecyclerViewCategoryActivity : AppCompatActivity() {
 
 
         myViewModel.categoriesLiveData.observe(this) { categories ->
-            categoryAdapter.setCategories(categories)
+            categoryAdapter.submitList(categories)
         }
 
         //LOGOUT

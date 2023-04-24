@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myproject.R
 import com.example.myproject.databinding.ItemRvCategoryBinding
@@ -19,9 +21,20 @@ import de.hdodenhof.circleimageview.CircleImageView
 import java.lang.Exception
 import  com.squareup.picasso.Target
 
+class MyDiffUtil : DiffUtil.ItemCallback<CategoryDto>() {
+    override fun areItemsTheSame(oldItem: CategoryDto, newItem: CategoryDto): Boolean {
+        return oldItem.id == newItem.id
+    }
+
+    override fun areContentsTheSame(oldItem: CategoryDto, newItem: CategoryDto): Boolean {
+        return oldItem == newItem
+    }
+
+}
+
 
 class CategoryAdapter() :
-    RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
+    ListAdapter<CategoryDto, CategoryAdapter.CategoryViewHolder>(MyDiffUtil()) {
 
 
     private var categories: MutableList<CategoryDto> = mutableListOf()
@@ -43,41 +56,32 @@ class CategoryAdapter() :
 
     override fun onBindViewHolder(holder: CategoryAdapter.CategoryViewHolder, position: Int) {
 
-        categories[position].let { category ->
+        val category: CategoryDto = getItem(position)
 
-            with(holder.binding) {
-                tvNameItemRvCategory.text = category.name
+        with(holder.binding) {
+            tvNameItemRvCategory.text = category.name
 
-                val img = ImageView(context)
-                Picasso.get()
-                    .load(category.urlImage).error(R.drawable.ic_launcher_background)
-                    .centerCrop()
-                    .resize(300, 300)
-                    .into(img, object : Callback {
-                        override fun onSuccess() {
-                            categoryLayout.background = img.drawable
-                        }
+            val img = ImageView(context)
+            Picasso.get()
+                .load(category.urlImage).error(R.drawable.ic_launcher_background)
+                .centerInside()
+                .resize(300, 300)
+                .into(img, object : Callback {
+                    override fun onSuccess() {
+                        categoryLayout.background = img.drawable
+                    }
 
-                        override fun onError(e: Exception?) {
-                            //TODO("Not yet implemented")
-                        }
+                    override fun onError(e: Exception?) {
+                        //TODO("Not yet implemented")
+                    }
 
 
-                    })
+                })
 
-            }
+
         }
     }
 
-    fun setCategories(list: List<CategoryDto>) {
-        categories.clear()
-        categories.addAll(list)
-        notifyDataSetChanged()
-    }
-
-    override fun getItemCount(): Int {
-        return categories.size
-    }
 
     inner class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val binding = ItemRvCategoryBinding.bind(itemView)
