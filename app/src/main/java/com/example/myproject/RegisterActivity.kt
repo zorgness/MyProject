@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import com.example.myproject.databinding.ActivityLoginBinding
+import com.example.myproject.databinding.ActivityRegisterBinding
 import com.example.myproject.dataclass.RegisterInfo
 import myToast
 import register
@@ -16,18 +18,16 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        val etEmail = findViewById<EditText>(R.id.et_user_email)
-        val etUsername = findViewById<EditText>(R.id.et_user_username)
-        val etCity = findViewById<EditText>(R.id.et_user_city)
-        val etPassword = findViewById<EditText>(R.id.et_user_password)
-        val etPwdConfirm = findViewById<EditText>(R.id.et_user_password_confirm)
+        val binding = ActivityRegisterBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        findViewById<Button>(R.id.btn_submit_register).setOnClickListener {
-            val email = etEmail.text.toString()
-            val username = etUsername.text.toString()
-            val city = etCity.text.toString()
-            val password = etPassword.text.toString()
-            val confirm = etPwdConfirm.text.toString()
+
+        binding.btnSubmitRegister.setOnClickListener {
+            val email =  binding.etUserEmail.text.toString()
+            val username = binding.etUserUsername.text.toString()
+            val city = binding.etUserCity.text.toString()
+            val password = binding.etUserPassword.text.toString()
+            val confirm = binding.etUserPasswordConfirm.text.toString()
 
             if (email.isNotBlank() && username.isNotBlank() && city.isNotBlank() && password.isNotBlank()) {
                 if (validatePassword(password, confirm)) {

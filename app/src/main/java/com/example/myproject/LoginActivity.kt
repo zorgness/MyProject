@@ -4,12 +4,14 @@ import SHAREDPREF_NAME
 import SHAREDPREF_SESSION_TOKEN
 import SHAREDPREF_SESSION_USERNAME
 import SHAREDPREF_SESSION_USER_ID
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import com.example.myproject.databinding.ActivityLoginBinding
 import com.example.myproject.dataclass.LoginInfo
 import login
 import myToast
@@ -17,19 +19,18 @@ import myToast
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        val binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val etEmail = findViewById<EditText>(R.id.et_user_email)
-        val etPassword = findViewById<EditText>(R.id.et_user_password)
 
-        findViewById<TextView>(R.id.tv_register_login_activity).setOnClickListener {
+        binding.tvRegisterLoginActivity.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
             finish()
         }
 
-        findViewById<Button>(R.id.btn_submit_login).setOnClickListener {
-            val email = etEmail.text.toString()
-            val password = etPassword.text.toString()
+        binding.btnSubmitLogin.setOnClickListener {
+            val email = binding.etUserEmail.text.toString()
+            val password = binding.etUserPassword.text.toString()
 
             if (email.isNotBlank() && password.isNotBlank()) {
 

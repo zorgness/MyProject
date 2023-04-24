@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00BCD4"
+    android:background="@color/black"
     tools:context=".LoginActivity">
 
     <TextView
@@ -88,7 +88,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:textColor="@color/design_default_color_primary"
+            android:textColor="@color/white"
             android:text="@string/no_account_yet_register_here"
             android:textAlignment="center"/>
     </LinearLayout>

@@ -9,7 +9,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    app:cardBackgroundColor="@color/teal_200"
+    app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="20dp"
     app:cardElevation="10dp"
     app:cardMaxElevation="12dp"
@@ -22,10 +22,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/category_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         >
 
-        <de.hdodenhof.circleimageview.CircleImageView
+<de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/civ_image_item_rv_category"
             android:layout_width="60dp"
             android:layout_height="60dp"
@@ -48,6 +48,8 @@
             android:fontFamily="serif-monospace"
             android:maxLines="1"
             tools:text="test"
+            android:textSize="32sp"
+            android:textColor="@color/white"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
