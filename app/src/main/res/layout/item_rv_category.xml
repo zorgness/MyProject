@@ -9,7 +9,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    app:cardBackgroundColor="@color/white"
+    app:cardBackgroundColor="@color/black"
     app:cardCornerRadius="20dp"
     app:cardElevation="10dp"
     app:cardMaxElevation="12dp"
@@ -17,28 +17,15 @@
     app:cardUseCompatPadding="true"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+    app:layout_constraintTop_toTopOf="parent"
+   >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/category_layout"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="100dp"
         >
 
-<de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/civ_image_item_rv_category"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:contentDescription=""
-            android:scaleType="centerCrop"
-            app:civ_border_color="#FF000000"
-            app:civ_border_width="2dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:src="@tools:sample/avatars"
-
-            />
 
         <TextView
             android:id="@+id/tv_name_item_rv_category"
@@ -47,14 +34,14 @@
             android:layout_marginHorizontal="18dp"
             android:fontFamily="serif-monospace"
             android:maxLines="1"
-            tools:text="test"
-            android:textSize="32sp"
             android:textColor="@color/white"
-            android:textAlignment="center"
+            android:textSize="32sp"
             app:layout_constraintBottom_toBottomOf="parent"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/civ_image_item_rv_category"
-            app:layout_constraintTop_toTopOf="@+id/civ_image_item_rv_category" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="test" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

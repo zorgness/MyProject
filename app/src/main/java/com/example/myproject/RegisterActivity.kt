@@ -33,15 +33,8 @@ class RegisterActivity : AppCompatActivity() {
                 if (validatePassword(password, confirm)) {
                     register(RegisterInfo(email, password, username, city, ""), loginCallback = {
                         with(it) {
-                            /*applicationContext.getSharedPreferences(
-                                SHAREDPREF_NAME,
-                                Context.MODE_PRIVATE
-                            )
-                                .edit()
-                                .putString(SHAREDPREF_SESSION, convertDtoToJsonStr(this))
-                                .apply()*/
 
-
+                            //NEED A SOLUTION TO LOG AFTER REGISTRATION
                             startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
                             finish()
                         }

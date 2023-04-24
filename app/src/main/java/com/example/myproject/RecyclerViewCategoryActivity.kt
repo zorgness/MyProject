@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myproject.adapter.CategoryAdapter
 import com.example.myproject.databinding.ActivityRecyclerViewCategoryBinding
 import com.example.myproject.viewmodel.CategoryViewModel
+import myToast
 
 class RecyclerViewCategoryActivity : AppCompatActivity() {
 
@@ -23,13 +24,11 @@ class RecyclerViewCategoryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding =  ActivityRecyclerViewCategoryBinding.inflate(layoutInflater)
+        val binding = ActivityRecyclerViewCategoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.viewModel = myViewModel
         binding.lifecycleOwner = this
-
-
 
         binding.rvCategory.layoutManager = LinearLayoutManager(this)
         categoryAdapter = CategoryAdapter()
@@ -37,19 +36,40 @@ class RecyclerViewCategoryActivity : AppCompatActivity() {
 
 
 
-        myViewModel.categoriesLiveData.observe(this) {categories->
+        myViewModel.categoriesLiveData.observe(this) { categories ->
             categoryAdapter.setCategories(categories)
         }
 
-
         //LOGOUT
-        with(applicationContext.getSharedPreferences(SHAREDPREF_NAME, Context.MODE_PRIVATE)) {
-            findViewById<Button>(R.id.btn_logout).setOnClickListener {
-                edit().remove(SHAREDPREF_SESSION_TOKEN).remove(SHAREDPREF_SESSION_USERNAME).remove(SHAREDPREF_SESSION_USER_ID).apply()
+        fun logout() {
+            with(applicationContext.getSharedPreferences(SHAREDPREF_NAME, Context.MODE_PRIVATE)) {
+
+                edit().remove(SHAREDPREF_SESSION_TOKEN).remove(SHAREDPREF_SESSION_USERNAME)
+                    .remove(SHAREDPREF_SESSION_USER_ID).apply()
                 startActivity(Intent(this@RecyclerViewCategoryActivity, LoginActivity::class.java))
                 finish()
+
+            }
+
+        }
+
+        binding.bottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.btn_logout -> {
+                    logout()
+                    true
+                }
+                R.id.btn_new_event -> {
+                    myToast("new form")
+                    true
+                }
+                else -> {
+                    myToast("profile")
+                    true
+                }
             }
         }
+
 
     }
 }

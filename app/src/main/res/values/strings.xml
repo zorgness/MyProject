@@ -21,4 +21,7 @@
     <string name="enter_your_username">enter your username</string>
     <string name="city_label">city</string>
     <string name="enter_your_city">enter your city</string>
+    <string name="new_event">New</string>
+    <string name="profil">profil</string>
+    <string name="profile">profile</string>
 </resources>

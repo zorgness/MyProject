@@ -26,7 +26,7 @@ class CategoryAdapter() :
 
     private var categories: MutableList<CategoryDto> = mutableListOf()
 
-    lateinit var  context: Context
+    lateinit var context: Context
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -34,15 +34,16 @@ class CategoryAdapter() :
     ): CategoryAdapter.CategoryViewHolder {
 
         context = parent.context
-        return LayoutInflater.from(parent.context).inflate(R.layout.item_rv_category, parent, false).run {
-            CategoryViewHolder( this)
-        }
+        return LayoutInflater.from(parent.context).inflate(R.layout.item_rv_category, parent, false)
+            .run {
+                CategoryViewHolder(this)
+            }
 
     }
 
     override fun onBindViewHolder(holder: CategoryAdapter.CategoryViewHolder, position: Int) {
 
-        categories[position].let { category->
+        categories[position].let { category ->
 
             with(holder.binding) {
                 tvNameItemRvCategory.text = category.name
@@ -50,6 +51,7 @@ class CategoryAdapter() :
                 val img = ImageView(context)
                 Picasso.get()
                     .load(category.urlImage).error(R.drawable.ic_launcher_background)
+                    .centerCrop()
                     .resize(300, 300)
                     .into(img, object : Callback {
                         override fun onSuccess() {
