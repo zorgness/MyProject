@@ -32,6 +32,9 @@ class LoginActivity : AppCompatActivity() {
             val email = binding.etUserEmail.text.toString()
             val password = binding.etUserPassword.text.toString()
 
+
+            //add view model who get email and password
+
             if (email.isNotBlank() && password.isNotBlank()) {
 
                 login(LoginInfo(email, password), loginCallback = {

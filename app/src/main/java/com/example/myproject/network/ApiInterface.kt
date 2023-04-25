@@ -16,4 +16,7 @@ interface ApiInterface {
 
     @GET(ApiRoutes.CATEGORY)
     fun getAllCategories(): Call<GetCategoriesDto>?
+
+    @GET(ApiRoutes.ACTIVITY_BY_CATEGORY)
+    fun getActivityByCategory(@Query("categoryId") categoryId: Int): Call<GetActivityByCategoryDto>?
 }
