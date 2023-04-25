@@ -20,43 +20,40 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportFragmentManager.commit {
-            setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-            replace(R.id.frame_layout, CategoryFragment())
 
 
-            //LOGOUT
-            fun logout() {
-                with(applicationContext.getSharedPreferences(SHAREDPREF_NAME, Context.MODE_PRIVATE)) {
 
-                    edit().remove(SHAREDPREF_SESSION_TOKEN).remove(SHAREDPREF_SESSION_USERNAME)
-                        .remove(SHAREDPREF_SESSION_USER_ID).apply()
-                    startActivity(Intent(this@MainActivity, LoginActivity::class.java))
-                    finish()
+        //LOGOUT
+        fun logout() {
+            with(applicationContext.getSharedPreferences(SHAREDPREF_NAME, Context.MODE_PRIVATE)) {
 
-                }
+                edit().remove(SHAREDPREF_SESSION_TOKEN).remove(SHAREDPREF_SESSION_USERNAME)
+                    .remove(SHAREDPREF_SESSION_USER_ID).apply()
+                startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+                finish()
 
             }
 
-            binding.bottomNav.setOnItemSelectedListener { item ->
-                when (item.itemId) {
-                    R.id.btn_logout -> {
-                        logout()
-                        true
-                    }
-                    R.id.btn_new_event -> {
-                        myToast("new form")
-                        true
-                    }
-                    else -> {
-                        myToast("profile")
-                        true
-                    }
+        }
+
+        binding.bottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.btn_logout -> {
+                    logout()
+                    true
+                }
+                R.id.btn_new_event -> {
+                    myToast("new form")
+                    true
+                }
+                else -> {
+                    myToast("profile")
+                    true
                 }
             }
+        }
 
 
     }
 
-    }
 }
