@@ -29,12 +29,16 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment
         val navController = navHostFragment.navController
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if(destination.id == R.id.loginFragment || destination.id == R.id.registerFragment || destination.id == R.id.splashFragment) {
-
+            if (destination.id == R.id.loginFragment
+                || destination.id == R.id.registerFragment
+                || destination.id == R.id.splashFragment
+            )
+            {
                 binding.bottomNav.visibility = View.GONE
             } else {
 
@@ -49,10 +53,7 @@ class MainActivity : AppCompatActivity() {
 
                 edit().remove(SHAREDPREF_SESSION_TOKEN).remove(SHAREDPREF_SESSION_USERNAME)
                     .remove(SHAREDPREF_SESSION_USER_ID).apply()
-               /* supportFragmentManager.commit {
-                    setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                    replace(R.id.nav_host, LoginFragment())
-                }*/
+
                 navController.navigate(R.id.loginFragment)
 
             }
