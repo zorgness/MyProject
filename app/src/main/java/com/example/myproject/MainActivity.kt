@@ -10,8 +10,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.commit
+import androidx.navigation.findNavController
 import com.example.myproject.databinding.ActivityMainBinding
 import com.example.myproject.fragment.CategoryFragment
+import com.example.myproject.fragment.LoginFragment
 import myToast
 
 class MainActivity : AppCompatActivity() {
@@ -21,16 +23,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-
-
         //LOGOUT
         fun logout() {
             with(applicationContext.getSharedPreferences(SHAREDPREF_NAME, Context.MODE_PRIVATE)) {
 
                 edit().remove(SHAREDPREF_SESSION_TOKEN).remove(SHAREDPREF_SESSION_USERNAME)
                     .remove(SHAREDPREF_SESSION_USER_ID).apply()
-                startActivity(Intent(this@MainActivity, LoginActivity::class.java))
-                finish()
+               /* supportFragmentManager.commit {
+                    setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    replace(R.id.nav_host, LoginFragment())
+                }*/
 
             }
 

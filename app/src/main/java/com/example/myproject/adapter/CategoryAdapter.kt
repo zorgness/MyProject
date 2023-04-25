@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -58,6 +59,7 @@ class CategoryAdapter() :
 
         val category: CategoryDto = getItem(position)
 
+
         with(holder.binding) {
             tvNameItemRvCategory.text = category.name
 
@@ -77,6 +79,11 @@ class CategoryAdapter() :
 
 
                 })
+
+
+            categoryLayout.setOnClickListener {
+                println(category.id)
+            }
 
 
         }
