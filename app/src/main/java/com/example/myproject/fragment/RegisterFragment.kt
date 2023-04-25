@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.myproject.LoginActivity
 import com.example.myproject.R
 import com.example.myproject.databinding.FragmentRegisterBinding
 import com.example.myproject.dataclass.RegisterInfo
