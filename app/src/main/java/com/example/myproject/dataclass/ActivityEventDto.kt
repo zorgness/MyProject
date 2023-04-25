@@ -7,7 +7,7 @@ data class ActivityEventDto(
     @Json(name = "@context")
     val context: String,
     @Json(name = "@id")
-    val idHydrap: String,
+    val idHydra: String,
     @Json(name = "@type")
     val type: String,
     @Json(name = "id")
