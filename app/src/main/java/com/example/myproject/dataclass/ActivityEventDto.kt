@@ -28,6 +28,4 @@ data class ActivityEventDto(
     val category: String,
     @Json(name = "creator")
     val creator: String,
-    @Json(name = "meetingPoint")
-
 )
