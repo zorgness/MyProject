@@ -32,10 +32,6 @@ class ActivityByCategoryFragment : Fragment() {
         myViewModel.getActivityEventByCategory(args.categoryId)
 
         myViewModel.activityEventByCategoryLiveData.observe(this, Observer {activitiesEventsByCategory->
-            activitiesEventsByCategory.forEach {
-                activity?.myToast(it.title)
-            }
-
             activityEventByCategoryAdapter.submitList(activitiesEventsByCategory)
         })
 
