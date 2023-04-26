@@ -17,6 +17,7 @@ import com.example.myproject.adapter.CategoryAdapter
 import com.example.myproject.databinding.FragmentCategoryBinding
 import com.example.myproject.viewmodel.CategoryViewModel
 import kotlinx.coroutines.NonDisposableHandle.parent
+import myToast
 
 
 class CategoryFragment : Fragment() {
@@ -34,7 +35,8 @@ class CategoryFragment : Fragment() {
         }
 
         myViewModel.errorMessageLiveData.observe(this) {errorMessage ->
-            //Context.myToast(errorMessage)
+
+           activity?.myToast(errorMessage)
         }
 
 
@@ -45,6 +47,8 @@ class CategoryFragment : Fragment() {
 
 
     }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

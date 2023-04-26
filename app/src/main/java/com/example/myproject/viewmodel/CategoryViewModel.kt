@@ -38,6 +38,7 @@ class CategoryViewModel: ViewModel() {
 
     private fun getAllCategories() {
         viewModelScope.launch {
+            _progressBarVisibilityLiveData.value = true
             val responseCategories: Response<GetCategoriesDto>? = withContext(Dispatchers.IO) {
                 ApiService.getApi().getAllCategories()
             }
@@ -50,7 +51,7 @@ class CategoryViewModel: ViewModel() {
                     _errorMessageLiveData.value = "erreur du serveur"
                 }
 
-                responseCategories.isSuccessful() && (body != null) -> {
+                responseCategories.isSuccessful && (body != null) -> {
                     _categoriesLiveData.value = body.categories
                 }
 
@@ -58,6 +59,8 @@ class CategoryViewModel: ViewModel() {
                 responseCategories.code() == 403 ->
                     _errorMessageLiveData.value = "erreur d'authorisation"
             }
+
+            _progressBarVisibilityLiveData.value = false
 
         }
     }
