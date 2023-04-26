@@ -6,6 +6,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/*
 fun getRemoteCategories(categoriesDtoCallback: (List<CategoryDto>) -> Unit) {
     val call: Call<GetCategoriesDto>? = ApiService.getApi().getAllCategories()
     call?.enqueue(object : Callback<GetCategoriesDto> {
@@ -21,4 +22,4 @@ fun getRemoteCategories(categoriesDtoCallback: (List<CategoryDto>) -> Unit) {
             Log.e("failure", t.message ?: "lol")
         }
     })
-}
+}*/

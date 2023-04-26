@@ -22,7 +22,7 @@ import de.hdodenhof.circleimageview.CircleImageView
 import java.lang.Exception
 import  com.squareup.picasso.Target
 
-class MyDiffUtil : DiffUtil.ItemCallback<CategoryDto>() {
+class CategoryDiffUtil : DiffUtil.ItemCallback<CategoryDto>() {
     override fun areItemsTheSame(oldItem: CategoryDto, newItem: CategoryDto): Boolean {
         return oldItem.id == newItem.id
     }
@@ -35,7 +35,7 @@ class MyDiffUtil : DiffUtil.ItemCallback<CategoryDto>() {
 
 
 class CategoryAdapter() :
-    ListAdapter<CategoryDto, CategoryAdapter.CategoryViewHolder>(MyDiffUtil()) {
+    ListAdapter<CategoryDto, CategoryAdapter.CategoryViewHolder>(CategoryDiffUtil()) {
 
 
     private var categories: MutableList<CategoryDto> = mutableListOf()
@@ -61,7 +61,7 @@ class CategoryAdapter() :
 
 
         with(holder.binding) {
-            tvNameItemRvCategory.text = category.name
+            tvNameItemRvCategory.text = category.name.uppercase()
 
             val img = ImageView(context)
             Picasso.get()

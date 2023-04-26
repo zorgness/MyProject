@@ -6,16 +6,23 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myproject.dataclass.CategoryDto
-import getRemoteCategories
+import com.example.myproject.dataclass.GetCategoriesDto
+import com.example.myproject.network.ApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import retrofit2.Response
 
 class CategoryViewModel: ViewModel() {
 
     private val _categoriesLiveData = MutableLiveData<List<CategoryDto>>()
 
     private val _progressBarVisibilityLiveData = MutableLiveData<Boolean>()
+
+    private val _errorMessageLiveData = MutableLiveData<String>()
+
+    val errorMessageLiveData: LiveData<String>
+        get() = _errorMessageLiveData
 
     val categoriesLiveData: LiveData<List<CategoryDto>>
         get() = _categoriesLiveData
@@ -28,7 +35,34 @@ class CategoryViewModel: ViewModel() {
       getAllCategories()
     }
 
- private fun getAllCategories() {
+
+    private fun getAllCategories() {
+        viewModelScope.launch {
+            val responseCategories: Response<GetCategoriesDto>? = withContext(Dispatchers.IO) {
+                ApiService.getApi().getAllCategories()
+            }
+
+            val body = responseCategories?.body()
+
+            when {
+                responseCategories == null -> {
+
+                    _errorMessageLiveData.value = "erreur du serveur"
+                }
+
+                responseCategories.isSuccessful() && (body != null) -> {
+                    _categoriesLiveData.value = body.categories
+                }
+
+
+                responseCategories.code() == 403 ->
+                    _errorMessageLiveData.value = "erreur d'authorisation"
+            }
+
+        }
+    }
+
+/* private fun getAllCategories() {
 
         viewModelScope.launch() {
 
@@ -40,5 +74,5 @@ class CategoryViewModel: ViewModel() {
             }
             _progressBarVisibilityLiveData.value = false
         }
-    }
+    }*/
 }

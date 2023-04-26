@@ -33,6 +33,10 @@ class CategoryFragment : Fragment() {
             categoryAdapter.submitList(categories)
         }
 
+        myViewModel.errorMessageLiveData.observe(this) {errorMessage ->
+            //Context.myToast(errorMessage)
+        }
+
 
         myViewModel.progressBarVisibilityLiveData.observe(this) {
             //NOT WORKING

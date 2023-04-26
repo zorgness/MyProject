@@ -2,6 +2,7 @@ package com.example.myproject.network
 
 import com.example.myproject.dataclass.*
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.*
 
 interface ApiInterface {
@@ -15,7 +16,7 @@ interface ApiInterface {
     fun login(@Body loginInfo: LoginInfo): Call<SessionDto>?
 
     @GET(ApiRoutes.CATEGORY)
-    fun getAllCategories(): Call<GetCategoriesDto>?
+    suspend fun getAllCategories(): Response<GetCategoriesDto>?
 
     @GET(ApiRoutes.ACTIVITY_BY_CATEGORY)
     fun getActivityByCategory(@Query("categoryId") categoryId: Int): Call<GetActivityByCategoryDto>?
