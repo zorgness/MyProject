@@ -19,5 +19,5 @@ interface ApiInterface {
     suspend fun getAllCategories(): Response<GetCategoriesDto>?
 
     @GET(ApiRoutes.ACTIVITY_BY_CATEGORY)
-    fun getActivityByCategory(@Query("categoryId") categoryId: Int): Call<GetActivityByCategoryDto>?
+    suspend fun getActivityByCategory(@Query("categoryId") categoryId: Int): Response<GetActivityByCategoryDto>?
 }

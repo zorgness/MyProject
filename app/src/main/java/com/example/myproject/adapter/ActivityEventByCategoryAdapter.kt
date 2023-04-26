@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myproject.R
+import com.example.myproject.databinding.ItemRvActivityEventBinding
 import com.example.myproject.databinding.ItemRvCategoryBinding
 import com.example.myproject.dataclass.ActivityEventDto
 import com.example.myproject.dataclass.CategoryDto
@@ -26,7 +27,7 @@ class ActivityEventDiffUtil : DiffUtil.ItemCallback<ActivityEventDto>() {
 
 class ActivityEventByCategoryAdapter():  ListAdapter<ActivityEventDto, ActivityEventByCategoryAdapter.ActivityEventViewHolder>(ActivityEventDiffUtil() ) {
 
-    private var activityEvent: MutableList<ActivityEventDto> = mutableListOf()
+    private var activitiesEvents: MutableList<ActivityEventDto> = mutableListOf()
 
     lateinit var context: Context
 
@@ -44,11 +45,16 @@ class ActivityEventByCategoryAdapter():  ListAdapter<ActivityEventDto, ActivityE
     }
 
     override fun onBindViewHolder(holder: ActivityEventViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        val activityEvent: ActivityEventDto = getItem(position)
+
+        with(holder.binding) {
+            tvNameItemRvActivityEvent.text = activityEvent.title
+        }
+
     }
 
     inner class ActivityEventViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        //val binding = ItemRvCategoryBinding.bind(itemView)
+        val binding = ItemRvActivityEventBinding.bind(itemView)
 
     }
 }

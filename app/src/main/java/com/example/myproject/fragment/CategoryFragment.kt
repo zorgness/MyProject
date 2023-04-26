@@ -41,7 +41,7 @@ class CategoryFragment : Fragment() {
 
 
         myViewModel.progressBarVisibilityLiveData.observe(this) {
-            //NOT WORKING
+
             progressBar.visibility = if(it) View.VISIBLE else View.GONE
         }
 
@@ -63,6 +63,7 @@ class CategoryFragment : Fragment() {
         binding.rvCategory.layoutManager = LinearLayoutManager(container?.context)
         categoryAdapter = CategoryAdapter()
         binding.rvCategory.adapter = categoryAdapter
+
 
         progressBar = binding.pBarCategory
 
