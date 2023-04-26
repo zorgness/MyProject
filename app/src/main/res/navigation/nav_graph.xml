@@ -32,7 +32,11 @@
     <fragment
         android:id="@+id/categoryFragment"
         android:name="com.example.myproject.fragment.CategoryFragment"
-        android:label="CategoryFragment" />
+        android:label="CategoryFragment" >
+        <action
+            android:id="@+id/action_categoryFragment_to_activityByCategoryFragment"
+            app:destination="@id/activityByCategoryFragment" />
+    </fragment>
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.example.myproject.fragment.RegisterFragment"
@@ -41,5 +45,13 @@
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/activityByCategoryFragment"
+        android:name="com.example.myproject.fragment.ActivityByCategoryFragment"
+        android:label="ActivityByCategoryFragment" >
+        <argument
+            android:name="categoryId"
+            app:argType="integer" />
     </fragment>
 </navigation>

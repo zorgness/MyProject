@@ -4,8 +4,6 @@ package com.example.myproject.dataclass
 import com.squareup.moshi.Json
 
 data class ActivityEventDto(
-    @Json(name = "@context")
-    val context: String,
     @Json(name = "@id")
     val idHydra: String,
     @Json(name = "@type")

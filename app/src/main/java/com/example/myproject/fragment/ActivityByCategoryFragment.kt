@@ -7,10 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myproject.R
 import com.example.myproject.adapter.ActivityEventByCategoryAdapter
+import com.example.myproject.adapter.CategoryAdapter
+import com.example.myproject.databinding.FragmentActivityByCategoryBinding
 import com.example.myproject.viewmodel.ActivityByCategoryViewModel
-
+import myToast
 
 
 class ActivityByCategoryFragment : Fragment() {
@@ -19,17 +24,47 @@ class ActivityByCategoryFragment : Fragment() {
     private lateinit var activityEventByCategoryAdapter: ActivityEventByCategoryAdapter
     private lateinit var progressBar: ProgressBar
 
+    private val args:ActivityByCategoryFragmentArgs by navArgs()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+        myViewModel.getActivityEventByCategory(args.categoryId)
+
+        myViewModel.activityEventByCategoryLiveData.observe(this, Observer {activitiesEventsByCategory->
+            activitiesEventsByCategory.forEach {
+                activity?.myToast(it.title)
+            }
+
+            activityEventByCategoryAdapter.submitList(activitiesEventsByCategory)
+        })
+
+        myViewModel.errorMessageLiveData.observe(this) {errorMessage ->
+
+            activity?.myToast(errorMessage)
+        }
+
+
+        myViewModel.progressBarVisibilityLiveData.observe(this) {
+
+            progressBar.visibility = if(it) View.VISIBLE else View.GONE
+        }
 
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_activity_by_category, container, false)
+    ): View {
+        val binding = FragmentActivityByCategoryBinding.inflate(layoutInflater)
+
+        binding.rvActivityEvent.layoutManager = LinearLayoutManager(container?.context)
+        activityEventByCategoryAdapter = ActivityEventByCategoryAdapter()
+        binding.rvActivityEvent.adapter = activityEventByCategoryAdapter
+
+
+        progressBar = binding.pBarCategory
+        return binding.root
     }
 
 

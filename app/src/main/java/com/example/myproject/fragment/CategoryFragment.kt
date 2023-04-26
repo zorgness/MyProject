@@ -11,6 +11,7 @@ import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil.bind
 import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myproject.R
 import com.example.myproject.adapter.CategoryAdapter
@@ -66,6 +67,9 @@ class CategoryFragment : Fragment() {
 
 
         progressBar = binding.pBarCategory
+
+
+
 
 
         return binding.root

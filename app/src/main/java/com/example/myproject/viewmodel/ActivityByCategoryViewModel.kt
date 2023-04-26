@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.Response
 
-class ActivityByCategoryViewModel: ViewModel() {
+class ActivityByCategoryViewModel : ViewModel() {
 
     private val _activityEventByCategoryLiveData = MutableLiveData<List<ActivityEventDto>>()
 
@@ -28,15 +28,16 @@ class ActivityByCategoryViewModel: ViewModel() {
         get() = _activityEventByCategoryLiveData
 
     val progressBarVisibilityLiveData: LiveData<Boolean>
-        get() =  _progressBarVisibilityLiveData
+        get() = _progressBarVisibilityLiveData
 
 
-    private fun getActivityEventByCategory(categoryId: Int) {
+    fun getActivityEventByCategory(categoryId: Int) {
         viewModelScope.launch {
             _progressBarVisibilityLiveData.value = true
-            val responseActivityByCategory: Response<GetActivityByCategoryDto>? = withContext(Dispatchers.IO) {
-                ApiService.getApi().getActivityByCategory(categoryId)
-            }
+            val responseActivityByCategory: Response<GetActivityByCategoryDto>? =
+                withContext(Dispatchers.IO) {
+                    ApiService.getApi().getActivityByCategory(categoryId)
+                }
 
             val body = responseActivityByCategory?.body()
 
@@ -58,7 +59,6 @@ class ActivityByCategoryViewModel: ViewModel() {
             _progressBarVisibilityLiveData.value = false
 
         }
-        }
     }
-
 }
+

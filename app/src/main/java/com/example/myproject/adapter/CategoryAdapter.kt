@@ -9,13 +9,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.navigation.fragment.findNavController
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myproject.R
 import com.example.myproject.databinding.ItemRvCategoryBinding
 import com.example.myproject.dataclass.CategoryDto
+import com.example.myproject.fragment.CategoryFragment
+import com.example.myproject.fragment.CategoryFragmentDirections
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
@@ -37,8 +40,6 @@ class CategoryDiffUtil : DiffUtil.ItemCallback<CategoryDto>() {
 class CategoryAdapter() :
     ListAdapter<CategoryDto, CategoryAdapter.CategoryViewHolder>(CategoryDiffUtil()) {
 
-
-    private var categories: MutableList<CategoryDto> = mutableListOf()
 
     lateinit var context: Context
 
@@ -81,8 +82,9 @@ class CategoryAdapter() :
                 })
 
 
-            categoryLayout.setOnClickListener {
-                println(category.id)
+            categoryLayout.setOnClickListener {view->
+                val navDir = CategoryFragmentDirections.actionCategoryFragmentToActivityByCategoryFragment(category.id)
+                view.findNavController().navigate(navDir)
             }
 
 

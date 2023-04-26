@@ -27,7 +27,6 @@ class ActivityEventDiffUtil : DiffUtil.ItemCallback<ActivityEventDto>() {
 
 class ActivityEventByCategoryAdapter():  ListAdapter<ActivityEventDto, ActivityEventByCategoryAdapter.ActivityEventViewHolder>(ActivityEventDiffUtil() ) {
 
-    private var activitiesEvents: MutableList<ActivityEventDto> = mutableListOf()
 
     lateinit var context: Context
 
@@ -37,7 +36,7 @@ class ActivityEventByCategoryAdapter():  ListAdapter<ActivityEventDto, ActivityE
     ): ActivityEventByCategoryAdapter.ActivityEventViewHolder {
 
         context = parent.context
-        return LayoutInflater.from(parent.context).inflate(R.layout.item_rv_category, parent, false)
+        return LayoutInflater.from(parent.context).inflate(R.layout.item_rv_activity_event, parent, false)
             .run {
                 ActivityEventViewHolder(this)
             }
@@ -50,6 +49,8 @@ class ActivityEventByCategoryAdapter():  ListAdapter<ActivityEventDto, ActivityE
         with(holder.binding) {
             tvNameItemRvActivityEvent.text = activityEvent.title
         }
+
+
 
     }
 
