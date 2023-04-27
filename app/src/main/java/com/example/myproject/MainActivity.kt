@@ -9,15 +9,19 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.commit
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.example.myproject.databinding.ActivityMainBinding
 import com.example.myproject.fragment.CategoryFragment
 import com.example.myproject.fragment.LoginFragment
+import com.example.myproject.fragment.ProfileFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import myToast
 
 class MainActivity : AppCompatActivity() {
@@ -33,12 +37,14 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment
         val navController = navHostFragment.navController
 
+        val bottomNav: BottomNavigationView = findViewById(R.id.bottom_nav)
+        bottomNav.setupWithNavController(navController)
+
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id == R.id.loginFragment
                 || destination.id == R.id.registerFragment
                 || destination.id == R.id.splashFragment
-            )
-            {
+            ) {
                 binding.bottomNav.visibility = View.GONE
             } else {
 
@@ -57,25 +63,32 @@ class MainActivity : AppCompatActivity() {
                 navController.navigate(R.id.loginFragment)
 
             }
-
         }
 
-        binding.bottomNav.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.btn_logout -> {
-                    logout()
-                    true
-                }
-                R.id.btn_new_event -> {
-                    myToast("new form")
-                    true
-                }
-                else -> {
-                    myToast("profile")
-                    true
-                }
-            }
-        }
+
+
+
+         bottomNav.setOnItemSelectedListener { item ->
+               when (item.itemId) {
+                   R.id.btn_logout -> {
+                       logout()
+                       true
+                   }
+                   R.id.btn_new_event -> {
+                       myToast("new form")
+                       true
+                   }
+                   R.id.profileFragment -> {
+                       navController.navigate(R.id.profileFragment)
+                       true
+                   }
+
+                   else -> {
+                       myToast("error")
+                       true
+                   }
+               }
+           }
 
 
     }

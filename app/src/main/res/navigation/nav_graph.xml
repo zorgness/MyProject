@@ -54,4 +54,9 @@
             android:name="categoryId"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.myproject.fragment.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

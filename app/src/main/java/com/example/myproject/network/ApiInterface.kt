@@ -9,7 +9,7 @@ interface ApiInterface {
 
     @Headers("Content-Type: application/json")
     @POST(ApiRoutes.REGISTER)
-    fun register(@Body registerInfo: RegisterInfo): Call<RegisterDto>?
+    fun register(@Body registerInfo: RegisterInfo): Call<UserDto>?
 
     @Headers("Content-Type: application/json")
     @POST(ApiRoutes.LOGIN)
@@ -20,4 +20,7 @@ interface ApiInterface {
 
     @GET(ApiRoutes.ACTIVITY_BY_CATEGORY)
     suspend fun getActivityByCategory(@Query("category") categoryId: Int): Response<GetActivityByCategoryDto>?
+
+    @GET(ApiRoutes.USERPROFILE + "/{userId}")
+    suspend fun getUserProfile(@Path("userId") userId: Int): Response<UserDto>?
 }
