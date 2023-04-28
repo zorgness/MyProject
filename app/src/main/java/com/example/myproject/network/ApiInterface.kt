@@ -21,6 +21,6 @@ interface ApiInterface {
     @GET(ApiRoutes.ACTIVITY_BY_CATEGORY)
     suspend fun getActivityByCategory(@Query("category") categoryId: Int): Response<GetActivityByCategoryDto>?
 
-    @GET(ApiRoutes.USERPROFILE + "/{userId}")
-    suspend fun getUserProfile(@Path("userId") userId: Int): Response<UserDto>?
+    @GET(ApiRoutes.USERPROFILE)
+    suspend fun getUserProfile(@Path("userId") userId: Int): Response<GetProfileDto>?
 }

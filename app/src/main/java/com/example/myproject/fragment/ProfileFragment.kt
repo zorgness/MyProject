@@ -45,9 +45,9 @@ class ProfileFragment : Fragment() {
             userId = this?.getInt(SHAREDPREF_SESSION_USER_ID, 0)
         }
         userId?.let { myViewModel.getUserProfile(it) }
-        myViewModel.userProfile.observe(viewLifecycleOwner, Observer{user->
+        myViewModel.userProfile.observe(viewLifecycleOwner, Observer{profile->
 
-            binding.tvUsername.text = user?.username
+            binding.tvUsername.text = profile?.username
 
 
         })

@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.myproject.dataclass.GetProfileDto
+import com.example.myproject.dataclass.ProfileDto
 import com.example.myproject.dataclass.UserDto
 import com.example.myproject.network.ApiService
 import kotlinx.coroutines.Dispatchers
@@ -13,11 +15,11 @@ import retrofit2.Response
 
 class ProfileViewModel : ViewModel() {
 
-    private var _userProfileLiveData = MutableLiveData<UserDto?>()
+    private var _userProfileLiveData = MutableLiveData<ProfileDto>()
 
     private var _errorMessageLiveData = MutableLiveData<String>()
 
-    val userProfile: LiveData<UserDto?>
+    val userProfile: LiveData<ProfileDto>
         get() = _userProfileLiveData
 
     val errorMessageLiveData: LiveData<String>
@@ -25,7 +27,7 @@ class ProfileViewModel : ViewModel() {
 
     fun getUserProfile(userId: Int) {
         viewModelScope.launch {
-            val responseUserProfile: Response<UserDto>? = withContext(Dispatchers.IO) {
+            val responseUserProfile: Response<GetProfileDto>? = withContext(Dispatchers.IO) {
                 ApiService.getApi().getUserProfile(userId)
             }
             val body = responseUserProfile?.body()
@@ -36,7 +38,9 @@ class ProfileViewModel : ViewModel() {
                     _errorMessageLiveData.value = "error server"
                 }
                 responseUserProfile.isSuccessful && (body != null) -> {
-                   _userProfileLiveData.value = UserDto(
+                    //ADD MESSAGE
+                    _userProfileLiveData.value = body.profile
+                   /*_userProfileLiveData.value = UserDto(
                         body.context,
                         body.idHydra,
                         body.type,
@@ -44,7 +48,7 @@ class ProfileViewModel : ViewModel() {
                         body.username,
                         body.city,
                         body.description
-                    )
+                    )*/
 
                 }
 

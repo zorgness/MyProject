@@ -7,6 +7,6 @@ object ApiRoutes {
     const val LOGIN = "/api/login"
     const val CATEGORY = "/api/categories"
     const val ACTIVITY_BY_CATEGORY = "/api/activity_events/"
-    const val USERPROFILE = "/api/users"
+    const val USERPROFILE = "/api/users/profile/{userId}"
 
 }
