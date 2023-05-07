@@ -57,8 +57,16 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        binding.btnHome.setOnClickListener {
+            navController.navigate(R.id.categoryFragment)
+        }
+
         binding.btnLogout.setOnClickListener {
             logout()
+        }
+
+        binding.btnProfile.setOnClickListener {
+            navController.navigate(R.id.profileFragment)
         }
 
 
@@ -76,8 +84,8 @@ class MainActivity : AppCompatActivity() {
                        myToast("new form")
                        true
                    }
-                   R.id.profileFragment -> {
-                       navController.navigate(R.id.profileFragment)
+                   R.id.btn_history-> {
+                       navController.navigate(R.id.userHistoryFragment)
                        true
                    }
 
