@@ -52,4 +52,11 @@ class MySharedPref(context: Context) {
     fun saveToken(token: String) {
         saveString(SHAREDPREF_SESSION_TOKEN, token)
     }
+
+    fun clearSharedPref() {
+        with(sharedPreferences) {
+            edit().remove(SHAREDPREF_SESSION_TOKEN).remove(SHAREDPREF_SESSION_USERNAME)
+                .remove(SHAREDPREF_SESSION_USER_ID).apply()
+        }
+    }
 }
