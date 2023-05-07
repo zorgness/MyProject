@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">MyProject</string>
     <string name="fun4mate">Fun4Mate</string>
     <string name="login">Login</string>
@@ -24,12 +24,13 @@
     <string name="new_event">New</string>
     <string name="profil">profil</string>
     <string name="profile">profile</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
     <string name="unauthorized">probléme d\'autorisation</string>
     <string name="notification">notification</string>
+    <string name="wrong_credential">mauvais email ou mot de passe</string>
     <string name="history">history</string>
     <string name="home">home</string>
     <string name="server_error">erreur du serveur</string>

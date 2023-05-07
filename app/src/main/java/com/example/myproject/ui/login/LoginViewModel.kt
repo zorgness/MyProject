@@ -1,5 +1,6 @@
 package com.example.myproject.ui.login
 
+import ERROR_401
 import ERROR_403
 import STATUS_USER_SUCCESS
 import android.content.Context
@@ -25,7 +26,7 @@ class LoginViewModel @Inject constructor(
     private val sharedPref: MySharedPref,
     private val context: Context
 
-    ) : ViewModel() {
+) : ViewModel() {
 
     private val _messageLiveData = MutableLiveData<String>()
 
@@ -46,7 +47,7 @@ class LoginViewModel @Inject constructor(
             viewModelScope.launch {
 
                 val responseLogin: Response<SessionDto>? = withContext(Dispatchers.IO) {
-                    apiService.login(LoginInfo( emailLiveData.value!!, passwordLiveData.value!!))
+                    apiService.login(LoginInfo(emailLiveData.value!!, passwordLiveData.value!!))
                 }
 
                 val body = responseLogin?.body()
@@ -58,18 +59,21 @@ class LoginViewModel @Inject constructor(
                     }
 
                     responseLogin.isSuccessful && (body != null) -> {
-                      /*  _messageLiveData.value =
-                            responseLoginStatus(body.status, context)*/
+
                         if (body.status == STATUS_USER_SUCCESS) {
 
-                        sharedPref.saveToken(body.token)
-                        sharedPref.saveUserId(body.id)
-                        sharedPref.saveUsername(body.username)
+                            sharedPref.saveToken(body.token)
+                            sharedPref.saveUserId(body.id)
+                            sharedPref.saveUsername(body.username)
 
+                            _messageLiveData.value =
+                                "${context.getString(R.string.welcome)} ${body.username} "
                             _statusLiveData.value = body.status
 
-                       }
+                        }
                     }
+                    responseLogin.code() == ERROR_401 ->
+                        _messageLiveData.value = context.getString(R.string.wrong_credential)
 
                     responseLogin.code() == ERROR_403 ->
                         _messageLiveData.value = context.getString(R.string.unauthorized)
@@ -82,7 +86,6 @@ class LoginViewModel @Inject constructor(
 
 
     }
-
 
 
 }
