@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.myproject.databinding.FragmentProfileBinding
 import com.example.myproject.dataclass.UserDto
+import com.example.myproject.ui.profile.user_history.MyPagerAdapter
 import myToast
 
 
@@ -34,6 +35,9 @@ class ProfileFragment : Fragment() {
 
         val binding = FragmentProfileBinding.inflate(layoutInflater)
 
+        binding.viewPager.adapter = MyPagerAdapter(parentFragmentManager)
+        binding.tabsUserHistory.setupWithViewPager(binding.viewPager)
+
         myViewModel.errorMessageLiveData.observe(viewLifecycleOwner) {errorMessage ->
             activity?.myToast(errorMessage)
         }
@@ -44,7 +48,7 @@ class ProfileFragment : Fragment() {
         userId?.let { myViewModel.getUserProfile(it) }
         myViewModel.userProfile.observe(viewLifecycleOwner, Observer{profile->
 
-            binding.tvUsername.text = profile?.username
+            //binding.tvUsername.text = profile?.username
 
 
         })

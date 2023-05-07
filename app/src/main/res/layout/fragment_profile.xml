@@ -8,13 +8,56 @@
     tools:context=".ui.profile.ProfileFragment">
 
 
-    <TextView
-        android:id="@+id/tv_username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- User Profile -->
+
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/avatar" />
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/avatar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:text="John Doe"
+            android:textSize="24sp" />
+
+        <!-- Swipe Pager -->
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/username" />
+
+        <!-- Tab Layout -->
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs_user_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/username"
+            android:background="@color/white"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.MaterialComponents.ActionBar"
+            app:tabGravity="fill"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/black"
+            app:tabTextColor="@color/my_green">
+
+
+        </com.google.android.material.tabs.TabLayout>
+
+    </RelativeLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
