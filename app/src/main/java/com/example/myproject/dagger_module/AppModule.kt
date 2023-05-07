@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.myproject.network.ApiRoutes
 import com.example.myproject.network.ApiService
+import com.example.myproject.utils.MySharedPref
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -30,6 +31,12 @@ object AppModule {
         @ApplicationContext context: Context
     ): Context {
         return context
+    }
+
+    @Provides
+    @Singleton
+    fun provideMySharedPref(context: Context): MySharedPref {
+        return MySharedPref(context)
     }
 
     @Provides

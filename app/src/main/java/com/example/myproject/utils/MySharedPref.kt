@@ -1,4 +1,4 @@
-package com.example.myproject.ui
+package com.example.myproject.utils
 
 import SHAREDPREF_NAME
 import SHAREDPREF_SESSION_TOKEN
