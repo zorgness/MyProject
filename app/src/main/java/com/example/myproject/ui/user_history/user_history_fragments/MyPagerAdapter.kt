@@ -1,9 +1,7 @@
-package com.example.myproject.ui.profile.user_history
+package com.example.myproject.ui.user_history.user_history_fragments
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.viewpager2.adapter.FragmentStateAdapter
 
 class MyPagerAdapter(fm: FragmentManager): FragmentPagerAdapter(fm) {
 
@@ -21,9 +19,13 @@ class MyPagerAdapter(fm: FragmentManager): FragmentPagerAdapter(fm) {
         return COUNT
     }
 
-    override fun getPageTitle(position: Int): CharSequence? {
-        return "Tab " + (position + 1)
-    }
+    override fun getPageTitle(position: Int): String =
+        when (position) {
+            0 -> "activities history"
+            1-> "participation history"
+            else -> "activities history"
+        }
+
 }
 
 

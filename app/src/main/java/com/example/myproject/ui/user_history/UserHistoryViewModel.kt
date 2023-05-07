@@ -1,4 +1,4 @@
-package com.example.myproject.ui.profile
+package com.example.myproject.ui.user_history
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,14 +6,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myproject.dataclass.GetProfileDto
 import com.example.myproject.dataclass.ProfileDto
-import com.example.myproject.dataclass.UserDto
 import com.example.myproject.network.ApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.Response
 
-class ProfileViewModel : ViewModel() {
+class UserHistoryViewModel : ViewModel() {
 
     private var _userProfileLiveData = MutableLiveData<ProfileDto>()
 

@@ -1,4 +1,4 @@
-package com.example.myproject.ui.profile.user_history
+package com.example.myproject.ui.user_history.user_history_fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

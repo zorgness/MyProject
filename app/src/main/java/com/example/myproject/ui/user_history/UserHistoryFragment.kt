@@ -1,4 +1,4 @@
-package com.example.myproject.ui.profile
+package com.example.myproject.ui.user_history
 
 import SHAREDPREF_NAME
 import SHAREDPREF_SESSION_USER_ID
@@ -10,16 +10,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.example.myproject.databinding.FragmentProfileBinding
+import com.example.myproject.databinding.FragmentUserHistoryBinding
 import com.example.myproject.dataclass.UserDto
-import com.example.myproject.ui.profile.user_history.MyPagerAdapter
+import com.example.myproject.ui.user_history.user_history_fragments.MyPagerAdapter
 import myToast
 
 
-class ProfileFragment : Fragment() {
+class UserHistoryFragment : Fragment() {
 
 
-    private val myViewModel: ProfileViewModel by viewModels()
+    private val myViewModel: UserHistoryViewModel by viewModels()
     var userDto: UserDto? = null
     var userId: Int? = 0
 
@@ -33,9 +33,11 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        val binding = FragmentProfileBinding.inflate(layoutInflater)
+        val binding = FragmentUserHistoryBinding.inflate(layoutInflater)
+        val pagerAdapter = MyPagerAdapter(parentFragmentManager)
 
-        binding.viewPager.adapter = MyPagerAdapter(parentFragmentManager)
+         binding.viewPager.adapter = pagerAdapter
+
         binding.tabsUserHistory.setupWithViewPager(binding.viewPager)
 
         myViewModel.errorMessageLiveData.observe(viewLifecycleOwner) {errorMessage ->

@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.profile.ProfileFragment">
+    tools:context=".ui.user_history.UserHistoryFragment">
 
 
     <RelativeLayout
@@ -16,8 +16,8 @@
 
         <ImageView
             android:id="@+id/avatar"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="32dp"
             android:src="@drawable/avatar" />
@@ -38,7 +38,7 @@
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/username" />
+            android:layout_below="@id/username" >
 
         <!-- Tab Layout -->
 
@@ -53,10 +53,11 @@
             app:tabGravity="fill"
             app:tabMode="fixed"
             app:tabSelectedTextColor="@color/black"
-            app:tabTextColor="@color/my_green">
+            app:tabTextColor="@color/my_green"/>
+        </androidx.viewpager.widget.ViewPager>
 
 
-        </com.google.android.material.tabs.TabLayout>
+
 
     </RelativeLayout>
 
