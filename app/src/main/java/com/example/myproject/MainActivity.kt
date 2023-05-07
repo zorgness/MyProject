@@ -10,7 +10,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.myproject.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
-import myToast
+import com.example.myproject.extensions.myToast
 
 
 @AndroidEntryPoint

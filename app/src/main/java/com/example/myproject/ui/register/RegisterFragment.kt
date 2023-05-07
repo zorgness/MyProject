@@ -9,7 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.myproject.R
 import com.example.myproject.databinding.FragmentRegisterBinding
 import com.example.myproject.dataclass.RegisterInfo
-import register
+
 
 
 class RegisterFragment : Fragment() {
@@ -26,7 +26,7 @@ class RegisterFragment : Fragment() {
         val navController = findNavController()
         val binding = FragmentRegisterBinding.inflate(layoutInflater)
 
-        binding.btnSubmitRegister.setOnClickListener {
+       /* binding.btnSubmitRegister.setOnClickListener {
             val email =  binding.etUserEmail.text.toString()
             val username = binding.etUserUsername.text.toString()
             val city = binding.etUserCity.text.toString()
@@ -43,16 +43,16 @@ class RegisterFragment : Fragment() {
                         }
                     }, errorCallback = { error ->
 
-                        //myToast(error.toString())
+                        //com.example.myproject.extensions.myToast(error.toString())
                     })
 
                 } else {
-                   // myToast("password and confirm are not equals")
+                   // com.example.myproject.extensions.myToast("password and confirm are not equals")
                 }
             } else {
-                //myToast("fields can't be blank")
+                //com.example.myproject.extensions.myToast("fields can't be blank")
             }
-        }
+        }*/
         return binding.root
     }
 

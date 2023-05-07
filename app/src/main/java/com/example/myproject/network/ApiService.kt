@@ -1,32 +1,26 @@
 package com.example.myproject.network
 
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import com.example.myproject.dataclass.*
+import retrofit2.Call
+import retrofit2.Response
+import retrofit2.http.*
 
-object ApiService {
+interface ApiService {
 
-    private fun getClient(): Retrofit {
+    @Headers("Content-Type: application/json")
+    @POST(ApiRoutes.REGISTER)
+    fun register(@Body registerInfo: RegisterInfo): Call<UserDto>?
 
-        val interceptor = HttpLoggingInterceptor()
-        //ONLY DEBUG
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
+    @Headers("Content-Type: application/json")
+    @POST(ApiRoutes.LOGIN)
+    suspend fun login(@Body loginInfo: LoginInfo): Response<SessionDto>?
 
-        val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
+    @GET(ApiRoutes.CATEGORY)
+    suspend fun getAllCategories(): Response<GetCategoriesDto>?
 
-        val moshi = Moshi.Builder().apply {
-            add(KotlinJsonAdapterFactory())
-        }.build()
+    @GET(ApiRoutes.ACTIVITY_BY_CATEGORY)
+    suspend fun getActivityByCategory(@Query("category") categoryId: Int): Response<GetActivityByCategoryDto>?
 
-        return Retrofit.Builder()
-            .baseUrl(ApiRoutes.BASE_URL)
-            .addConverterFactory(MoshiConverterFactory.create(moshi)).client(client)
-            .build()
-    }
-
-    fun getApi() = getClient().create(ApiInterface::class.java)
+    @GET(ApiRoutes.USERPROFILE)
+    suspend fun getUserProfile(@Path("userId") userId: Int): Response<GetProfileDto>?
 }
-

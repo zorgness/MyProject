@@ -1,6 +1,5 @@
 package com.example.myproject.ui.category
 
-import android.widget.ProgressBar
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,13 +7,18 @@ import androidx.lifecycle.viewModelScope
 import com.example.myproject.dataclass.CategoryDto
 import com.example.myproject.dataclass.GetCategoriesDto
 import com.example.myproject.network.ApiService
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.Response
 import java.net.ConnectException
+import javax.inject.Inject
 
-class CategoryViewModel : ViewModel() {
+@HiltViewModel
+class CategoryViewModel @Inject constructor(
+    private val apiService: ApiService
+) : ViewModel() {
 
     private val _categoriesLiveData = MutableLiveData<List<CategoryDto>>()
 
@@ -43,7 +47,7 @@ class CategoryViewModel : ViewModel() {
             try {
                 _progressBarVisibilityLiveData.value = true
                 val responseCategories: Response<GetCategoriesDto>? = withContext(Dispatchers.IO) {
-                    ApiService.getApi().getAllCategories()
+                    apiService.getAllCategories()
                 }
 
                 val body = responseCategories?.body()

@@ -6,14 +6,18 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myproject.dataclass.ActivityEventDto
 import com.example.myproject.dataclass.GetActivityByCategoryDto
-import com.example.myproject.dataclass.GetCategoriesDto
 import com.example.myproject.network.ApiService
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.Response
+import javax.inject.Inject
 
-class ActivityByCategoryViewModel : ViewModel() {
+@HiltViewModel
+class ActivityByCategoryViewModel @Inject constructor(
+    private val apiService: ApiService
+) : ViewModel() {
 
     private val _activityEventByCategoryLiveData = MutableLiveData<List<ActivityEventDto>>()
 
@@ -36,7 +40,7 @@ class ActivityByCategoryViewModel : ViewModel() {
             _progressBarVisibilityLiveData.value = true
             val responseActivityByCategory: Response<GetActivityByCategoryDto>? =
                 withContext(Dispatchers.IO) {
-                    ApiService.getApi().getActivityByCategory(categoryId)
+                    apiService.getActivityByCategory(categoryId)
                 }
 
             val body = responseActivityByCategory?.body()

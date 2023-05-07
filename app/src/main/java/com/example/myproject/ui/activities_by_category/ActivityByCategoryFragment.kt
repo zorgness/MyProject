@@ -12,9 +12,10 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myproject.adapter.ActivityEventByCategoryAdapter
 import com.example.myproject.databinding.FragmentActivityByCategoryBinding
-import myToast
+import com.example.myproject.extensions.myToast
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class ActivityByCategoryFragment : Fragment() {
 
     private val myViewModel: ActivityByCategoryViewModel by viewModels()

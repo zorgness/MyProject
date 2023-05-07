@@ -10,11 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.example.myproject.R
 import com.example.myproject.databinding.FragmentUserHistoryBinding
 import com.example.myproject.dataclass.UserDto
 import com.example.myproject.ui.user_history.user_history_fragments.MyPagerAdapter
-import myToast
+import com.example.myproject.extensions.myToast
 
 
 class UserHistoryFragment : Fragment() {

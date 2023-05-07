@@ -7,12 +7,17 @@ import androidx.lifecycle.viewModelScope
 import com.example.myproject.dataclass.GetProfileDto
 import com.example.myproject.dataclass.ProfileDto
 import com.example.myproject.network.ApiService
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.Response
+import javax.inject.Inject
 
-class UserHistoryViewModel : ViewModel() {
+@HiltViewModel
+class UserHistoryViewModel @Inject constructor(
+    private val apiService: ApiService
+) : ViewModel() {
 
     private var _userProfileLiveData = MutableLiveData<ProfileDto>()
 
@@ -27,7 +32,7 @@ class UserHistoryViewModel : ViewModel() {
     fun getUserProfile(userId: Int) {
         viewModelScope.launch {
             val responseUserProfile: Response<GetProfileDto>? = withContext(Dispatchers.IO) {
-                ApiService.getApi().getUserProfile(userId)
+                apiService.getUserProfile(userId)
             }
             val body = responseUserProfile?.body()
 

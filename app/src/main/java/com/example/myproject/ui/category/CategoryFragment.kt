@@ -10,9 +10,10 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myproject.adapter.CategoryAdapter
 import com.example.myproject.databinding.FragmentCategoryBinding
-import myToast
+import com.example.myproject.extensions.myToast
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class CategoryFragment : Fragment() {
 
     private val myViewModel: CategoryViewModel by viewModels()

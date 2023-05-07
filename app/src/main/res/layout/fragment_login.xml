@@ -1,98 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout2"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.login.LoginFragment"
-    android:background="@color/my_green">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.myproject.ui.login.LoginViewModel" />
 
 
-    <TextView
-        android:id="@+id/tv_title_login_activity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:textSize="28sp"
-        android:textColor="@color/white"
-        android:text="@string/login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+    </data>
 
-        />
-
-    <LinearLayout
-        android:id="@+id/linear_layout_login_activity"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/frameLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="34dp"
-        android:layout_marginTop="160dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_title_login_activity">
+        android:background="@color/my_green"
+        tools:context=".ui.login.LoginFragment">
+
 
         <TextView
-            android:id="@+id/tv_email_label"
-            android:layout_width="match_parent"
+            android:id="@+id/tv_title_login_activity"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/email_label"
-            android:textSize="20sp"
-            android:textColor="@color/white"/>
-
-        <EditText
-            android:id="@+id/et_user_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textSize="14sp"
-            android:padding="16dp"
-            android:ems="10"
-            android:inputType="textEmailAddress"
-            android:hint="@string/enter_your_email"
-            android:autofillHints=""
-            android:background="@drawable/edit_text_background"/>
-
-        <TextView
-            android:id="@+id/tv_password_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/password"
-            android:textSize="20sp"
-            android:textColor="@color/white"/>
-
-        <EditText
-            android:id="@+id/et_user_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textSize="14sp"
-            android:padding="16dp"
-            android:ems="10"
-            android:inputType="textPassword"
-            android:hint="@string/enter_your_password"
-            android:autofillHints=""
-            android:background="@drawable/edit_text_background"/>
-
-        <Button
-            android:id="@+id/btn_submit_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:text="@string/submit" />
-
-        <TextView
-            android:id="@+id/tv_register_login_activity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/login"
             android:textColor="@color/white"
-            android:text="@string/no_account_yet_register_here"
-            android:textAlignment="center"/>
-    </LinearLayout>
+            android:textSize="28sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            />
+
+        <LinearLayout
+            android:id="@+id/linear_layout_login_activity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="160dp"
+            android:layout_marginEnd="34dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_login_activity">
+
+            <TextView
+                android:id="@+id/tv_email_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/email_label"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/et_user_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:autofillHints=""
+                android:background="@drawable/edit_text_background"
+                android:ems="10"
+                android:hint="@string/enter_your_email"
+                android:text='@={viewModel.emailLiveData}'
+                android:inputType="textEmailAddress"
+                android:padding="16dp"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_password_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/password"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/et_user_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:autofillHints=""
+                android:background="@drawable/edit_text_background"
+                android:ems="10"
+                android:hint="@string/enter_your_password"
+                android:text='@={viewModel.passwordLiveData}'
+                android:inputType="textPassword"
+                android:padding="16dp"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/btn_submit_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:onClick="@{() -> viewModel.login()}"
+                android:text="@string/submit" />
+
+            <TextView
+                android:id="@+id/tv_register_login_activity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/no_account_yet_register_here"
+                android:textAlignment="center"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
