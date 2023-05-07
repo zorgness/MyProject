@@ -1,6 +1,5 @@
-package com.example.myproject.fragment
+package com.example.myproject.ui.register
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

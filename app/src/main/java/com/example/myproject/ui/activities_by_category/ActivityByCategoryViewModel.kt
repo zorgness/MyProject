@@ -1,4 +1,4 @@
-package com.example.myproject.viewmodel
+package com.example.myproject.ui.activities_by_category
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -1,4 +1,4 @@
-package com.example.myproject.fragment
+package com.example.myproject.ui.activities_by_category
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,11 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myproject.R
 import com.example.myproject.adapter.ActivityEventByCategoryAdapter
-import com.example.myproject.adapter.CategoryAdapter
 import com.example.myproject.databinding.FragmentActivityByCategoryBinding
-import com.example.myproject.viewmodel.ActivityByCategoryViewModel
 import myToast
 
 
@@ -24,7 +21,7 @@ class ActivityByCategoryFragment : Fragment() {
     private lateinit var activityEventByCategoryAdapter: ActivityEventByCategoryAdapter
     private lateinit var progressBar: ProgressBar
 
-    private val args:ActivityByCategoryFragmentArgs by navArgs()
+    private val args: ActivityByCategoryFragmentArgs by navArgs()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

@@ -1,17 +1,15 @@
-package com.example.myproject.fragment
+package com.example.myproject.ui.login
 
 import SHAREDPREF_NAME
 import SHAREDPREF_SESSION_TOKEN
 import SHAREDPREF_SESSION_USERNAME
 import SHAREDPREF_SESSION_USER_ID
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.myproject.MainActivity
 import com.example.myproject.R
 import com.example.myproject.databinding.FragmentLoginBinding
 import com.example.myproject.dataclass.LoginInfo

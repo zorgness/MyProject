@@ -1,15 +1,10 @@
 package com.example.myproject.adapter
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -17,13 +12,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myproject.R
 import com.example.myproject.databinding.ItemRvCategoryBinding
 import com.example.myproject.dataclass.CategoryDto
-import com.example.myproject.fragment.CategoryFragment
-import com.example.myproject.fragment.CategoryFragmentDirections
+import com.example.myproject.ui.category.CategoryFragmentDirections
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
-import de.hdodenhof.circleimageview.CircleImageView
 import java.lang.Exception
-import  com.squareup.picasso.Target
 
 class CategoryDiffUtil : DiffUtil.ItemCallback<CategoryDto>() {
     override fun areItemsTheSame(oldItem: CategoryDto, newItem: CategoryDto): Boolean {

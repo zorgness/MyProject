@@ -1,4 +1,4 @@
-package com.example.myproject.viewmodel
+package com.example.myproject.ui.category
 
 import android.widget.ProgressBar
 import androidx.lifecycle.LiveData
@@ -12,8 +12,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.Response
+import java.net.ConnectException
 
-class CategoryViewModel: ViewModel() {
+class CategoryViewModel : ViewModel() {
 
     private val _categoriesLiveData = MutableLiveData<List<CategoryDto>>()
 
@@ -28,42 +29,50 @@ class CategoryViewModel: ViewModel() {
         get() = _categoriesLiveData
 
     val progressBarVisibilityLiveData: LiveData<Boolean>
-        get() =  _progressBarVisibilityLiveData
+        get() = _progressBarVisibilityLiveData
 
 
     init {
-      getAllCategories()
+        getAllCategories()
     }
 
 
     private fun getAllCategories() {
         viewModelScope.launch {
-            _progressBarVisibilityLiveData.value = true
-            val responseCategories: Response<GetCategoriesDto>? = withContext(Dispatchers.IO) {
-                ApiService.getApi().getAllCategories()
-            }
 
-            val body = responseCategories?.body()
-
-            when {
-                responseCategories == null -> {
-
-                    _errorMessageLiveData.value = "erreur du serveur"
+            try {
+                _progressBarVisibilityLiveData.value = true
+                val responseCategories: Response<GetCategoriesDto>? = withContext(Dispatchers.IO) {
+                    ApiService.getApi().getAllCategories()
                 }
 
-                responseCategories.isSuccessful && (body != null) -> {
-                    _categoriesLiveData.value = body.categories
+                val body = responseCategories?.body()
+
+                when {
+                    responseCategories == null -> {
+
+                        _errorMessageLiveData.value = "erreur du serveur"
+                    }
+
+                    responseCategories.isSuccessful && (body != null) -> {
+                        _categoriesLiveData.value = body.categories
+                    }
+
+
+                    responseCategories.code() == 403 ->
+                        _errorMessageLiveData.value = "erreur d'authorisation"
                 }
 
+                _progressBarVisibilityLiveData.value = false
 
-                responseCategories.code() == 403 ->
-                    _errorMessageLiveData.value = "erreur d'authorisation"
+            } catch (e: ConnectException) {
+                _errorMessageLiveData.value = "pas de connection"
             }
-
-            _progressBarVisibilityLiveData.value = false
-
         }
+
     }
+
+}
 
 /* private fun getAllCategories() {
 
@@ -78,4 +87,3 @@ class CategoryViewModel: ViewModel() {
             _progressBarVisibilityLiveData.value = false
         }
     }*/
-}

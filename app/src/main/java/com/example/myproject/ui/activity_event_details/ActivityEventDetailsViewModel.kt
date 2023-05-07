@@ -1,4 +1,4 @@
-package com.example.myproject.viewmodel
+package com.example.myproject.ui.activity_event_details
 
 import androidx.lifecycle.ViewModel
 

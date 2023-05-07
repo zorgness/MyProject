@@ -5,22 +5,12 @@ import SHAREDPREF_SESSION_TOKEN
 import SHAREDPREF_SESSION_USERNAME
 import SHAREDPREF_SESSION_USER_ID
 import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.core.os.bundleOf
-import androidx.fragment.app.FragmentTransaction
-import androidx.fragment.app.commit
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.myproject.databinding.ActivityMainBinding
-import com.example.myproject.fragment.CategoryFragment
-import com.example.myproject.fragment.LoginFragment
-import com.example.myproject.fragment.ProfileFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import myToast
 

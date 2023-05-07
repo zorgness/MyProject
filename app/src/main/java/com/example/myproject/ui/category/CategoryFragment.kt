@@ -1,23 +1,15 @@
-package com.example.myproject.fragment
+package com.example.myproject.ui.category
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
-import androidx.activity.viewModels
-import androidx.databinding.DataBindingUtil.bind
-import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myproject.R
 import com.example.myproject.adapter.CategoryAdapter
 import com.example.myproject.databinding.FragmentCategoryBinding
-import com.example.myproject.viewmodel.CategoryViewModel
-import kotlinx.coroutines.NonDisposableHandle.parent
 import myToast
 
 

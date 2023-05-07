@@ -1,9 +1,8 @@
-package com.example.myproject.fragment
+package com.example.myproject.ui.splash
 
 import SHAREDPREF_NAME
 import SHAREDPREF_SESSION_TOKEN
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -11,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.myproject.MainActivity
 import com.example.myproject.R
 
 class SplashFragment : Fragment() {

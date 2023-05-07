@@ -1,4 +1,4 @@
-package com.example.myproject.viewmodel
+package com.example.myproject.ui.login
 
 import androidx.lifecycle.ViewModel
 

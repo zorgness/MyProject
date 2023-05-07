@@ -9,7 +9,7 @@
 
             <variable
                 name="viewModel"
-                type="com.example.myproject.viewmodel.CategoryViewModel" />
+                type="com.example.myproject.ui.category.CategoryViewModel" />
 
         </data>-->
 

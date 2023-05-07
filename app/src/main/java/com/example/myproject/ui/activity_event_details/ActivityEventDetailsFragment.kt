@@ -1,4 +1,4 @@
-package com.example.myproject.fragment
+package com.example.myproject.ui.activity_event_details
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
