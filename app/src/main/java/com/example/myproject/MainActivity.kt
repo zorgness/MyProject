@@ -36,9 +36,11 @@ class MainActivity : AppCompatActivity() {
                 || destination.id == R.id.splashFragment
             ) {
                 binding.bottomNav.visibility = View.GONE
+                binding.linearLayoutTopBar.visibility = View.GONE
             } else {
 
                 binding.bottomNav.visibility = View.VISIBLE
+                binding.linearLayoutTopBar.visibility = View.VISIBLE
             }
         }
 
@@ -55,15 +57,21 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        binding.btnLogout.setOnClickListener {
+            logout()
+        }
+
 
 
 
          bottomNav.setOnItemSelectedListener { item ->
                when (item.itemId) {
-                   R.id.btn_logout -> {
-                       logout()
+
+                   R.id.btn_notification -> {
+                       myToast("no notification")
                        true
                    }
+
                    R.id.btn_new_event -> {
                        myToast("new form")
                        true

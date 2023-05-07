@@ -10,7 +10,7 @@
         android:title="@string/profile"
         android:icon="@drawable/avatar"/>
     <item
-        android:id="@+id/btn_logout"
-        android:title="@string/logout"
-        android:icon="@drawable/logout"/>
+        android:id="@+id/btn_notification"
+        android:title="@string/notification"
+        android:icon="@drawable/bell"/>
 </menu>

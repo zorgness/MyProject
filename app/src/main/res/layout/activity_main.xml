@@ -5,17 +5,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!--    <data>
-
-            <variable
-                name="viewModel"
-                type="com.example.myproject.ui.category.CategoryViewModel" />
-
-        </data>-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+
+        <!-- Top bar -->
+        <LinearLayout
+            android:id="@+id/linear_layout_top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:gravity="right"
+            android:backgroundTint="@color/my_green">
+
+
+            <ImageView
+                android:id="@+id/btn_logout"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:contentDescription="@string/logout"
+                android:src="@drawable/logout" />
+
+        </LinearLayout>
 
 
       <!--  <LinearLayout
@@ -43,18 +61,17 @@
 
         </FrameLayout>-->
 
-        <androidx.fragment.app.FragmentContainerView
+             <androidx.fragment.app.FragmentContainerView
             android:id="@+id/nav_host"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             app:defaultNavHost="true"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linear_layout_top_bar" app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
             app:navGraph="@navigation/nav_graph" />
-
+-->
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_nav"
@@ -66,6 +83,8 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/bottom_nav_menu" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
