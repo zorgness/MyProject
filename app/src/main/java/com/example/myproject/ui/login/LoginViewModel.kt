@@ -2,7 +2,7 @@ package com.example.myproject.ui.login
 
 import ERROR_401
 import ERROR_403
-import STATUS_USER_SUCCESS
+import STATUS_REQUEST_SUCCESS
 import android.content.Context
 import android.system.ErrnoException
 import androidx.lifecycle.LiveData
@@ -63,7 +63,7 @@ class LoginViewModel @Inject constructor(
 
                         responseLogin.isSuccessful && (body != null) -> {
 
-                            if (body.status == STATUS_USER_SUCCESS) {
+                            if (body.status == STATUS_REQUEST_SUCCESS) {
 
                                 sharedPref.saveToken(body.token)
                                 sharedPref.saveUserId(body.id)

@@ -21,6 +21,9 @@ interface ApiService {
     @GET(ApiRoutes.ACTIVITY_BY_CATEGORY)
     suspend fun getActivityByCategory(@Query("category") categoryId: Int): Response<GetActivityByCategoryDto>?
 
+    @GET(ApiRoutes.ACTIVITY_EVENT_BY_ID)
+    suspend fun getActivityEventById(@Path("activityEventId") activityEventId: Int): Response<GetActivityEventDto>?
+
     @GET(ApiRoutes.USERPROFILE)
     suspend fun getUserProfile(@Path("userId") userId: Int): Response<GetProfileDto>?
 }

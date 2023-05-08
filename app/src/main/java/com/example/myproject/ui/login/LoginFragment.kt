@@ -1,7 +1,7 @@
 package com.example.myproject.ui.login
 
 
-import STATUS_USER_SUCCESS
+import STATUS_REQUEST_SUCCESS
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,7 +31,7 @@ class LoginFragment : Fragment() {
 
 
         myViewModel.statusLiveData.observe(this) { status ->
-            if (status == STATUS_USER_SUCCESS) {
+            if (status == STATUS_REQUEST_SUCCESS) {
                 LoginFragmentDirections.actionLoginFragmentToCategoryFragment().let {
                     findNavController().navigate(it)
                 }
