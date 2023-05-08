@@ -9,9 +9,10 @@ import androidx.navigation.fragment.findNavController
 import com.example.myproject.R
 import com.example.myproject.databinding.FragmentRegisterBinding
 import com.example.myproject.dataclass.RegisterInfo
+import dagger.hilt.android.AndroidEntryPoint
 
 
-
+@AndroidEntryPoint
 class RegisterFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,9 +57,7 @@ class RegisterFragment : Fragment() {
         return binding.root
     }
 
-    private fun validatePassword(password: String, confirm: String): Boolean {
-        return password == confirm
-    }
+
 
 
 }
