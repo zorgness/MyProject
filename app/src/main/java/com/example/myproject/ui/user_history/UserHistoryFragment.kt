@@ -14,8 +14,9 @@ import com.example.myproject.databinding.FragmentUserHistoryBinding
 import com.example.myproject.dataclass.UserDto
 import com.example.myproject.ui.user_history.user_history_fragments.MyPagerAdapter
 import com.example.myproject.extensions.myToast
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class UserHistoryFragment : Fragment() {
 
 

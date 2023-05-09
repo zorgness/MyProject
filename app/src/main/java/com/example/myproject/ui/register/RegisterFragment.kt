@@ -1,60 +1,57 @@
 package com.example.myproject.ui.register
 
+import CODE_201
+import STATUS_REQUEST_SUCCESS
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.myproject.R
 import com.example.myproject.databinding.FragmentRegisterBinding
 import com.example.myproject.dataclass.RegisterInfo
+import com.example.myproject.extensions.myToast
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
 class RegisterFragment : Fragment() {
 
+    private var _binding: FragmentRegisterBinding? = null
+    private val  binding get() = _binding!!
+    private val myViewModel: RegisterViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        myViewModel.messageLiveData.observe(this) {message ->
+            requireContext().myToast(message)
+        }
+
+        myViewModel.codeLiveData.observe(this) {code ->
+            if (code == CODE_201) {
+                findNavController().popBackStack()
+            }
+        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val navController = findNavController()
-        val binding = FragmentRegisterBinding.inflate(layoutInflater)
 
-       /* binding.btnSubmitRegister.setOnClickListener {
-            val email =  binding.etUserEmail.text.toString()
-            val username = binding.etUserUsername.text.toString()
-            val city = binding.etUserCity.text.toString()
-            val password = binding.etUserPassword.text.toString()
-            val confirm = binding.etUserPasswordConfirm.text.toString()
+        _binding = DataBindingUtil.inflate(inflater,R.layout.fragment_register, container,false)
+        binding.viewModel = myViewModel
+        binding.lifecycleOwner = viewLifecycleOwner
 
-            if (email.isNotBlank() && username.isNotBlank() && city.isNotBlank() && password.isNotBlank()) {
-                if (validatePassword(password, confirm)) {
-                    register(RegisterInfo(email, password, username, city, ""), loginCallback = {
-                        with(it) {
-
-                            //NEED A SOLUTION TO LOG AFTER REGISTRATION
-                            navController.navigate(R.id.action_registerFragment_to_loginFragment)
-                        }
-                    }, errorCallback = { error ->
-
-                        //com.example.myproject.extensions.myToast(error.toString())
-                    })
-
-                } else {
-                   // com.example.myproject.extensions.myToast("password and confirm are not equals")
-                }
-            } else {
-                //com.example.myproject.extensions.myToast("fields can't be blank")
-            }
-        }*/
         return binding.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
 

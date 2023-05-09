@@ -4,13 +4,13 @@
     <item
         android:id="@+id/btn_new_event"
         android:title="@string/new_event"
-        android:icon="@drawable/add"/>
+        android:icon="@android:drawable/ic_input_add"/>
     <item
         android:id="@+id/btn_history"
         android:title="@string/history"
-        android:icon="@drawable/history"/>
+        android:icon="@android:drawable/ic_menu_recent_history"/>
     <item
         android:id="@+id/btn_notification"
         android:title="@string/notification"
-        android:icon="@drawable/bell"/>
+        android:icon="@android:drawable/ic_menu_info_details"/>
 </menu>

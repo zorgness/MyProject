@@ -1,6 +1,8 @@
 package com.example.myproject.ui.register
 
+import ERROR_400
 import ERROR_403
+import ERROR_422
 import android.content.Context
 import android.system.ErrnoException
 import androidx.lifecycle.LiveData
@@ -26,6 +28,7 @@ class RegisterViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _messageLiveData = MutableLiveData<String>()
+    private val _codeLiveData = MutableLiveData<Int>()
 
     val emailLiveData = MutableLiveData<String>("")
     val usernameLiveData = MutableLiveData<String>("")
@@ -36,10 +39,13 @@ class RegisterViewModel @Inject constructor(
     val messageLiveData: LiveData<String>
         get() = _messageLiveData
 
+    val codeLiveData: LiveData<Int>
+        get() = _codeLiveData
+
 
     fun register() {
         if
-                (
+        (
             emailLiveData.value?.isNotBlank() == true
             &&
             usernameLiveData.value?.isNotBlank() == true
@@ -48,73 +54,78 @@ class RegisterViewModel @Inject constructor(
             &&
             passwordLiveData.value?.isNotBlank() == true
         ) {
-            if (validatePassword(
-                    passwordLiveData.value.toString(),
-                    confirmLiveData.value.toString()
-                )
-            ) {
+            if(isEmailValid(emailLiveData.value!!)) {
+                if
+                        (validatePassword
+                        (
+                        passwordLiveData.value.toString(),
+                        confirmLiveData.value.toString()
+                    )
+                ) {
 
-                try {
-                    viewModelScope.launch {
+                    try {
+                        viewModelScope.launch {
 
-                        val responseRegister: Response<UserDto>? = withContext(Dispatchers.IO) {
-                            apiService.register(
-                                RegisterInfo(
-                                    emailLiveData.value!!,
-                                    passwordLiveData.value!!,
-                                    usernameLiveData.value!!,
-                                    cityLiveData.value!!,
-                                    ""
+                            val responseRegister: Response<UserDto>? = withContext(Dispatchers.IO) {
+                                apiService.register(
+                                    RegisterInfo(
+                                        emailLiveData.value!!,
+                                        passwordLiveData.value!!,
+                                        usernameLiveData.value!!,
+                                        cityLiveData.value!!,
+                                        ""
+                                    )
                                 )
-                            )
-                        }
-
-                        val body = responseRegister?.body()
-
-                        when {
-                           responseRegister == null -> {
-                                _messageLiveData.value = context.getString(R.string.server_error)
                             }
 
-                           responseRegister.isSuccessful && (body != null) -> {
+                            val body = responseRegister?.body()
 
-                                //if (body.status == STATUS_REQUEST_SUCCESS) {
+                            when {
+                                responseRegister == null ->
+                                    _messageLiveData.value = context.getString(R.string.server_error)
 
-                                  /*  sharedPref.saveToken(body.token)
-                                    sharedPref.saveUserId(body.id)
-                                    sharedPref.saveUsername(body.username)
 
-                                    _messageLiveData.value =
-                                        "${context.getString(R.string.welcome)} ${body.username} "*/
-                                    //_statusLiveData.value = body.status
+                                responseRegister.isSuccessful && (body != null) -> {
+                                    _messageLiveData.value = context.getString(R.string.user_registreted)
+                                    _codeLiveData.value = responseRegister.code()
+                                }
 
-                                //}
+                                responseRegister.code() == ERROR_400 ->
+                                    _messageLiveData.value = context.getString(R.string.unauthorized)
+
+                                responseRegister.code() == ERROR_403 ->
+                                    _messageLiveData.value = context.getString(R.string.unauthorized)
+
+                                responseRegister.code() == ERROR_422 ->
+                                    _messageLiveData.value = context.getString(R.string.unprocessable_entity)
+
                             }
-
-                           responseRegister.code() == ERROR_403 ->
-                                _messageLiveData.value = context.getString(R.string.unauthorized)
 
                         }
 
+
+                    } catch (e: ConnectException) {
+                        _messageLiveData.value = context.getString(R.string.no_connection)
+                    } catch (erno: ErrnoException) {
+                        _messageLiveData.value = context.getString(R.string.no_connection)
                     }
 
+                } else
+                    _messageLiveData.value = context.getString(R.string.pwd_and_confirm_not_equals)
 
-                } catch (e: ConnectException) {
-                    _messageLiveData.value = context.getString(R.string.no_connection)
-                } catch (erno: ErrnoException) {
-                    _messageLiveData.value = context.getString(R.string.no_connection)
-                }
+            } else
+                _messageLiveData.value = context.getString(R.string.invalid_email)
 
-            } else {
-                _messageLiveData.value = context.getString(R.string.pwd_and_confirm_not_equals)
-            }
-        } else {
+        } else
             _messageLiveData.value = context.getString(R.string.empty_fields)
-        }
+
     }
 
 }
 
+private fun isEmailValid(email: String): Boolean {
+    return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+}
 private fun validatePassword(password: String, confirm: String): Boolean {
     return password == confirm
 }

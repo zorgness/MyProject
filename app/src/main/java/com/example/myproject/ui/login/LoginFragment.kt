@@ -26,7 +26,7 @@ class LoginFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
        myViewModel.messageLiveData.observe(this) { message ->
-            context?.myToast(message)
+            requireContext().myToast(message)
         }
 
 
