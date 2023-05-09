@@ -77,29 +77,6 @@ class MainActivity : AppCompatActivity() {
 
 
         // FIND ANOTHER SOLUTION
-        bottomNav.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-
-                R.id.btn_notification -> {
-                    myToast("no notification")
-                    true
-                }
-
-                R.id.btn_new_event -> {
-                    myToast("new form")
-                    true
-                }
-                R.id.btn_history -> {
-                    navController.navigate(R.id.userHistoryFragment)
-                    true
-                }
-
-                else -> {
-                    myToast("error")
-                    true
-                }
-            }
-        }
 
 
     }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="selected_item">Selected item:</string>
+
+    <string-array name="categories">
+        <item>Billard</item>
+        <item>Pétanque</item>
+        <item>Escalade</item>
+        <item>VTT</item>
+        <item>Baby-foot</item>
+        <item>Randonnée</item>
+    </string-array>
+</resources>

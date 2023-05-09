@@ -42,4 +42,15 @@
     <string name="no_connection">pas de connection</string>
     <string name="user_avatar">user_avatar</string>
     <string name="pwd_and_confirm_not_equals">mot de passe et confirmation sont différents</string>
+    <string name="nouvel_v_nement">nouvel événement</string>
+    <string name="enregister">enregister</string>
+    <string name="supprimer">supprimer</string>
+    <string name="mettre_jour">mettre à jour</string>
+    <string name="image_url">image_url</string>
+    <string name="contenu">description</string>
+    <string name="titre_label">titre</string>
+    <string name="localisation">localisation</string>
+    <string name="nombre_de_personnes">nombre de personnes</string>
+    <string name="point_de_rencontre">point de rencontre</string>
+    <string name="date">date</string>
 </resources>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.myproject.ui.activityEventForm.ActivityEventFormViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayout8"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.activityEventForm.ActivityEventFormFragment">
+
+        <TextView
+            android:id="@+id/tv_new_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/nouvel_v_nement"
+            android:textColor="@color/my_green"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="75dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_new_edit">
+
+            <EditText
+                android:id="@+id/et_title_article"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:autofillHints="titre"
+                android:ems="10"
+                android:hint="@string/titre_label"
+                android:inputType="textPersonName"
+
+                android:textColorHighlight="@color/my_green"
+                android:textColorHint="@color/my_green" />
+
+
+            <EditText
+                android:id="@+id/et_description_article"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="16dp"
+                android:autofillHints="Contenu"
+                android:ems="10"
+                android:gravity="top|start"
+                android:hint="@string/contenu"
+                android:inputType="textMultiLine"
+                android:lines="6"
+                android:textColorHint="@color/my_green" />
+
+
+            <EditText
+                android:id="@+id/et_location"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:autofillHints="location"
+                android:ems="10"
+                android:hint="@string/localisation"
+                android:inputType="textPersonName"
+                android:textColorHint="@color/my_green" />
+
+
+            <EditText
+                android:id="@+id/et_selected_date"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:autofillHints="meeting_point"
+                android:ems="10"
+                android:hint="@string/date"
+                android:inputType="text|date"
+                android:textColorHint="@color/my_green" />
+
+
+            <EditText
+                android:id="@+id/et_meeting_point"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:autofillHints="meeting_point"
+                android:ems="10"
+                android:hint="@string/point_de_rencontre"
+                android:inputType="textPersonName"
+                android:textColorHint="@color/my_green" />
+
+            <EditText
+                android:id="@+id/et_max_people"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:autofillHints="max_people"
+                android:ems="10"
+                android:hint="@string/nombre_de_personnes"
+                android:inputType="number"
+                android:textColorHint="@color/my_green" />
+
+
+            <Spinner
+                android:id="@+id/spinner_category_form"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+            <Button
+                android:id="@+id/btn_save_article"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="@string/enregister" />
+
+
+            <!--       <LinearLayout
+                       android:id="@+id/btn_group_update_delete"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:layout_marginTop="40dp"
+                       android:gravity="center"
+                       android:orientation="horizontal">
+
+                       <Button
+                           android:id="@+id/btn_delete_article"
+                           android:layout_width="0dp"
+                           android:layout_height="wrap_content"
+                           android:layout_weight="1"
+                           android:text="@string/supprimer" />
+
+                       <Space
+                           android:layout_width="0dp"
+                           android:layout_height="wrap_content"
+                           android:layout_weight="0.1" />
+
+                       <Button
+                           android:id="@+id/btn_edit_article"
+                           android:layout_width="0dp"
+                           android:layout_height="wrap_content"
+                           android:layout_weight="1"
+                           android:text="@string/mettre_jour" />
+
+
+                   </LinearLayout>-->
+
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
