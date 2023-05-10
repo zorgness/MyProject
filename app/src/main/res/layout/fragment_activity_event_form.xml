@@ -18,7 +18,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frameLayout8"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:context=".ui.activityEventForm.ActivityEventFormFragment">
 
         <TextView
@@ -57,7 +57,7 @@
                 android:ems="10"
                 android:hint="@string/titre_label"
                 android:inputType="textPersonName"
-
+                android:text="@={viewModel.titleLd}"
                 android:textColorHighlight="@color/my_green"
                 android:textColorHint="@color/my_green" />
 
@@ -72,6 +72,7 @@
                 android:gravity="top|start"
                 android:hint="@string/contenu"
                 android:inputType="textMultiLine"
+                android:text="@={viewModel.descriptionLd}"
                 android:lines="6"
                 android:textColorHint="@color/my_green" />
 
@@ -84,6 +85,7 @@
                 android:autofillHints="location"
                 android:ems="10"
                 android:hint="@string/localisation"
+                android:text="@={viewModel.locactionLd}"
                 android:inputType="textPersonName"
                 android:textColorHint="@color/my_green" />
 
@@ -96,6 +98,7 @@
                 android:autofillHints="meeting_point"
                 android:ems="10"
                 android:hint="@string/date"
+                android:text="@={viewModel.startAtLd}"
                 android:inputType="text|date"
                 android:textColorHint="@color/my_green" />
 
@@ -108,6 +111,7 @@
                 android:autofillHints="meeting_point"
                 android:ems="10"
                 android:hint="@string/point_de_rencontre"
+                android:text="@={viewModel.meetingPointLd}"
                 android:inputType="textPersonName"
                 android:textColorHint="@color/my_green" />
 
@@ -119,6 +123,7 @@
                 android:autofillHints="max_people"
                 android:ems="10"
                 android:hint="@string/nombre_de_personnes"
+                android:text="@={viewModel.maxOfPeopleLd}"
                 android:inputType="number"
                 android:textColorHint="@color/my_green" />
 
@@ -127,7 +132,7 @@
                 android:id="@+id/spinner_category_form"
                 android:layout_height="48dp"
                 android:layout_marginTop="16dp"
-                android:layout_width="120dp"
+                android:layout_width="160dp"
                 android:layout_gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -140,7 +145,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:text="@string/enregister" />
+                android:text="@string/enregister"
+                android:onClick="@{() -> viewModel.createActivityEvent()}"/>
 
 
             <!--       <LinearLayout

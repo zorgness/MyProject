@@ -40,7 +40,7 @@ class ActivityByCategoryViewModel @Inject constructor(
             _progressBarVisibilityLiveData.value = true
             val responseActivityByCategory: Response<GetActivityByCategoryDto>? =
                 withContext(Dispatchers.IO) {
-                    apiService.getActivityByCategory(categoryId)
+                    apiService.fetchActivityByCategory(categoryId)
                 }
 
             val body = responseActivityByCategory?.body()

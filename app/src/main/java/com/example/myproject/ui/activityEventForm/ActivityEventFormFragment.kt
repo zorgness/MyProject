@@ -1,5 +1,6 @@
 package com.example.myproject.ui.activityEventForm
 
+import CODE_201
 import android.app.DatePickerDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,8 +10,10 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.myproject.R
 import com.example.myproject.databinding.FragmentActivityEventFormBinding
+import com.example.myproject.extensions.myToast
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
@@ -25,7 +28,15 @@ class ActivityEventFormFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        myViewModel.messageLiveData.observe(this) { message ->
+            requireContext().myToast(message)
+        }
 
+        myViewModel.codeLiveData.observe(this) {code ->
+            if (code == CODE_201) {
+                findNavController().popBackStack()
+            }
+        }
 
 
     }
@@ -35,53 +46,59 @@ class ActivityEventFormFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_activity_event_form, container, false)
+        _binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_activity_event_form,
+            container,
+            false
+        )
         binding.viewModel = myViewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
+        var year = 0
+        var month = 0
+        var day = 0
+        var fullDate = ""
 
         //SPINNER CONFIG
         ArrayAdapter.createFromResource(
             requireContext(),
             R.array.categories,
             android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             binding.spinnerCategoryForm.adapter = adapter
         }
 
-        binding.etSelectedDate.setOnClickListener {
-            // on below line we are getting
-            // the instance of our calendar.
-            val c = Calendar.getInstance()
-
-            // on below line we are getting
-            // our day, month and year.
-            val year = c.get(Calendar.YEAR)
-            val month = c.get(Calendar.MONTH)
-            val day = c.get(Calendar.DAY_OF_MONTH)
-
-            // on below line we are creating a
-            // variable for date picker dialog.
-            val datePickerDialog = DatePickerDialog(
-                // on below line we are passing context.
-                requireContext(),
-                { _, year, monthOfYear, dayOfMonth ->
-                    // on below line we are setting
-                    // date to our text view
-                    binding.etSelectedDate.setText("$dayOfMonth ${monthOfYear + 1} $year")
-                },
-                // on below line we are passing year, month
-                // and day for the selected date in our date picker.
-                year,
-                month,
-                day
-            )
-            // at last we are calling show
-            // to display our date picker dialog.
-            datePickerDialog.show()
+        binding.spinnerCategoryForm.setOnClickListener {
+            myViewModel.getCategoryId(binding.spinnerCategoryForm.selectedItemId.toInt() + 1)
         }
 
 
+
+        binding.etSelectedDate.setOnClickListener {
+
+            Calendar.getInstance().apply {
+                year = get(Calendar.YEAR)
+                month = get(Calendar.MONTH)
+                day = get(Calendar.DAY_OF_MONTH)
+            }
+
+            DatePickerDialog(
+
+                requireContext(),
+                { _, year, monthOfYear, dayOfMonth ->
+
+                    fullDate = "$dayOfMonth/${monthOfYear + 1}/$year"
+                    binding.etSelectedDate.setText(fullDate)
+                },
+
+                year,
+                month,
+                day
+            ).show()
+
+        }
 
         return binding.root
     }

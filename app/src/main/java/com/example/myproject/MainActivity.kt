@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+        // FIND ANOTHER SOLUTION
 
 
         myViewModel.isLoggedOutLiveData.observe(this) { isLoggedOut ->
@@ -74,9 +75,6 @@ class MainActivity : AppCompatActivity() {
                 navController.navigate(R.id.profileFragment)
             }
         }
-
-
-        // FIND ANOTHER SOLUTION
 
 
     }

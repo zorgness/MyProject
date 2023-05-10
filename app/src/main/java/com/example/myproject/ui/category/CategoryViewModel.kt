@@ -47,7 +47,7 @@ class CategoryViewModel @Inject constructor(
             try {
                 _progressBarVisibilityLiveData.value = true
                 val responseCategories: Response<GetCategoriesDto>? = withContext(Dispatchers.IO) {
-                    apiService.getAllCategories()
+                    apiService.fetchAllCategories()
                 }
 
                 val body = responseCategories?.body()
