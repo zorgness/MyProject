@@ -11,6 +11,7 @@ import com.example.myproject.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import com.example.myproject.extensions.myToast
+import com.example.myproject.utils.myPicassoFun
 
 
 @AndroidEntryPoint
@@ -54,6 +55,11 @@ class MainActivity : AppCompatActivity() {
         }
         // FIND ANOTHER SOLUTION
 
+        myViewModel.fetchUserImageUrl()
+
+        myViewModel.imageUrlLiveData.observe(this)  { url ->
+            myPicassoFun(url, binding.btnProfile)
+        }
 
         myViewModel.isLoggedOutLiveData.observe(this) { isLoggedOut ->
             if (isLoggedOut) {

@@ -2,7 +2,8 @@
 
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -36,13 +37,17 @@
                 android:src="@drawable/home"
                 android:onClick="@{() -> viewModel.goToHome()}"/>
 
-            <ImageView
+
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/btn_profile"
-                android:layout_width="0dp"
+                android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:layout_weight="1"
                 android:contentDescription="@string/logout"
-                android:src="@drawable/avatar"
+                android:scaleType="centerCrop"
+                app:civ_border_color="#FF000000"
+                android:layout_weight="1"
+                app:civ_border_width="2dp"
+                tools:srcCompat="@tools:sample/avatars"
                 android:onClick="@{() -> viewModel.goToProfile()}"/>
 
 

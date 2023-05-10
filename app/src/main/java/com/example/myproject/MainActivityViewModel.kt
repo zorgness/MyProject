@@ -15,6 +15,7 @@ class MainActivityViewModel @Inject constructor(
     private val _isLoggedOutLiveData = MutableLiveData<Boolean>(false)
     private val _isGoToHome = MutableLiveData<Boolean>(false)
     private val _isGoToProfile = MutableLiveData<Boolean>(false)
+    private val _imageUrlLiveData = MutableLiveData<String>()
 
     val isLoggedOutLiveData: LiveData<Boolean>
         get() = _isLoggedOutLiveData
@@ -24,6 +25,14 @@ class MainActivityViewModel @Inject constructor(
 
     val isGoToProfile: LiveData<Boolean>
         get() = _isGoToProfile
+
+    val imageUrlLiveData: LiveData<String>
+        get() = _imageUrlLiveData
+
+
+    fun fetchUserImageUrl() {
+        _imageUrlLiveData.value = sharedPref.getImageUrl() ?: ""
+    }
 
     fun logout() {
         sharedPref.clearSharedPref()

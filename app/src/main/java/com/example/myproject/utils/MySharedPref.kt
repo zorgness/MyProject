@@ -1,6 +1,7 @@
 package com.example.myproject.utils
 
 import SHAREDPREF_NAME
+import SHAREDPREF_SESSION_IMAGE_URL
 import SHAREDPREF_SESSION_TOKEN
 import SHAREDPREF_SESSION_USERNAME
 import SHAREDPREF_SESSION_USER_ID
@@ -37,6 +38,10 @@ class MySharedPref(context: Context) {
         return getString(SHAREDPREF_SESSION_USERNAME, null)
     }
 
+    fun getImageUrl(): String? {
+        return getString(SHAREDPREF_SESSION_IMAGE_URL, null)
+    }
+
     fun getToken(): String? {
         return getString(SHAREDPREF_SESSION_TOKEN, null)
     }
@@ -49,14 +54,22 @@ class MySharedPref(context: Context) {
         saveString(SHAREDPREF_SESSION_USERNAME, username)
     }
 
+    fun saveImageUrl(imageUrl: String) {
+        saveString(SHAREDPREF_SESSION_IMAGE_URL, imageUrl)
+    }
+
     fun saveToken(token: String) {
         saveString(SHAREDPREF_SESSION_TOKEN, token)
     }
 
     fun clearSharedPref() {
         with(sharedPreferences) {
-            edit().remove(SHAREDPREF_SESSION_TOKEN).remove(SHAREDPREF_SESSION_USERNAME)
-                .remove(SHAREDPREF_SESSION_USER_ID).apply()
+            edit()
+                .remove(SHAREDPREF_SESSION_TOKEN)
+                .remove(SHAREDPREF_SESSION_USERNAME)
+                .remove(SHAREDPREF_SESSION_IMAGE_URL)
+                .remove(SHAREDPREF_SESSION_USER_ID)
+                .apply()
         }
     }
 }

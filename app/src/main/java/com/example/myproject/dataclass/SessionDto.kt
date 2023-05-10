@@ -11,5 +11,7 @@ data class SessionDto(
     @Json(name = "id")
     val id: Int,
     @Json(name = "username")
-    val username: String
+    val username: String,
+    @Json(name = "imageUrl")
+    val imageUrl: String
 )

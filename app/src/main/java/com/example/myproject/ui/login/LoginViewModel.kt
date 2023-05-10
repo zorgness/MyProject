@@ -68,9 +68,14 @@ class LoginViewModel @Inject constructor(
 
                             if (body.status == STATUS_REQUEST_SUCCESS) {
 
-                                sharedPref.saveToken(body.token)
-                                sharedPref.saveUserId(body.id)
-                                sharedPref.saveUsername(body.username)
+                                sharedPref.apply {
+                                    saveToken(body.token)
+                                    saveUserId(body.id)
+                                    saveUsername(body.username)
+                                    saveImageUrl(body.imageUrl)
+                                }
+
+
 
                                 _messageLiveData.value =
                                     "${context.getString(R.string.welcome)} ${body.username} "
