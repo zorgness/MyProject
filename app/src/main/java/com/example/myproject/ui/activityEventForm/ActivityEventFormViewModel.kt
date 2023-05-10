@@ -31,7 +31,7 @@ class ActivityEventFormViewModel @Inject constructor(
 
     private val _messageLiveData = MutableLiveData<String>()
     private val _codeLiveData = MutableLiveData<Int>()
-    private val _categoryIdLiveData = MutableLiveData<Int>(1)
+    val categoryIdLiveData = MutableLiveData<Int>(1)
 
     var titleLd = MutableLiveData<String>("")
     var descriptionLd = MutableLiveData<String>("")
@@ -46,13 +46,11 @@ class ActivityEventFormViewModel @Inject constructor(
     val codeLiveData: LiveData<Int>
         get() = _codeLiveData
 
-    val categoryIdLiveData: LiveData<Int>
-        get() = _categoryIdLiveData
+   /* val categoryIdLiveData: LiveData<Int>
+        get() = _categoryIdLiveData*/
 
 
-    fun getCategoryId(categoryId: Int) {
-        _categoryIdLiveData.value = categoryId
-    }
+
 
     fun createActivityEvent() {
         println("${titleLd.value} " +
@@ -82,6 +80,8 @@ class ActivityEventFormViewModel @Inject constructor(
 
             try {
 
+                val categoryId = categoryIdLiveData.value?.plus(1)
+
                 viewModelScope.launch {
                     val responseNewActivityEvent: Response<ActivityEventDto>? = withContext(Dispatchers.IO) {
                         apiService.createActivityEvent(
@@ -92,7 +92,7 @@ class ActivityEventFormViewModel @Inject constructor(
                                 meetingPoint = meetingPointLd.value!!,
                                 maxOfPeople = maxOfPeopleLd.value?.toInt() ?: 0,
                                 startAt = startAtLd.value!!,
-                                category = "api/categories/${categoryIdLiveData.value.toString()}",
+                                category = "api/categories/${categoryId.toString()}",
                                 creator = "api/users/${sharedPref.getUserId()}"
                             )
 

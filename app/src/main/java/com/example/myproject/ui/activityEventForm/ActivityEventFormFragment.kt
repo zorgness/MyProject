@@ -76,7 +76,7 @@ class ActivityEventFormFragment : Fragment() {
 
 
 
-       /* binding.btnSaveArticle.setOnClickListener {
+       /*binding.btnSaveArticle.setOnClickListener {
             myViewModel.getCategoryId(binding.spinnerCategoryForm.selectedItemId.toInt() + 1)
         }*/
 
