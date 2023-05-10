@@ -29,11 +29,19 @@ class CategoryDiffUtil : DiffUtil.ItemCallback<CategoryDto>() {
 }
 
 
-class CategoryAdapter() :
+class CategoryAdapter(
+
+) :
     ListAdapter<CategoryDto, CategoryAdapter.CategoryViewHolder>(CategoryDiffUtil()) {
 
 
     lateinit var context: Context
+    private var onItemClick: ((Int)-> Unit)? = null
+
+
+    fun setOnItemClick(callback: (Int) -> Unit) {
+        onItemClick = callback
+    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -74,9 +82,8 @@ class CategoryAdapter() :
                 })
 
 
-            categoryLayout.setOnClickListener {view->
-                val navDir = CategoryFragmentDirections.actionCategoryFragmentToActivityByCategoryFragment(category.id)
-                view.findNavController().navigate(navDir)
+            categoryLayout.setOnClickListener {
+                onItemClick?.invoke(category.id)
             }
 
 

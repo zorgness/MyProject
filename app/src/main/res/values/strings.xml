@@ -29,6 +29,7 @@
 
 
     <string name="unauthorized">probléme d\'autorisation</string>
+    <string name="activity_event_create">événement ajouter</string>
     <string name="invalid_email">email invalide</string>
     <string name="unprocessable_entity">création impossible</string>
     <string name="input_problem">probléme de paramétres</string>

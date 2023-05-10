@@ -18,30 +18,30 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ActivityByCategoryFragment : Fragment() {
 
+    private var _binding: FragmentActivityByCategoryBinding? = null
+    private val  binding get() = _binding!!
     private val myViewModel: ActivityByCategoryViewModel by viewModels()
     private lateinit var activityEventByCategoryAdapter: ActivityEventByCategoryAdapter
-    private lateinit var progressBar: ProgressBar
-
     private val args: ActivityByCategoryFragmentArgs by navArgs()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
 
-        myViewModel.getActivityEventByCategory(args.categoryId)
+
 
         myViewModel.activityEventByCategoryLiveData.observe(this, Observer {activitiesEventsByCategory->
             activityEventByCategoryAdapter.submitList(activitiesEventsByCategory)
         })
 
-        myViewModel.errorMessageLiveData.observe(this) {errorMessage ->
+        myViewModel.messageLiveData.observe(this) {message ->
 
-            activity?.myToast(errorMessage)
+            requireContext().myToast(message)
         }
 
 
         myViewModel.progressBarVisibilityLiveData.observe(this) {
 
-            progressBar.visibility = if(it) View.VISIBLE else View.GONE
+            binding.pBarCategory.visibility = if(it) View.VISIBLE else View.GONE
         }
 
     }
@@ -50,15 +50,20 @@ class ActivityByCategoryFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentActivityByCategoryBinding.inflate(layoutInflater)
+        _binding = FragmentActivityByCategoryBinding.inflate(layoutInflater)
 
         binding.rvActivityEvent.layoutManager = LinearLayoutManager(container?.context)
         activityEventByCategoryAdapter = ActivityEventByCategoryAdapter()
         binding.rvActivityEvent.adapter = activityEventByCategoryAdapter
 
+        myViewModel.getActivityEventByCategory(args.categoryId)
 
-        progressBar = binding.pBarCategory
         return binding.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
 

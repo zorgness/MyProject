@@ -22,6 +22,8 @@ class CategoryViewModel @Inject constructor(
 
     private val _categoriesLiveData = MutableLiveData<List<CategoryDto>>()
 
+    private val _categoryIdLiveData = MutableLiveData<Int>()
+
     private val _progressBarVisibilityLiveData = MutableLiveData<Boolean>()
 
     private val _errorMessageLiveData = MutableLiveData<String>()
@@ -35,9 +37,16 @@ class CategoryViewModel @Inject constructor(
     val progressBarVisibilityLiveData: LiveData<Boolean>
         get() = _progressBarVisibilityLiveData
 
+    val categoryIdLiveData: LiveData<Int>
+            get() = _categoryIdLiveData
+
 
     init {
         getAllCategories()
+    }
+
+    fun setCategoryId(categoryId: Int) {
+        _categoryIdLiveData.value = categoryId
     }
 
 

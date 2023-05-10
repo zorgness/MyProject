@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myproject.adapter.CategoryAdapter
 import com.example.myproject.databinding.FragmentCategoryBinding
@@ -24,30 +26,41 @@ class CategoryFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        categoryAdapter = CategoryAdapter()
+
+        categoryAdapter.setOnItemClick { categoryId ->
+            myViewModel.setCategoryId(categoryId)
+        }
+
         myViewModel.categoriesLiveData.observe(this) { categories ->
             categoryAdapter.submitList(categories)
         }
 
-        myViewModel.errorMessageLiveData.observe(this) {errorMessage ->
+        myViewModel.errorMessageLiveData.observe(this) { errorMessage ->
 
-           activity?.myToast(errorMessage)
+            requireContext().myToast(errorMessage)
         }
+
+        myViewModel.categoryIdLiveData.observe(this) { categoryId ->
+              val navDir = CategoryFragmentDirections.actionCategoryFragmentToActivityByCategoryFragment(categoryId )
+              findNavController().navigate(navDir)
+        }
+
 
 
         myViewModel.progressBarVisibilityLiveData.observe(this) {
 
-            progressBar.visibility = if(it) View.VISIBLE else View.GONE
+            progressBar.visibility = if (it) View.VISIBLE else View.GONE
         }
 
 
     }
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View  {
+    ): View {
         val binding = FragmentCategoryBinding.inflate(layoutInflater)
 
 
@@ -55,7 +68,7 @@ class CategoryFragment : Fragment() {
         binding.lifecycleOwner = this
 
         binding.rvCategory.layoutManager = LinearLayoutManager(container?.context)
-        categoryAdapter = CategoryAdapter()
+
         binding.rvCategory.adapter = categoryAdapter
 
 

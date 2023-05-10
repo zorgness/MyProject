@@ -29,6 +29,7 @@ class ActivityEventByCategoryAdapter():  ListAdapter<ActivityEventDto, ActivityE
 
 
     lateinit var context: Context
+    private var onItemClick: ((Int)-> Unit)? = null
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

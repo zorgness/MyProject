@@ -1,9 +1,11 @@
 package com.example.myproject.ui.activities_by_category
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.myproject.R
 import com.example.myproject.dataclass.ActivityEventDto
 import com.example.myproject.dataclass.GetActivityByCategoryDto
 import com.example.myproject.network.ApiService
@@ -16,17 +18,18 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ActivityByCategoryViewModel @Inject constructor(
-    private val apiService: ApiService
+    private val apiService: ApiService,
+    private val context: Context
 ) : ViewModel() {
 
     private val _activityEventByCategoryLiveData = MutableLiveData<List<ActivityEventDto>>()
 
     private val _progressBarVisibilityLiveData = MutableLiveData<Boolean>()
 
-    private val _errorMessageLiveData = MutableLiveData<String>()
+    private val _messageLiveData = MutableLiveData<String>()
 
-    val errorMessageLiveData: LiveData<String>
-        get() = _errorMessageLiveData
+    val messageLiveData: LiveData<String>
+        get() = _messageLiveData
 
     val activityEventByCategoryLiveData: LiveData<List<ActivityEventDto>>
         get() = _activityEventByCategoryLiveData
@@ -48,19 +51,18 @@ class ActivityByCategoryViewModel @Inject constructor(
             when {
                 responseActivityByCategory == null -> {
 
-                    _errorMessageLiveData.value = "erreur du serveur"
+                    _messageLiveData.value = context.getString(R.string.server_error)
                 }
 
                 responseActivityByCategory.isSuccessful && (body != null) -> {
                     _activityEventByCategoryLiveData.value = body.activitiesEvent
+                    _progressBarVisibilityLiveData.value = false
                 }
 
 
                 responseActivityByCategory.code() == 403 ->
-                    _errorMessageLiveData.value = "erreur d'authorisation"
+                    _messageLiveData.value = context.getString(R.string.unauthorized)
             }
-
-            _progressBarVisibilityLiveData.value = false
 
         }
     }

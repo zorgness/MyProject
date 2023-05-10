@@ -18,7 +18,7 @@ interface ApiService {
     @GET(ApiRoutes.CATEGORY)
     suspend fun fetchAllCategories(): Response<GetCategoriesDto>?
 
-    @GET(ApiRoutes.ACTIVITY_BY_CATEGORY)
+    @GET(ApiRoutes.ACTIVITY_EVENT)
     suspend fun fetchActivityByCategory(@Query("category") categoryId: Int): Response<GetActivityByCategoryDto>?
 
     @GET(ApiRoutes.ACTIVITY_EVENT_BY_ID)
@@ -26,4 +26,9 @@ interface ApiService {
 
     @GET(ApiRoutes.USERPROFILE)
     suspend fun getUserProfile(@Path("userId") userId: Int): Response<GetProfileDto>?
+
+    @Headers("Content-Type: application/json")
+    @POST(ApiRoutes.ACTIVITY_EVENT)
+    suspend fun createActivityEvent(@Body activityEventInfo: ActivityEventInfo): Response<ActivityEventDto>?
+
 }

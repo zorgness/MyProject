@@ -85,7 +85,7 @@
                 android:autofillHints="location"
                 android:ems="10"
                 android:hint="@string/localisation"
-                android:text="@={viewModel.locactionLd}"
+                android:text="@={viewModel.locationLd}"
                 android:inputType="textPersonName"
                 android:textColorHint="@color/my_green" />
 

@@ -38,6 +38,10 @@ class ActivityEventFormFragment : Fragment() {
             }
         }
 
+        myViewModel.categoryIdLiveData.observe(this) { category->
+            requireContext().myToast(category.toString())
+        }
+
 
     }
 
@@ -70,9 +74,11 @@ class ActivityEventFormFragment : Fragment() {
             binding.spinnerCategoryForm.adapter = adapter
         }
 
-        binding.spinnerCategoryForm.setOnClickListener {
+
+
+       /* binding.btnSaveArticle.setOnClickListener {
             myViewModel.getCategoryId(binding.spinnerCategoryForm.selectedItemId.toInt() + 1)
-        }
+        }*/
 
 
 
@@ -89,7 +95,7 @@ class ActivityEventFormFragment : Fragment() {
                 requireContext(),
                 { _, year, monthOfYear, dayOfMonth ->
 
-                    fullDate = "$dayOfMonth/${monthOfYear + 1}/$year"
+                    fullDate = "$dayOfMonth-${monthOfYear + 1}-$year"
                     binding.etSelectedDate.setText(fullDate)
                 },
 
