@@ -34,6 +34,9 @@ class LoginViewModel @Inject constructor(
 
     private val _statusLiveData = MutableLiveData<Int>()
 
+    /**
+     * Variables used for Two way binding in xml
+     */
     val emailLiveData = MutableLiveData<String>("")
     val passwordLiveData = MutableLiveData<String>("")
 

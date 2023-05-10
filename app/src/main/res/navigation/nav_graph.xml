@@ -70,5 +70,9 @@
     <fragment
         android:id="@+id/activityEventFormFragment"
         android:name="com.example.myproject.ui.activityEventForm.ActivityEventFormFragment"
-        android:label="ActivityEventFormFragment" />
+        android:label="ActivityEventFormFragment" >
+        <action
+            android:id="@+id/action_activityEventFormFragment_to_activityByCategoryFragment"
+            app:destination="@id/activityByCategoryFragment" />
+    </fragment>
 </navigation>

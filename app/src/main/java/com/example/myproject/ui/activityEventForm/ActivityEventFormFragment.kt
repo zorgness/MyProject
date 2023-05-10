@@ -32,14 +32,10 @@ class ActivityEventFormFragment : Fragment() {
             requireContext().myToast(message)
         }
 
-        myViewModel.codeLiveData.observe(this) {code ->
-            if (code == CODE_201) {
-                findNavController().popBackStack()
+        myViewModel.newItemCategoryId.observe(this) { categoryId->
+            ActivityEventFormFragmentDirections.actionActivityEventFormFragmentToActivityByCategoryFragment(categoryId).let {
+                findNavController().navigate(it)
             }
-        }
-
-        myViewModel.categoryIdLiveData.observe(this) { category->
-            requireContext().myToast(category.toString())
         }
 
 

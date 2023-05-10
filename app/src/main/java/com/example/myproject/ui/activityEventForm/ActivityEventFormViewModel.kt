@@ -30,9 +30,24 @@ class ActivityEventFormViewModel @Inject constructor(
 
 
     private val _messageLiveData = MutableLiveData<String>()
-    private val _codeLiveData = MutableLiveData<Int>()
-    val categoryIdLiveData = MutableLiveData<Int>(1)
+    //private val _codeLiveData = MutableLiveData<Int>()
 
+    val messageLiveData: LiveData<String>
+        get() = _messageLiveData
+
+   /* val codeLiveData: LiveData<Int>
+        get() = _codeLiveData*/
+
+    private val _newItemCategoryId = MutableLiveData<Int>()
+
+   val newItemCategoryId: LiveData<Int>
+       get() = _newItemCategoryId
+
+
+    /**
+     * Variables used for Two way binding in xml
+     */
+    val positionSelectedLd = MutableLiveData<Int>(0)
     var titleLd = MutableLiveData<String>("")
     var descriptionLd = MutableLiveData<String>("")
     var locationLd = MutableLiveData<String>("")
@@ -40,29 +55,11 @@ class ActivityEventFormViewModel @Inject constructor(
     var maxOfPeopleLd = MutableLiveData<String>("")
     var startAtLd = MutableLiveData<String>("")
 
-    val messageLiveData: LiveData<String>
-        get() = _messageLiveData
-
-    val codeLiveData: LiveData<Int>
-        get() = _codeLiveData
-
-   /* val categoryIdLiveData: LiveData<Int>
-        get() = _categoryIdLiveData*/
-
-
-
+    var categoryId: Int? = null
 
     fun createActivityEvent() {
-        println("${titleLd.value} " +
-                "${descriptionLd.value}" +
-                " ${locationLd.value} " +
-                "${maxOfPeopleLd.value}" +
-                "${meetingPointLd.value}" +
-                " ${startAtLd.value}" +
-                " ${categoryIdLiveData.value}" )
 
-
-        
+        categoryId = positionSelectedLd.value?.plus(1)
 
         if
         (
@@ -80,7 +77,7 @@ class ActivityEventFormViewModel @Inject constructor(
 
             try {
 
-                val categoryId = categoryIdLiveData.value?.plus(1)
+
 
                 viewModelScope.launch {
                     val responseNewActivityEvent: Response<ActivityEventDto>? = withContext(Dispatchers.IO) {
@@ -107,7 +104,8 @@ class ActivityEventFormViewModel @Inject constructor(
 
                         responseNewActivityEvent.isSuccessful && (body != null) -> {
                             _messageLiveData.value = context.getString(R.string.activity_event_create)
-                            _codeLiveData.value = responseNewActivityEvent.code()
+                            //_codeLiveData.value = responseNewActivityEvent.code()
+                            _newItemCategoryId.value = categoryId
                         }
 
                         responseNewActivityEvent.code() == ERROR_403 ->

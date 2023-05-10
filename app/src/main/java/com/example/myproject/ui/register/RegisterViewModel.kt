@@ -30,6 +30,9 @@ class RegisterViewModel @Inject constructor(
     private val _messageLiveData = MutableLiveData<String>()
     private val _codeLiveData = MutableLiveData<Int>()
 
+    /**
+     * Variables used for Two way binding in xml
+     */
     val emailLiveData = MutableLiveData<String>("")
     val usernameLiveData = MutableLiveData<String>("")
     val cityLiveData = MutableLiveData<String>("")
