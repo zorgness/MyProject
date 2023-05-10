@@ -12,6 +12,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.myproject.R
 import com.example.myproject.dataclass.RegisterInfo
 import com.example.myproject.dataclass.UserDto
+import com.example.myproject.extensions.isLongEnough
 import com.example.myproject.network.ApiService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -35,6 +36,7 @@ class RegisterViewModel @Inject constructor(
      */
     val emailLiveData = MutableLiveData<String>("")
     val usernameLiveData = MutableLiveData<String>("")
+    val imageUrlLiveData = MutableLiveData<String>("")
     val cityLiveData = MutableLiveData<String>("")
     val passwordLiveData = MutableLiveData<String>("")
     val confirmLiveData = MutableLiveData<String>("")
@@ -47,11 +49,14 @@ class RegisterViewModel @Inject constructor(
 
 
     fun register() {
+        println(imageUrlLiveData.value)
         if
         (
             emailLiveData.value?.isNotBlank() == true
             &&
             usernameLiveData.value?.isNotBlank() == true
+            &&
+            imageUrlLiveData.value?.isNotBlank() == true
             &&
             cityLiveData.value?.isNotBlank() == true
             &&
@@ -65,53 +70,58 @@ class RegisterViewModel @Inject constructor(
                         confirmLiveData.value.toString()
                     )
                 ) {
+                    if(passwordLiveData.value.toString().isLongEnough()) {
+                        try {
+                            viewModelScope.launch {
 
-                    try {
-                        viewModelScope.launch {
-
-                            val responseRegister: Response<UserDto>? = withContext(Dispatchers.IO) {
-                                apiService.register(
-                                    RegisterInfo(
-                                        emailLiveData.value!!,
-                                        passwordLiveData.value!!,
-                                        usernameLiveData.value!!,
-                                        cityLiveData.value!!,
-                                        ""
+                                val responseRegister: Response<UserDto>? = withContext(Dispatchers.IO) {
+                                    apiService.register(
+                                        RegisterInfo(
+                                            email = emailLiveData.value!!,
+                                            password = passwordLiveData.value!!,
+                                            username = usernameLiveData.value!!,
+                                            city = cityLiveData.value!!,
+                                            description = "",
+                                            imageUrl = imageUrlLiveData.value!!
+                                        )
                                     )
-                                )
-                            }
-
-                            val body = responseRegister?.body()
-
-                            when {
-                                responseRegister == null ->
-                                    _messageLiveData.value = context.getString(R.string.server_error)
-
-
-                                responseRegister.isSuccessful && (body != null) -> {
-                                    _messageLiveData.value = context.getString(R.string.user_registreted)
-                                    _codeLiveData.value = responseRegister.code()
                                 }
 
-                                responseRegister.code() == ERROR_400 ->
-                                    _messageLiveData.value = context.getString(R.string.unauthorized)
+                                val body = responseRegister?.body()
 
-                                responseRegister.code() == ERROR_403 ->
-                                    _messageLiveData.value = context.getString(R.string.unauthorized)
+                                when {
+                                    responseRegister == null ->
+                                        _messageLiveData.value = context.getString(R.string.server_error)
 
-                                responseRegister.code() == ERROR_422 ->
-                                    _messageLiveData.value = context.getString(R.string.unprocessable_entity)
+
+                                    responseRegister.isSuccessful && (body != null) -> {
+                                        _messageLiveData.value = context.getString(R.string.user_registreted)
+                                        _codeLiveData.value = responseRegister.code()
+                                    }
+
+                                    responseRegister.code() == ERROR_400 ->
+                                        _messageLiveData.value = context.getString(R.string.parameter_problem)
+
+                                    responseRegister.code() == ERROR_403 ->
+                                        _messageLiveData.value = context.getString(R.string.unauthorized)
+
+                                    responseRegister.code() == ERROR_422 ->
+                                        _messageLiveData.value = context.getString(R.string.unprocessable_entity)
+
+                                }
 
                             }
 
+
+                        } catch (e: ConnectException) {
+                            _messageLiveData.value = context.getString(R.string.no_connection)
+                        } catch (erno: ErrnoException) {
+                            _messageLiveData.value = context.getString(R.string.no_connection)
                         }
 
-
-                    } catch (e: ConnectException) {
-                        _messageLiveData.value = context.getString(R.string.no_connection)
-                    } catch (erno: ErrnoException) {
-                        _messageLiveData.value = context.getString(R.string.no_connection)
                     }
+                    else
+                        _messageLiveData.value = context.getString(R.string.password_to_short)
 
                 } else
                     _messageLiveData.value = context.getString(R.string.pwd_and_confirm_not_equals)

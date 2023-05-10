@@ -1,6 +1,9 @@
 package com.example.myproject.ui.activityEventForm
 
+import CODE_201
+import ERROR_400
 import ERROR_403
+import ERROR_422
 import android.content.Context
 import android.content.SharedPreferences
 import android.system.ErrnoException
@@ -11,6 +14,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.myproject.R
 import com.example.myproject.dataclass.ActivityEventDto
 import com.example.myproject.dataclass.ActivityEventInfo
+import com.example.myproject.extensions.toHydraCategoryId
+import com.example.myproject.extensions.toHydraUserId
 import com.example.myproject.network.ApiService
 import com.example.myproject.utils.MySharedPref
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -30,18 +35,14 @@ class ActivityEventFormViewModel @Inject constructor(
 
 
     private val _messageLiveData = MutableLiveData<String>()
-    //private val _codeLiveData = MutableLiveData<Int>()
-
-    val messageLiveData: LiveData<String>
-        get() = _messageLiveData
-
-   /* val codeLiveData: LiveData<Int>
-        get() = _codeLiveData*/
 
     private val _newItemCategoryId = MutableLiveData<Int>()
 
-   val newItemCategoryId: LiveData<Int>
+    val newItemCategoryId: LiveData<Int>
        get() = _newItemCategoryId
+
+    val messageLiveData: LiveData<String>
+        get() = _messageLiveData
 
 
     /**
@@ -77,8 +78,6 @@ class ActivityEventFormViewModel @Inject constructor(
 
             try {
 
-
-
                 viewModelScope.launch {
                     val responseNewActivityEvent: Response<ActivityEventDto>? = withContext(Dispatchers.IO) {
                         apiService.createActivityEvent(
@@ -89,8 +88,8 @@ class ActivityEventFormViewModel @Inject constructor(
                                 meetingPoint = meetingPointLd.value!!,
                                 maxOfPeople = maxOfPeopleLd.value?.toInt() ?: 0,
                                 startAt = startAtLd.value!!,
-                                category = "api/categories/${categoryId.toString()}",
-                                creator = "api/users/${sharedPref.getUserId()}"
+                                category = categoryId?.toHydraCategoryId()!!,
+                                creator = sharedPref.getUserId().toHydraUserId()
                             )
 
                         )
@@ -103,13 +102,20 @@ class ActivityEventFormViewModel @Inject constructor(
                             _messageLiveData.value = context.getString(R.string.server_error)
 
                         responseNewActivityEvent.isSuccessful && (body != null) -> {
-                            _messageLiveData.value = context.getString(R.string.activity_event_create)
-                            //_codeLiveData.value = responseNewActivityEvent.code()
-                            _newItemCategoryId.value = categoryId
+                            if(responseNewActivityEvent.code() == CODE_201) {
+                                _messageLiveData.value = context.getString(R.string.activity_event_create)
+                                _newItemCategoryId.value = categoryId
+                            }
                         }
+
+                        responseNewActivityEvent.code() == ERROR_400 ->
+                            _messageLiveData.value = context.getString(R.string.parameter_problem)
 
                         responseNewActivityEvent.code() == ERROR_403 ->
                             _messageLiveData.value = context.getString(R.string.unauthorized)
+
+                        responseNewActivityEvent.code() == ERROR_422 ->
+                            _messageLiveData.value = context.getString(R.string.unprocessable_entity)
                     }
                 }
 

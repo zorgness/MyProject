@@ -14,6 +14,7 @@ import com.example.myproject.R
 import com.example.myproject.databinding.FragmentRegisterBinding
 import com.example.myproject.dataclass.RegisterInfo
 import com.example.myproject.extensions.myToast
+import com.example.myproject.utils.myPicassoFun
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -45,6 +46,15 @@ class RegisterFragment : Fragment() {
         _binding = DataBindingUtil.inflate(inflater,R.layout.fragment_register, container,false)
         binding.viewModel = myViewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
+
+        binding.etImageUrl.onFocusChangeListener = View.OnFocusChangeListener { _, isFocus ->
+            binding.etImageUrl.text.toString().trim { it <= ' ' }.let {imageUrl->
+                if (!isFocus) {
+                    myPicassoFun(imageUrl, binding.civImagePreview)
+                }
+            }
+        }
 
         return binding.root
     }

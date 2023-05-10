@@ -28,7 +28,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
+    <string name="password_to_short">minimum 6 caractères pour le mot de passe</string>
     <string name="unauthorized">probléme d\'autorisation</string>
+    <string name="parameter_problem">probléme de paramétres</string>
     <string name="activity_event_create">événement ajouter</string>
     <string name="invalid_email">email invalide</string>
     <string name="unprocessable_entity">création impossible</string>
@@ -54,4 +56,7 @@
     <string name="nombre_de_personnes">nombre de personnes</string>
     <string name="point_de_rencontre">point de rencontre</string>
     <string name="date">date</string>
+    <string name="url_image">url image</string>
+    <string name="enter_your_image_url">enter your image url</string>
+    <string name="user_image_preview">user image preview</string>
 </resources>

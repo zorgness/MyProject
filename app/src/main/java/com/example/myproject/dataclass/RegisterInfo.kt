@@ -5,5 +5,6 @@ data class RegisterInfo(
     @SerializedName("password") val password: String,
     @SerializedName("username") val username: String,
     @SerializedName("city") val city: String,
-    @SerializedName("description") val description: String
+    @SerializedName("description") val description: String,
+    @SerializedName("imageUrl") val imageUrl: String
 )

@@ -10,10 +10,14 @@
             type="com.example.myproject.ui.register.RegisterViewModel" />
     </data>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
 <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".ui.register.RegisterFragment"
     android:background="@color/my_green">
 
@@ -87,6 +91,41 @@
             android:text="@={viewModel.usernameLiveData}"
             android:padding="16dp"
             android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_image_url_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/url_image"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/et_image_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:autofillHints=""
+            android:background="@drawable/edit_text_background"
+            android:ems="10"
+            android:hint="@string/enter_your_image_url"
+            android:inputType="textUri"
+            android:text="@={viewModel.imageUrlLiveData}"
+            android:padding="16dp"
+            android:textSize="14sp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_image_preview"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:contentDescription="@string/user_image_preview"
+            android:scaleType="centerCrop"
+            android:src="@color/design_default_color_background"
+            app:civ_border_color="#FF000000"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center"
+            app:civ_border_width="2dp"
+            tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/tv_city_label"
@@ -168,4 +207,5 @@
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>
