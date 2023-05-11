@@ -28,5 +28,5 @@ data class ActivityEventDto(
     @Json(name = "category")
     val category: String,
     @Json(name = "creator")
-    val creator: String,
+    val creator: CreatorDto,
 ): Parcelable

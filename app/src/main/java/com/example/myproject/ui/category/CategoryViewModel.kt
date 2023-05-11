@@ -26,10 +26,10 @@ class CategoryViewModel @Inject constructor(
 
     private val _progressBarVisibilityLiveData = MutableLiveData<Boolean>()
 
-    private val _errorMessageLiveData = MutableLiveData<String>()
+    private val _messageLiveData = MutableLiveData<String>()
 
-    val errorMessageLiveData: LiveData<String>
-        get() = _errorMessageLiveData
+    val messageLiveData: LiveData<String>
+        get() = _messageLiveData
 
     val categoriesLiveData: LiveData<List<CategoryDto>>
         get() = _categoriesLiveData
@@ -64,7 +64,7 @@ class CategoryViewModel @Inject constructor(
                 when {
                     responseCategories == null -> {
 
-                        _errorMessageLiveData.value = "erreur du serveur"
+                        _messageLiveData.value = "erreur du serveur"
                     }
 
                     responseCategories.isSuccessful && (body != null) -> {
@@ -73,13 +73,13 @@ class CategoryViewModel @Inject constructor(
 
 
                     responseCategories.code() == 403 ->
-                        _errorMessageLiveData.value = "erreur d'authorisation"
+                        _messageLiveData.value = "erreur d'authorisation"
                 }
 
                 _progressBarVisibilityLiveData.value = false
 
             } catch (e: ConnectException) {
-                _errorMessageLiveData.value = "pas de connection"
+                _messageLiveData.value = "pas de connection"
             }
         }
 

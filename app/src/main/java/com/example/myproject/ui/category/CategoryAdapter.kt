@@ -29,15 +29,12 @@ class CategoryDiffUtil : DiffUtil.ItemCallback<CategoryDto>() {
 }
 
 
-class CategoryAdapter(
-
-) :
+class CategoryAdapter() :
     ListAdapter<CategoryDto, CategoryAdapter.CategoryViewHolder>(CategoryDiffUtil()) {
 
 
     lateinit var context: Context
     private var onItemClick: ((Int)-> Unit)? = null
-
 
     fun setOnItemClick(callback: (Int) -> Unit) {
         onItemClick = callback
@@ -78,14 +75,12 @@ class CategoryAdapter(
                         //TODO("Not yet implemented")
                     }
 
-
                 })
 
 
             categoryLayout.setOnClickListener {
                 onItemClick?.invoke(category.id)
             }
-
 
         }
     }

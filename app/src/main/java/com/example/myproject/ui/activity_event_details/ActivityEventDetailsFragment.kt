@@ -23,25 +23,8 @@ class ActivityEventDetailsFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         myViewModel.messageLiveData.observe(this) { message ->
-            context?.myToast(message)
+            requireContext().myToast(message)
         }
-
-       myViewModel.setActivityEvent(args.activityEvent)
-
-        context?.myToast(args.activityEvent.title)
-
-
-
-      /* myViewModel.activityEventDetails.observe(this) { activityEvent ->
-
-
-                    binding.tvTitle.text = activityEvent?.title
-                    binding.tvDate.text = activityEvent?.startAt
-                    binding.tvLocation.text = activityEvent?.location
-                    binding.tvDescription.text = activityEvent?.description
-
-
-        }*/
 
     }
 

@@ -26,24 +26,15 @@ class ActivityEventDetailsViewModel @Inject constructor(
     private val context: Context
 ): ViewModel() {
 
-    private var _activityEventDetails = MutableLiveData<ActivityEventDto>()
+
 
     private val _messageLiveData = MutableLiveData<String>()
-
-
-    val activityEventDetails: LiveData<ActivityEventDto>
-        get() = _activityEventDetails
 
     val messageLiveData: LiveData<String>
         get() = _messageLiveData
 
 
-    fun setActivityEvent(activityEvent: ActivityEventDto) {
-        _activityEventDetails.value = activityEvent
-    }
-
-
-    fun fetchActivityEventDetails(activityEventId: Int) {
+  /*  fun fetchActivityEventDetails(activityEventId: Int) {
 
         try {
             viewModelScope.launch {
@@ -59,7 +50,7 @@ class ActivityEventDetailsViewModel @Inject constructor(
 
                     responseActivityEventDetails.isSuccessful && (body != null) -> {
                         if(body.status == STATUS_REQUEST_SUCCESS)
-                            _activityEventDetails.value = body.activityEvent
+                            //_activityEventDetails.value = body.activityEvent
 
                     }
 
@@ -75,6 +66,6 @@ class ActivityEventDetailsViewModel @Inject constructor(
         catch (erno: ErrnoException) {
             _messageLiveData.value = context.getString(R.string.no_connection)
         }
-    }
+    }*/
 
 }

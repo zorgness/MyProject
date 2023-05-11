@@ -18,10 +18,10 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class CategoryFragment : Fragment() {
 
+    private var _binding: FragmentCategoryBinding? = null
+    private val binding get() = _binding!!
     private val myViewModel: CategoryViewModel by viewModels()
     private lateinit var categoryAdapter: CategoryAdapter
-    private lateinit var progressBar: ProgressBar
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,27 +32,25 @@ class CategoryFragment : Fragment() {
             myViewModel.setCategoryId(categoryId)
         }
 
-        myViewModel.categoriesLiveData.observe(this) { categories ->
-            categoryAdapter.submitList(categories)
+        myViewModel.categoriesLiveData.observe(this) { categoriesList ->
+            categoryAdapter.submitList(categoriesList)
         }
 
-        myViewModel.errorMessageLiveData.observe(this) { errorMessage ->
-
-            requireContext().myToast(errorMessage)
+        myViewModel.messageLiveData.observe(this) { message ->
+            requireContext().myToast(message)
         }
 
         myViewModel.categoryIdLiveData.observe(this) { categoryId ->
-              val navDir = CategoryFragmentDirections.actionCategoryFragmentToActivityByCategoryFragment(categoryId)
-              findNavController().navigate(navDir)
+            CategoryFragmentDirections
+                .actionCategoryFragmentToActivityByCategoryFragment(categoryId).let {
+                    findNavController().navigate(it)
+                }
         }
-
 
 
         myViewModel.progressBarVisibilityLiveData.observe(this) {
-
-            progressBar.visibility = if (it) View.VISIBLE else View.GONE
+            binding.pBarCategory.visibility = if (it) View.VISIBLE else View.GONE
         }
-
 
     }
 
@@ -61,24 +59,20 @@ class CategoryFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentCategoryBinding.inflate(layoutInflater)
-
+        _binding = FragmentCategoryBinding.inflate(layoutInflater)
 
         binding.viewModel = myViewModel
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
 
         binding.rvCategory.layoutManager = LinearLayoutManager(container?.context)
-
         binding.rvCategory.adapter = categoryAdapter
 
-
-        progressBar = binding.pBarCategory
-
-
-
-
-
         return binding.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
 }

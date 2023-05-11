@@ -43,29 +43,30 @@ class ActivityEventFormFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
         _binding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.fragment_activity_event_form,
-            container,
-            false
-        )
+                        inflater,
+                        R.layout.fragment_activity_event_form,
+                        container,
+                        false
+                   )
         binding.viewModel = myViewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
 
 
+        /**
+         * Launch the DATE PICKER DIALOG
+         */
         var year: Int
         var month: Int
         var day: Int
         var fullDate: String
         var today: Long
-        /**
-         * Launch the DATE PICKER DIALOG
-         */
         binding.etSelectedDate.setOnClickListener {
 
             Calendar.getInstance().apply {
@@ -76,21 +77,18 @@ class ActivityEventFormFragment : Fragment() {
             }
 
             DatePickerDialog(
-
                 requireContext(),
                 { _, year, monthOfYear, dayOfMonth ->
 
                     fullDate = "$dayOfMonth-${monthOfYear + 1}-$year"
                     binding.etSelectedDate.setText(fullDate)
                 },
-
                 year,
                 month,
                 day
             ).apply {
                 datePicker.minDate = today
             }.show()
-
         }
 
         /**
@@ -101,9 +99,9 @@ class ActivityEventFormFragment : Fragment() {
             R.array.categories,
             android.R.layout.simple_spinner_item
         ).let { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            binding.spinnerCategoryForm.adapter = adapter
-        }
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    binding.spinnerCategoryForm.adapter = adapter
+          }
 
         return binding.root
     }
