@@ -2,12 +2,14 @@ package com.example.myproject.ui.activityEventForm
 
 import CODE_201
 import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.TimePicker
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -89,6 +91,30 @@ class ActivityEventFormFragment : Fragment() {
             ).apply {
                 datePicker.minDate = today
             }.show()
+        }
+
+        /**
+         * Launch the DATE PICKER DIALOG
+         */
+        var currentTime: Int
+        var hour: Int
+        var minute: Int
+        var fullTime: String
+
+        binding.etMeetingTime.setOnClickListener {
+
+            Calendar.getInstance().apply {
+                hour = get(Calendar.HOUR_OF_DAY)
+                minute = get(Calendar.MINUTE)
+            }
+
+            // object : TimePickerDialog.OnTimeSetListener
+            TimePickerDialog(
+                requireContext(),
+                { _, hourOfDay, minute ->
+                    binding.etMeetingTime.setText(String.format("%d : %d", hourOfDay, minute))
+                }, hour, minute, false
+            ).show()
         }
 
         /**

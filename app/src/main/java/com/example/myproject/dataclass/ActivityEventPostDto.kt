@@ -10,5 +10,6 @@ data class ActivityEventPostDto(
     @SerializedName("startAt") val startAt: String,
     @SerializedName("category") val category: String,
     @SerializedName("creator") val creator: String,
+    @SerializedName("meetingTime") val meetingTime: String,
 
 )

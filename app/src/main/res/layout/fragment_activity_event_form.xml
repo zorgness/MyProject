@@ -116,6 +116,18 @@
                 android:textColorHint="@color/my_green" />
 
             <EditText
+                android:id="@+id/et_meeting_time"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:autofillHints="meeting_point"
+                android:ems="10"
+                android:hint="@string/heure_de_la_rencontre"
+                android:text="@={viewModel.meetingTimeLd}"
+                android:inputType="text|date"
+                android:textColorHint="@color/my_green" />
+
+            <EditText
                 android:id="@+id/et_max_people"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
@@ -128,11 +140,13 @@
                 android:textColorHint="@color/my_green" />
 
 
+
+
             <Spinner
                 android:id="@+id/spinner_category_form"
                 android:layout_height="48dp"
                 android:layout_marginTop="16dp"
-                android:layout_width="160dp"
+                android:layout_width="200dp"
                 android:layout_gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

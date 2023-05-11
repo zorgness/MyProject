@@ -52,6 +52,7 @@ class ActivityEventFormViewModel @Inject constructor(
     var descriptionLd = MutableLiveData<String>("")
     var locationLd = MutableLiveData<String>("")
     var meetingPointLd = MutableLiveData<String>("")
+    var meetingTimeLd = MutableLiveData<String>("")
     var maxOfPeopleLd = MutableLiveData<String>("")
     var startAtLd = MutableLiveData<String>("")
 
@@ -71,7 +72,11 @@ class ActivityEventFormViewModel @Inject constructor(
             &&
             meetingPointLd.value?.isNotBlank() == true
             &&
+            meetingTimeLd.value?.isNotBlank() == true
+            &&
             startAtLd.value?.isNotBlank() == true
+            &&
+            maxOfPeopleLd.value?.toInt()!! >= 1
 
         ) {
 
@@ -85,10 +90,11 @@ class ActivityEventFormViewModel @Inject constructor(
                                 description = descriptionLd.value!!,
                                 location = locationLd.value!!,
                                 meetingPoint = meetingPointLd.value!!,
-                                maxOfPeople = maxOfPeopleLd.value?.toInt() ?: 0,
+                                maxOfPeople = maxOfPeopleLd.value?.toInt() ?: 1,
                                 startAt = startAtLd.value!!,
                                 category = categoryId?.toHydraCategoryId()!!,
-                                creator = sharedPref.getUserId().toHydraUserId()
+                                creator = sharedPref.getUserId().toHydraUserId(),
+                                meetingTime = meetingTimeLd.value!!
                             )
 
                         )

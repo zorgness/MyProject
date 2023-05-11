@@ -19,14 +19,16 @@ data class ActivityEventDto(
     val description: String,
     @Json(name = "location")
     val location: String,
-    @Json(name = "meeting_point")
+    @Json(name = "meetingPoint")
     val meetingPoint: String,
-    @Json(name = "max_of_people")
+    @Json(name = "maxOfPeople")
     val maxOfPeople: Int,
-    @Json(name = "start_at")
+    @Json(name = "startAt")
     val startAt: String,
     @Json(name = "category")
     val category: String,
     @Json(name = "creator")
     val creator: CreatorDto,
+    @Json(name = "meetingTime")
+    val meetingTime: String,
 ): Parcelable
