@@ -37,7 +37,7 @@ class UserHistoryFragment : Fragment() {
         val binding = FragmentUserHistoryBinding.inflate(layoutInflater)
         val pagerAdapter = MyPagerAdapter(parentFragmentManager)
 
-         binding.viewPager.adapter = pagerAdapter
+        binding.viewPager.adapter = pagerAdapter
 
         binding.tabsUserHistory.setupWithViewPager(binding.viewPager)
 

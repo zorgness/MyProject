@@ -10,7 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myproject.R
 import com.example.myproject.databinding.ItemRvActivityEventBinding
 import com.example.myproject.dataclass.ActivityEventDto
-
+import com.example.myproject.utils.dateFormatter
+import com.example.myproject.utils.myPicassoFun
 
 
 class ActivityEventDiffUtil : DiffUtil.ItemCallback<ActivityEventDto>() {
@@ -51,16 +52,16 @@ class ActivityEventByCategoryAdapter():  ListAdapter<ActivityEventDto, ActivityE
         val activityEvent: ActivityEventDto = getItem(position)
 
         with(holder.binding) {
-            tvNameItemRvActivityEvent.text = activityEvent.title
+            tvTitleActivity.text = activityEvent.title
+            tvUsername.text = activityEvent.creator.username
+            tvLocation.text = activityEvent.location
+            tvDate.text = dateFormatter(activityEvent.startAt)
+            myPicassoFun(activityEvent.creator.imageUrl, civUserImage)
 
             cardActivityEvent.setOnClickListener {
                 onItemClick?.invoke(activityEvent)
             }
         }
-
-
-
-
 
     }
 
