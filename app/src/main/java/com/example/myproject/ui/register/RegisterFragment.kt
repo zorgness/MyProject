@@ -1,7 +1,6 @@
 package com.example.myproject.ui.register
 
 import CODE_201
-import STATUS_REQUEST_SUCCESS
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.myproject.R
 import com.example.myproject.databinding.FragmentRegisterBinding
-import com.example.myproject.dataclass.RegisterInfo
 import com.example.myproject.extensions.myToast
 import com.example.myproject.utils.myPicassoFun
 import dagger.hilt.android.AndroidEntryPoint

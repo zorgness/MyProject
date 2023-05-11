@@ -5,12 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myproject.adapter.ActivityEventByCategoryAdapter
 import com.example.myproject.databinding.FragmentActivityByCategoryBinding
 import com.example.myproject.extensions.myToast
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,12 +24,24 @@ class ActivityByCategoryFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        activityEventByCategoryAdapter = ActivityEventByCategoryAdapter()
 
+        activityEventByCategoryAdapter.setOnItemClick { activityEvent->
+            myViewModel.setActivityEvent(activityEvent)
+        }
 
+       myViewModel.getActivityEventByCategory(args.categoryId)
 
-        myViewModel.activityEventByCategoryLiveData.observe(this, Observer {activitiesEventsByCategory->
+       myViewModel.activityEventLiveData.observe(this) {activityEvent->
+            ActivityByCategoryFragmentDirections
+                .actionActivityByCategoryFragmentToActivityEventDetailsFragment(activityEvent).let {
+                    findNavController().navigate(it)
+                }
+        }
+
+        myViewModel.activityEventByCategoryLiveData.observe(this)  {activitiesEventsByCategory->
             activityEventByCategoryAdapter.submitList(activitiesEventsByCategory)
-        })
+        }
 
         myViewModel.messageLiveData.observe(this) {message ->
 
@@ -40,7 +50,6 @@ class ActivityByCategoryFragment : Fragment() {
 
 
         myViewModel.progressBarVisibilityLiveData.observe(this) {
-
             binding.pBarCategory.visibility = if(it) View.VISIBLE else View.GONE
         }
 
@@ -53,10 +62,8 @@ class ActivityByCategoryFragment : Fragment() {
         _binding = FragmentActivityByCategoryBinding.inflate(layoutInflater)
 
         binding.rvActivityEvent.layoutManager = LinearLayoutManager(container?.context)
-        activityEventByCategoryAdapter = ActivityEventByCategoryAdapter()
-        binding.rvActivityEvent.adapter = activityEventByCategoryAdapter
 
-        myViewModel.getActivityEventByCategory(args.categoryId)
+        binding.rvActivityEvent.adapter = activityEventByCategoryAdapter
 
         return binding.root
     }

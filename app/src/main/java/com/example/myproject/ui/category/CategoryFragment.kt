@@ -42,7 +42,7 @@ class CategoryFragment : Fragment() {
         }
 
         myViewModel.categoryIdLiveData.observe(this) { categoryId ->
-              val navDir = CategoryFragmentDirections.actionCategoryFragmentToActivityByCategoryFragment(categoryId )
+              val navDir = CategoryFragmentDirections.actionCategoryFragmentToActivityByCategoryFragment(categoryId)
               findNavController().navigate(navDir)
         }
 

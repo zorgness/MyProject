@@ -18,7 +18,8 @@
         <action
             android:id="@+id/action_splashFragment_to_categoryFragment"
             app:destination="@id/categoryFragment"
-            app:popUpTo="@id/splashFragment" />
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -56,6 +57,11 @@
         <argument
             android:name="categoryId"
             app:argType="integer" />
+
+        <action
+            android:id="@+id/action_activityByCategoryFragment_to_activityEventDetailsFragment"
+            app:destination="@id/activityEventDetailsFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/userHistoryFragment"
@@ -71,8 +77,21 @@
         android:id="@+id/activityEventFormFragment"
         android:name="com.example.myproject.ui.activityEventForm.ActivityEventFormFragment"
         android:label="ActivityEventFormFragment" >
+        <argument
+            android:name="categoryId"
+            app:argType="integer" />
         <action
             android:id="@+id/action_activityEventFormFragment_to_activityByCategoryFragment"
             app:destination="@id/activityByCategoryFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/activityEventDetailsFragment"
+        android:name="com.example.myproject.ui.activity_event_details.ActivityEventDetailsFragment"
+        android:label="fragment_activity_event_details"
+        tools:layout="@layout/fragment_activity_event_details" >
+        <argument
+            android:name="activityEvent"
+            app:argType="com.example.myproject.dataclass.ActivityEventDto" />
     </fragment>
 </navigation>

@@ -12,7 +12,7 @@
         android:id="@+id/tv_splash_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/fun4mate"
+        android:text="@string/heymate"
         android:textStyle="normal|bold|italic"
         android:textSize="60sp"
         android:textColor="@color/white"

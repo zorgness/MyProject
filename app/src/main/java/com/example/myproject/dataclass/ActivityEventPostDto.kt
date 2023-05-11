@@ -1,7 +1,7 @@
 package com.example.myproject.dataclass
 
 
-data class ActivityEventInfo(
+data class ActivityEventPostDto(
     @SerializedName("title") val title: String,
     @SerializedName("description") val description: String,
     @SerializedName("location") val location: String,

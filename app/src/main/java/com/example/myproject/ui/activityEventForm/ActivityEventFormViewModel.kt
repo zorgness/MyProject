@@ -5,7 +5,6 @@ import ERROR_400
 import ERROR_403
 import ERROR_422
 import android.content.Context
-import android.content.SharedPreferences
 import android.system.ErrnoException
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -13,7 +12,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myproject.R
 import com.example.myproject.dataclass.ActivityEventDto
-import com.example.myproject.dataclass.ActivityEventInfo
+import com.example.myproject.dataclass.ActivityEventPostDto
 import com.example.myproject.extensions.toHydraCategoryId
 import com.example.myproject.extensions.toHydraUserId
 import com.example.myproject.network.ApiService
@@ -81,7 +80,7 @@ class ActivityEventFormViewModel @Inject constructor(
                 viewModelScope.launch {
                     val responseNewActivityEvent: Response<ActivityEventDto>? = withContext(Dispatchers.IO) {
                         apiService.createActivityEvent(
-                            ActivityEventInfo(
+                            ActivityEventPostDto(
                                 title = titleLd.value!!,
                                 description = descriptionLd.value!!,
                                 location = locationLd.value!!,

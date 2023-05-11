@@ -32,11 +32,11 @@ class ActivityEventFormFragment : Fragment() {
             requireContext().myToast(message)
         }
 
-        myViewModel.newItemCategoryId.observe(this) { categoryId->
+        myViewModel.newItemCategoryId.observe(this) { categoryId ->
             ActivityEventFormFragmentDirections
                 .actionActivityEventFormFragmentToActivityByCategoryFragment(categoryId).let {
-                findNavController().navigate(it)
-            }
+                    findNavController().navigate(it)
+                }
         }
 
 

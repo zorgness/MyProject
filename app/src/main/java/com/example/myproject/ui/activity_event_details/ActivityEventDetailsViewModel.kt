@@ -26,16 +26,21 @@ class ActivityEventDetailsViewModel @Inject constructor(
     private val context: Context
 ): ViewModel() {
 
-    private var _activityEventDetails = MutableLiveData<ActivityEventDto?>()
+    private var _activityEventDetails = MutableLiveData<ActivityEventDto>()
 
     private val _messageLiveData = MutableLiveData<String>()
 
 
-    val activityEventDetails: LiveData<ActivityEventDto?>
+    val activityEventDetails: LiveData<ActivityEventDto>
         get() = _activityEventDetails
 
     val messageLiveData: LiveData<String>
         get() = _messageLiveData
+
+
+    fun setActivityEvent(activityEvent: ActivityEventDto) {
+        _activityEventDetails.value = activityEvent
+    }
 
 
     fun fetchActivityEventDetails(activityEventId: Int) {

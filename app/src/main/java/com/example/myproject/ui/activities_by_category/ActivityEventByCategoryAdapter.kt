@@ -1,4 +1,4 @@
-package com.example.myproject.adapter
+package com.example.myproject.ui.activities_by_category
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,9 +9,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myproject.R
 import com.example.myproject.databinding.ItemRvActivityEventBinding
-import com.example.myproject.databinding.ItemRvCategoryBinding
 import com.example.myproject.dataclass.ActivityEventDto
-import com.example.myproject.dataclass.CategoryDto
+
 
 
 class ActivityEventDiffUtil : DiffUtil.ItemCallback<ActivityEventDto>() {
@@ -25,16 +24,20 @@ class ActivityEventDiffUtil : DiffUtil.ItemCallback<ActivityEventDto>() {
 
 }
 
-class ActivityEventByCategoryAdapter():  ListAdapter<ActivityEventDto, ActivityEventByCategoryAdapter.ActivityEventViewHolder>(ActivityEventDiffUtil() ) {
+class ActivityEventByCategoryAdapter():  ListAdapter<ActivityEventDto, ActivityEventByCategoryAdapter.ActivityEventViewHolder>(
+    ActivityEventDiffUtil() ) {
 
 
     lateinit var context: Context
-    private var onItemClick: ((Int)-> Unit)? = null
+    private var onItemClick: ((ActivityEventDto)-> Unit)? = null
 
+    fun setOnItemClick(callback: (ActivityEventDto) -> Unit) {
+        onItemClick = callback
+    }
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): ActivityEventByCategoryAdapter.ActivityEventViewHolder {
+    ): ActivityEventViewHolder {
 
         context = parent.context
         return LayoutInflater.from(parent.context).inflate(R.layout.item_rv_activity_event, parent, false)
@@ -49,7 +52,13 @@ class ActivityEventByCategoryAdapter():  ListAdapter<ActivityEventDto, ActivityE
 
         with(holder.binding) {
             tvNameItemRvActivityEvent.text = activityEvent.title
+
+            cardActivityEvent.setOnClickListener {
+                onItemClick?.invoke(activityEvent)
+            }
         }
+
+
 
 
 

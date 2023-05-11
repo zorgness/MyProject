@@ -59,4 +59,7 @@
     <string name="url_image">url image</string>
     <string name="enter_your_image_url">enter your image url</string>
     <string name="user_image_preview">user image preview</string>
+    <string name="heymate">HeyMate</string>
+    <string name="details">details</string>
+    <string name="rejoindre">Rejoindre</string>
 </resources>

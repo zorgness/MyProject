@@ -10,7 +10,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myproject.R
-import com.example.myproject.dataclass.RegisterInfo
+import com.example.myproject.dataclass.RegisterDto
 import com.example.myproject.dataclass.UserDto
 import com.example.myproject.extensions.isLongEnough
 import com.example.myproject.network.ApiService
@@ -76,7 +76,7 @@ class RegisterViewModel @Inject constructor(
 
                                 val responseRegister: Response<UserDto>? = withContext(Dispatchers.IO) {
                                     apiService.register(
-                                        RegisterInfo(
+                                        RegisterDto(
                                             email = emailLiveData.value!!,
                                             password = passwordLiveData.value!!,
                                             username = usernameLiveData.value!!,

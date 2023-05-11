@@ -24,6 +24,8 @@ class ActivityByCategoryViewModel @Inject constructor(
 
     private val _activityEventByCategoryLiveData = MutableLiveData<List<ActivityEventDto>>()
 
+    private val _activityEventLiveData = MutableLiveData<ActivityEventDto>()
+
     private val _progressBarVisibilityLiveData = MutableLiveData<Boolean>()
 
     private val _messageLiveData = MutableLiveData<String>()
@@ -34,9 +36,15 @@ class ActivityByCategoryViewModel @Inject constructor(
     val activityEventByCategoryLiveData: LiveData<List<ActivityEventDto>>
         get() = _activityEventByCategoryLiveData
 
+    val activityEventLiveData: LiveData<ActivityEventDto>
+        get() = _activityEventLiveData
+
     val progressBarVisibilityLiveData: LiveData<Boolean>
         get() = _progressBarVisibilityLiveData
 
+    fun setActivityEvent(activityEvent: ActivityEventDto){
+        _activityEventLiveData.value = activityEvent
+    }
 
     fun getActivityEventByCategory(categoryId: Int) {
         viewModelScope.launch {

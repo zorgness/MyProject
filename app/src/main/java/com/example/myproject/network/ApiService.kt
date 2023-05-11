@@ -1,7 +1,6 @@
 package com.example.myproject.network
 
 import com.example.myproject.dataclass.*
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -9,11 +8,11 @@ interface ApiService {
 
     @Headers("Content-Type: application/json")
     @POST(ApiRoutes.REGISTER)
-    suspend fun register(@Body registerInfo: RegisterInfo): Response<UserDto>?
+    suspend fun register(@Body registerInfo: RegisterDto): Response<UserDto>?
 
     @Headers("Content-Type: application/json")
     @POST(ApiRoutes.LOGIN)
-    suspend fun login(@Body loginInfo: LoginInfo): Response<SessionDto>?
+    suspend fun login(@Body loginInfo: LoginDto): Response<SessionDto>?
 
     @GET(ApiRoutes.CATEGORY)
     suspend fun fetchAllCategories(): Response<GetCategoriesDto>?
@@ -29,6 +28,6 @@ interface ApiService {
 
     @Headers("Content-Type: application/json")
     @POST(ApiRoutes.ACTIVITY_EVENT)
-    suspend fun createActivityEvent(@Body activityEventInfo: ActivityEventInfo): Response<ActivityEventDto>?
+    suspend fun createActivityEvent(@Body activityEventInfo: ActivityEventPostDto): Response<ActivityEventDto>?
 
 }

@@ -10,7 +10,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myproject.R
-import com.example.myproject.dataclass.LoginInfo
+import com.example.myproject.dataclass.LoginDto
 import com.example.myproject.dataclass.SessionDto
 import com.example.myproject.network.ApiService
 import com.example.myproject.utils.MySharedPref
@@ -54,7 +54,7 @@ class LoginViewModel @Inject constructor(
                 viewModelScope.launch {
 
                     val responseLogin: Response<SessionDto>? = withContext(Dispatchers.IO) {
-                        apiService.login(LoginInfo(emailLiveData.value!!, passwordLiveData.value!!))
+                        apiService.login(LoginDto(emailLiveData.value!!, passwordLiveData.value!!))
                     }
 
                     val body = responseLogin?.body()

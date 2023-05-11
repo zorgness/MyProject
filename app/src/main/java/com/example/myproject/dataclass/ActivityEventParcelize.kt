@@ -1,12 +1,11 @@
 package com.example.myproject.dataclass
-
-
 import android.os.Parcelable
 import com.squareup.moshi.Json
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class ActivityEventDto(
+data class ActivityEventParcelize(
+
     @Json(name = "@id")
     val idHydra: String,
     @Json(name = "@type")
