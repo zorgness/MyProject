@@ -10,6 +10,8 @@ import androidx.navigation.fragment.navArgs
 import com.example.myproject.R
 import com.example.myproject.databinding.FragmentActivityEventDetailsBinding
 import com.example.myproject.extensions.myToast
+import com.example.myproject.utils.dateFormatter
+import com.example.myproject.utils.myPicassoFun
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,9 +38,13 @@ class ActivityEventDetailsFragment : Fragment() {
 
         with(args.activityEvent) {
             binding.tvTitle.text = title
-            binding.tvDate.text = startAt
+            binding.tvDate.text = dateFormatter(startAt)
             binding.tvLocation.text = location
             binding.tvDescription.text = description
+            myPicassoFun(creator.imageUrl, binding.civUserImage)
+            binding.tvUsername.text = creator.username
+
+            binding.tvMaxPeople.text = requireContext().getString(R.string.nombre_de_personnes_1d).format(maxOfPeople)
 
         }
         return binding.root
