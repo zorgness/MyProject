@@ -1,4 +1,4 @@
-package com.example.myproject.ui.user_history.user_history_fragments
+package com.example.myproject.user_info.user_history.user_history_fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.example.myproject.R
 
 
-class UserParticipationHistoryFragment : Fragment() {
+class UserActivitiesHistoryFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +20,7 @@ class UserParticipationHistoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user_participation_history, container, false)
+        return inflater.inflate(R.layout.fragment_user_activities_history, container, false)
     }
+
 }

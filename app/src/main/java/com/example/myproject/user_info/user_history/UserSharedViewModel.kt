@@ -1,12 +1,15 @@
-package com.example.myproject.ui.user_history
+package com.example.myproject.user_info.user_history
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.myproject.R
 import com.example.myproject.dataclass.GetProfileDto
 import com.example.myproject.dataclass.ProfileDto
 import com.example.myproject.network.ApiService
+import com.example.myproject.utils.MySharedPref
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -15,49 +18,44 @@ import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
-class UserHistoryViewModel @Inject constructor(
-    private val apiService: ApiService
+class UserSharedViewModel @Inject constructor(
+    private val apiService: ApiService,
+    private val context: Context,
+    private val sharedPref: MySharedPref
 ) : ViewModel() {
 
     private var _userProfileLiveData = MutableLiveData<ProfileDto>()
 
-    private var _errorMessageLiveData = MutableLiveData<String>()
+    private var _messageLiveData = MutableLiveData<String>()
 
     val userProfile: LiveData<ProfileDto>
         get() = _userProfileLiveData
 
-    val errorMessageLiveData: LiveData<String>
-        get() = _errorMessageLiveData
+    val messageLiveData: LiveData<String>
+        get() = _messageLiveData
 
-    fun getUserProfile(userId: Int) {
+    init {
+        fetchUserProfile()
+    }
+
+    private fun fetchUserProfile() {
         viewModelScope.launch {
             val responseUserProfile: Response<GetProfileDto>? = withContext(Dispatchers.IO) {
-                apiService.getUserProfile(userId)
+                apiService.getUserProfile(sharedPref.getUserId())
             }
             val body = responseUserProfile?.body()
 
 
             when {
                 responseUserProfile == null -> {
-                    _errorMessageLiveData.value = "error server"
+                    _messageLiveData.value = context.getString(R.string.server_error)
                 }
                 responseUserProfile.isSuccessful && (body != null) -> {
-                    //ADD MESSAGE
                     _userProfileLiveData.value = body.profile
-                   /*_userProfileLiveData.value = UserDto(
-                        body.context,
-                        body.idHydra,
-                        body.type,
-                        body.email,
-                        body.username,
-                        body.city,
-                        body.description
-                    )*/
-
                 }
 
                 responseUserProfile.code() == 403 ->
-                    _errorMessageLiveData.value = "erreur d'authorisation"
+                    _messageLiveData.value = context.getString(R.string.unauthorized)
 
             }
         }

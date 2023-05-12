@@ -49,7 +49,7 @@ class CategoryFragment : Fragment() {
 
 
         myViewModel.progressBarVisibilityLiveData.observe(this) {
-            binding.pBarCategory.visibility = if (it) View.VISIBLE else View.GONE
+            binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
         }
 
     }

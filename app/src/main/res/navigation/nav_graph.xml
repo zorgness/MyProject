@@ -65,12 +65,12 @@
     </fragment>
     <fragment
         android:id="@+id/userHistoryFragment"
-        android:name="com.example.myproject.ui.user_history.UserHistoryFragment"
+        android:name="com.example.myproject.user_info.user_history.UserHistoryFragment"
         android:label="fragment_user_history"
         tools:layout="@layout/fragment_user_history" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.myproject.ui.profile.ProfileFragment"
+        android:name="com.example.myproject.user_info.user_history.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment

@@ -26,26 +26,25 @@ class ActivityByCategoryFragment : Fragment() {
 
         activityEventByCategoryAdapter = ActivityEventByCategoryAdapter()
 
-        activityEventByCategoryAdapter.setOnItemClick { activityEvent->
-            myViewModel.setActivityEvent(activityEvent)
+        myViewModel.messageLiveData.observe(this) {message ->
+            requireContext().myToast(message)
         }
 
        myViewModel.getActivityEventByCategory(args.categoryId)
-
-       myViewModel.activityEventLiveData.observe(this) {activityEvent->
-            ActivityByCategoryFragmentDirections
-                .actionActivityByCategoryFragmentToActivityEventDetailsFragment(activityEvent).let {
-                    findNavController().navigate(it)
-                }
-        }
 
         myViewModel.activityEventByCategoryLiveData.observe(this)  {activitiesEventsByCategory->
             activityEventByCategoryAdapter.submitList(activitiesEventsByCategory)
         }
 
-        myViewModel.messageLiveData.observe(this) {message ->
+        activityEventByCategoryAdapter.setOnItemClick { activityEventItem->
+            myViewModel.setActivityEvent(activityEventItem)
+        }
 
-            requireContext().myToast(message)
+       myViewModel.activityEventLiveData.observe(this) {activityEventItem->
+            ActivityByCategoryFragmentDirections
+                .actionActivityByCategoryFragmentToActivityEventDetailsFragment(activityEventItem).let {
+                    findNavController().navigate(it)
+                }
         }
 
 
@@ -60,6 +59,8 @@ class ActivityByCategoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentActivityByCategoryBinding.inflate(layoutInflater)
+
+
 
         binding.rvActivityEvent.layoutManager = LinearLayoutManager(container?.context)
 

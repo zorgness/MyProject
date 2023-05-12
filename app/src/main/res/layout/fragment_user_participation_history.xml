@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.user_history.user_history_fragments.UserParticipationHistoryFragment">
+    tools:context=".user_info.user_history.user_history_fragments.UserParticipationHistoryFragment">
 
 
     <TextView

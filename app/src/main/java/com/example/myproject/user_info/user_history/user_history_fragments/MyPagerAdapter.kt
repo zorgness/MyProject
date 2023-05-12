@@ -1,4 +1,4 @@
-package com.example.myproject.ui.user_history.user_history_fragments
+package com.example.myproject.user_info.user_history.user_history_fragments
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
