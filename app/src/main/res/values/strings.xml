@@ -68,4 +68,6 @@
     <string name="choisir_une_date">choisir une date</string>
     <string name="clock">clock</string>
     <string name="choisir_l_heure_de_rencontre">choisir l\'heure de rencontre</string>
+    <string name="description">Description</string>
+    <string name="donnez_votre_description">donnez votre description</string>
 </resources>

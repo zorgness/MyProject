@@ -38,6 +38,7 @@ class RegisterViewModel @Inject constructor(
     val usernameLiveData = MutableLiveData<String>("")
     val imageUrlLiveData = MutableLiveData<String>("")
     val cityLiveData = MutableLiveData<String>("")
+    val descriptionLiveData = MutableLiveData<String>("")
     val passwordLiveData = MutableLiveData<String>("")
     val confirmLiveData = MutableLiveData<String>("")
 
@@ -60,6 +61,8 @@ class RegisterViewModel @Inject constructor(
             &&
             cityLiveData.value?.isNotBlank() == true
             &&
+            descriptionLiveData.value?.isNotBlank() == true
+            &&
             passwordLiveData.value?.isNotBlank() == true
         ) {
             if(isEmailValid(emailLiveData.value!!)) {
@@ -81,7 +84,7 @@ class RegisterViewModel @Inject constructor(
                                             password = passwordLiveData.value!!,
                                             username = usernameLiveData.value!!,
                                             city = cityLiveData.value!!,
-                                            description = "",
+                                            description = descriptionLiveData.value!!,
                                             imageUrl = imageUrlLiveData.value!!
                                         )
                                     )
