@@ -1,6 +1,7 @@
 package com.example.myproject.ui.activities_by_category
 
 import android.content.Context
+import android.system.ErrnoException
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,10 +15,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.Response
+import java.net.ConnectException
 import javax.inject.Inject
 
 @HiltViewModel
-class ActivityByCategoryViewModel @Inject constructor(
+class ActivitiesByCategoryViewModel @Inject constructor(
     private val apiService: ApiService,
     private val context: Context
 ) : ViewModel() {
@@ -46,33 +48,44 @@ class ActivityByCategoryViewModel @Inject constructor(
         _activityEventLiveData.value = activityEvent
     }
 
-    fun getActivityEventByCategory(categoryId: Int) {
-        viewModelScope.launch {
-            _progressBarVisibilityLiveData.value = true
-            val responseActivityByCategory: Response<GetActivityByCategoryDto>? =
-                withContext(Dispatchers.IO) {
-                    apiService.fetchActivityByCategory(categoryId)
+    fun fetchActivityEventByCategory(categoryId: Int) {
+        try {
+            viewModelScope.launch {
+                _progressBarVisibilityLiveData.value = true
+                val responseActivityByCategory: Response<GetActivityByCategoryDto>? =
+                    withContext(Dispatchers.IO) {
+                        apiService.fetchActivityByCategory(categoryId)
+                    }
+
+                val body = responseActivityByCategory?.body()
+
+                when {
+                    responseActivityByCategory == null -> {
+
+                        _messageLiveData.value = context.getString(R.string.server_error)
+                    }
+
+                    responseActivityByCategory.isSuccessful && (body != null) -> {
+                        _activityEventByCategoryLiveData.value = body.activitiesEvent
+                        _progressBarVisibilityLiveData.value = false
+                    }
+
+
+                    responseActivityByCategory.code() == 403 ->
+                        _messageLiveData.value = context.getString(R.string.unauthorized)
                 }
 
-            val body = responseActivityByCategory?.body()
+                _progressBarVisibilityLiveData.value = false
 
-            when {
-                responseActivityByCategory == null -> {
-
-                    _messageLiveData.value = context.getString(R.string.server_error)
-                }
-
-                responseActivityByCategory.isSuccessful && (body != null) -> {
-                    _activityEventByCategoryLiveData.value = body.activitiesEvent
-                    _progressBarVisibilityLiveData.value = false
-                }
-
-
-                responseActivityByCategory.code() == 403 ->
-                    _messageLiveData.value = context.getString(R.string.unauthorized)
             }
 
+        } catch (e: ConnectException) {
+            _messageLiveData.value = context.getString(R.string.no_connection)
         }
+        catch (erno: ErrnoException) {
+            _messageLiveData.value = context.getString(R.string.no_connection)
+        }
+
     }
 }
 

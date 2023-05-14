@@ -32,7 +32,7 @@ class LoginFragment : Fragment() {
 
         myViewModel.statusLiveData.observe(this) { status ->
             if (status == STATUS_REQUEST_SUCCESS) {
-                LoginFragmentDirections.actionLoginFragmentToCategoryFragment().let {
+                LoginFragmentDirections.actionLoginFragmentToMainFragment().let {
                     findNavController().navigate(it)
                 }
 

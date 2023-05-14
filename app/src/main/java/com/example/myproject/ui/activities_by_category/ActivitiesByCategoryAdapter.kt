@@ -25,7 +25,8 @@ class ActivityEventDiffUtil : DiffUtil.ItemCallback<ActivityEventDto>() {
 
 }
 
-class ActivityEventByCategoryAdapter():  ListAdapter<ActivityEventDto, ActivityEventByCategoryAdapter.ActivityEventViewHolder>(
+
+class ActivitiesByCategoryAdapter():  ListAdapter<ActivityEventDto, ActivitiesByCategoryAdapter.ActivityEventViewHolder>(
     ActivityEventDiffUtil() ) {
 
 

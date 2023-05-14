@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -20,35 +21,38 @@ class CategoryFragment : Fragment() {
 
     private var _binding: FragmentCategoryBinding? = null
     private val binding get() = _binding!!
-    private val myViewModel: CategoryViewModel by viewModels()
+    private val categoryViewModel: CategoryViewModel by viewModels()
     private lateinit var categoryAdapter: CategoryAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
         categoryAdapter = CategoryAdapter()
 
         categoryAdapter.setOnItemClick { categoryId ->
-            myViewModel.setCategoryId(categoryId)
+            categoryViewModel.setCategoryId(categoryId)
         }
 
-        myViewModel.categoriesLiveData.observe(this) { categoriesList ->
+        categoryViewModel.fetchAllCategories()
+
+        categoryViewModel.categoriesLiveData.observe(this) { categoriesList ->
             categoryAdapter.submitList(categoriesList)
         }
 
-        myViewModel.messageLiveData.observe(this) { message ->
+        categoryViewModel.messageLiveData.observe(this) { message ->
             requireContext().myToast(message)
         }
 
-        myViewModel.categoryIdLiveData.observe(this) { categoryId ->
+        categoryViewModel.categoryIdLiveData.observe(this) { categoryId ->
             CategoryFragmentDirections
-                .actionCategoryFragmentToActivityByCategoryFragment(categoryId).let {
+                .actionCategoryFragmentToActivitiesByCategoryFragment(categoryId).let {
                     findNavController().navigate(it)
                 }
         }
 
 
-        myViewModel.progressBarVisibilityLiveData.observe(this) {
+        categoryViewModel.progressBarVisibilityLiveData.observe(this) {
             binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
         }
 
@@ -61,11 +65,13 @@ class CategoryFragment : Fragment() {
     ): View {
         _binding = FragmentCategoryBinding.inflate(layoutInflater)
 
-        binding.viewModel = myViewModel
+        binding.viewModel = categoryViewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
         binding.rvCategory.layoutManager = LinearLayoutManager(container?.context)
         binding.rvCategory.adapter = categoryAdapter
+
+        binding.progressBar.visibility = View.GONE
 
         return binding.root
     }

@@ -1,5 +1,6 @@
-package com.example.myproject
+package com.example.myproject.ui.main
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,9 +9,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class MainActivityViewModel @Inject constructor(
-    private val sharedPref: MySharedPref
-) : ViewModel() {
+class MainFragmentViewModel @Inject constructor(
+    private val sharedPref: MySharedPref,
+    private val context: Context
+): ViewModel() {
 
     private val _isLoggedOutLiveData = MutableLiveData<Boolean>(false)
     private val _isGoToHome = MutableLiveData<Boolean>(false)

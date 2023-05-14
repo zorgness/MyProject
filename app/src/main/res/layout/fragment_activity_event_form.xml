@@ -90,17 +90,33 @@
                 android:textColorHint="@color/my_green" />
 
 
-            <EditText
-                android:id="@+id/et_selected_date"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="16dp"
-                android:autofillHints="meeting_point"
-                android:ems="10"
-                android:hint="@string/date"
-                android:text="@={viewModel.startAtLd}"
-                android:inputType="text|date"
-                android:textColorHint="@color/my_green" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical">
+                <ImageView
+                    android:id="@+id/iv_calendar"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="16dp"
+                    app:srcCompat="@drawable/calendar"
+                    android:contentDescription="@string/calendar" />
+                <EditText
+                    android:id="@+id/et_selected_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="16dp"
+                    android:autofillHints="meeting_point"
+                    android:ems="10"
+                    android:hint="@string/choisir_une_date"
+                    android:text="@={viewModel.startAtLd}"
+                    android:inputType="text|date"
+                    android:enabled="false"
+                    android:textColorHint="@color/my_green" />
+
+            </LinearLayout>
+
 
 
             <EditText
@@ -115,17 +131,33 @@
                 android:inputType="textPersonName"
                 android:textColorHint="@color/my_green" />
 
-            <EditText
-                android:id="@+id/et_meeting_time"
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="16dp"
-                android:autofillHints="meeting_point"
-                android:ems="10"
-                android:hint="@string/heure_de_la_rencontre"
-                android:text="@={viewModel.meetingTimeLd}"
-                android:inputType="text|date"
-                android:textColorHint="@color/my_green" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical">
+                <ImageView
+                    android:id="@+id/iv_clock"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="16dp"
+                    app:srcCompat="@drawable/clock"
+                    android:contentDescription="@string/clock" />
+                <EditText
+                    android:id="@+id/et_meeting_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="16dp"
+                    android:autofillHints="meeting_time"
+                    android:ems="10"
+                    android:hint="@string/choisir_l_heure_de_rencontre"
+                    android:text="@={viewModel.meetingTimeLd}"
+                    android:inputType="text|date"
+                    android:enabled="false"
+                    android:textColorHint="@color/my_green" />
+
+            </LinearLayout>
 
             <EditText
                 android:id="@+id/et_max_people"

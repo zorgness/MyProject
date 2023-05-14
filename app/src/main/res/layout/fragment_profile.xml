@@ -17,14 +17,12 @@
             android:id="@+id/civ_profile_image"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/avatar"
             android:layout_gravity="center_horizontal"/>
 
         <TextView
             android:id="@+id/tv_city"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="city"
             android:textColor="@color/my_green"
             android:textSize="20sp"
             android:layout_marginTop="16dp"
@@ -35,7 +33,6 @@
             android:id="@+id/tv_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="John Doe"
             android:textColor="@color/my_green"
             android:textSize="28sp"
             android:textStyle="bold"
@@ -48,14 +45,24 @@
             android:id="@+id/profile_bio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla auctor, metus nec semper auctor, turpis arcu pellentesque massa, id sagittis augue leo id velit."
             android:textColor="@color/my_green"
             android:textSize="16sp"
             android:layout_marginTop="16dp"/>
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="120dp"
+            android:minWidth="120dp"
+            android:indeterminateDrawable="@drawable/progress_bg"
+            android:layout_gravity="center"
+            />
 
 
     </LinearLayout>
+
+
 
 </RelativeLayout>
 

@@ -64,4 +64,8 @@
     <string name="rejoindre">Rejoindre</string>
     <string name="heure_de_la_rencontre">heure de la rencontre</string>
     <string name="nombre_de_personnes_1d">maximum de personnes : %1$d</string>
+    <string name="calendar">calendar</string>
+    <string name="choisir_une_date">choisir une date</string>
+    <string name="clock">clock</string>
+    <string name="choisir_l_heure_de_rencontre">choisir l\'heure de rencontre</string>
 </resources>

@@ -1,8 +1,11 @@
 package com.example.myproject.dataclass
 
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class CategoryDto(
     @Json(name = "@id")
     val idHydra: String,
@@ -12,8 +15,7 @@ data class CategoryDto(
     val id: Int,
     @Json(name = "name")
     val name: String,
-    @Json(name = "url_image")
-    val urlImage: String,
     @Json(name = "urlImage")
-    val urlImage2: String
-)
+    val urlImage: String,
+
+): Parcelable

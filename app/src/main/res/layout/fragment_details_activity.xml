@@ -8,7 +8,7 @@
     android:id="@+id/frameLayout6"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity_event_details.ActivityEventDetailsFragment">
+    tools:context=".ui.details_activity_event.DetailsActivityFragment">
 
 
     <ScrollView
@@ -63,11 +63,21 @@
             tools:text="Location" />
 
         <TextView
-            android:id="@+id/tv_date"
+            android:id="@+id/tv_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_title"
             android:layout_alignParentEnd="true"
+
+            tools:text="Category" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_location"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="16dp"
             tools:text="Date" />
 
 
@@ -75,7 +85,7 @@
             android:id="@+id/tv_max_people"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_date"
+            android:layout_below="@+id/tv_location"
             android:layout_alignParentStart="true"
             android:layout_marginTop="16dp"
             android:text="@string/nombre_de_personnes_1d"

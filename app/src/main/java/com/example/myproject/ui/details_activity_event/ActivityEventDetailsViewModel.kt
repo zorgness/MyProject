@@ -1,23 +1,11 @@
-package com.example.myproject.ui.activity_event_details
+package com.example.myproject.ui.details_activity_event
 
-import ERROR_403
-import STATUS_REQUEST_SUCCESS
 import android.content.Context
-import android.system.ErrnoException
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.myproject.R
-import com.example.myproject.dataclass.ActivityEventDto
-import com.example.myproject.dataclass.GetActivityEventDto
 import com.example.myproject.network.ApiService
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import retrofit2.Response
-import java.net.ConnectException
 import javax.inject.Inject
 
 @HiltViewModel

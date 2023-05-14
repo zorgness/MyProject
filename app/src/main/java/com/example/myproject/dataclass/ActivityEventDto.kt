@@ -26,7 +26,7 @@ data class ActivityEventDto(
     @Json(name = "startAt")
     val startAt: String,
     @Json(name = "category")
-    val category: String,
+    val category: CategoryDto,
     @Json(name = "creator")
     val creator: CreatorDto,
     @Json(name = "meetingTime")

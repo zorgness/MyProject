@@ -6,9 +6,9 @@
         android:title="@string/new_event"
         android:icon="@android:drawable/ic_input_add"/>
     <item
-        android:id="@+id/userHistoryFragment"
-        android:title="@string/history"
-        android:icon="@android:drawable/ic_menu_recent_history"/>
+        android:id="@+id/profileFragment"
+        android:title="@string/profile"
+        android:icon="@drawable/avatar"/>
     <item
         android:id="@+id/btn_notification"
         android:title="@string/notification"

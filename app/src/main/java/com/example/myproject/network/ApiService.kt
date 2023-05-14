@@ -24,7 +24,7 @@ interface ApiService {
     suspend fun getActivityEventById(@Path("activityEventId") activityEventId: Int): Response<GetActivityEventDto>?
 
     @GET(ApiRoutes.USERPROFILE)
-    suspend fun getUserProfile(@Path("userId") userId: Int): Response<GetProfileDto>?
+    suspend fun fetchUserProfile(@Path("userId") userId: Int): Response<GetProfileDto>?
 
     @Headers("Content-Type: application/json")
     @POST(ApiRoutes.ACTIVITY_EVENT)

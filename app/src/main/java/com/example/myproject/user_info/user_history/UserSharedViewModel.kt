@@ -34,32 +34,5 @@ class UserSharedViewModel @Inject constructor(
     val messageLiveData: LiveData<String>
         get() = _messageLiveData
 
-    init {
-        fetchUserProfile()
-    }
 
-    private fun fetchUserProfile() {
-        viewModelScope.launch {
-            val responseUserProfile: Response<GetProfileDto>? = withContext(Dispatchers.IO) {
-                apiService.getUserProfile(sharedPref.getUserId())
-            }
-            val body = responseUserProfile?.body()
-
-
-            when {
-                responseUserProfile == null -> {
-                    _messageLiveData.value = context.getString(R.string.server_error)
-                }
-                responseUserProfile.isSuccessful && (body != null) -> {
-                    _userProfileLiveData.value = body.profile
-                }
-
-                responseUserProfile.code() == 403 ->
-                    _messageLiveData.value = context.getString(R.string.unauthorized)
-
-            }
-        }
-
-
-    }
 }

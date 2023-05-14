@@ -1,9 +1,11 @@
 package com.example.myproject.ui.category
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.myproject.R
 import com.example.myproject.dataclass.CategoryDto
 import com.example.myproject.dataclass.GetCategoriesDto
 import com.example.myproject.network.ApiService
@@ -17,40 +19,39 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CategoryViewModel @Inject constructor(
-    private val apiService: ApiService
+    private val apiService: ApiService,
+    private val context: Context
 ) : ViewModel() {
-
-    private val _categoriesLiveData = MutableLiveData<List<CategoryDto>>()
 
     private val _categoryIdLiveData = MutableLiveData<Int>()
 
-    private val _progressBarVisibilityLiveData = MutableLiveData<Boolean>()
+    private val _categoriesLiveData = MutableLiveData<List<CategoryDto>>()
 
     private val _messageLiveData = MutableLiveData<String>()
 
-    val messageLiveData: LiveData<String>
-        get() = _messageLiveData
+    private val _progressBarVisibilityLiveData = MutableLiveData<Boolean>()
+
+
+    val categoryIdLiveData: LiveData<Int>
+        get() = _categoryIdLiveData
 
     val categoriesLiveData: LiveData<List<CategoryDto>>
         get() = _categoriesLiveData
 
+    val messageLiveData: LiveData<String>
+        get() = _messageLiveData
+
     val progressBarVisibilityLiveData: LiveData<Boolean>
         get() = _progressBarVisibilityLiveData
 
-    val categoryIdLiveData: LiveData<Int>
-            get() = _categoryIdLiveData
 
-
-    init {
-        getAllCategories()
-    }
 
     fun setCategoryId(categoryId: Int) {
         _categoryIdLiveData.value = categoryId
     }
 
 
-    private fun getAllCategories() {
+    fun fetchAllCategories() {
         viewModelScope.launch {
 
             try {
@@ -64,7 +65,7 @@ class CategoryViewModel @Inject constructor(
                 when {
                     responseCategories == null -> {
 
-                        _messageLiveData.value = "erreur du serveur"
+                        _messageLiveData.value = context.getString(R.string.server_error)
                     }
 
                     responseCategories.isSuccessful && (body != null) -> {
@@ -73,30 +74,16 @@ class CategoryViewModel @Inject constructor(
 
 
                     responseCategories.code() == 403 ->
-                        _messageLiveData.value = "erreur d'authorisation"
+                        _messageLiveData.value = context.getString(R.string.unauthorized)
                 }
 
                 _progressBarVisibilityLiveData.value = false
 
             } catch (e: ConnectException) {
-                _messageLiveData.value = "pas de connection"
+                _messageLiveData.value = context.getString(R.string.no_connection)
             }
-        }
 
+        }
     }
 
 }
-
-/* private fun getAllCategories() {
-
-        viewModelScope.launch() {
-
-            _progressBarVisibilityLiveData.value = true
-            withContext(Dispatchers.IO) {
-                getRemoteCategories {
-                    _categoriesLiveData.value = it
-                }
-            }
-            _progressBarVisibilityLiveData.value = false
-        }
-    }*/

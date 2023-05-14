@@ -29,7 +29,7 @@ class SplashViewModel @Inject constructor(
 
         _destinationLiveData.value = sharedPref.getToken().let {token->
                 if(token != null)
-                    SplashFragmentDirections.actionSplashFragmentToCategoryFragment()
+                    SplashFragmentDirections.actionSplashFragmentToMainFragment()
                 else
                     SplashFragmentDirections.actionSplashFragmentToLoginFragment()
             }
