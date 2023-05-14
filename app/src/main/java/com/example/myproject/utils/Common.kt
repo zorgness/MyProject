@@ -11,6 +11,7 @@ fun myPicassoFun(url: String, ivToInsert: ImageView) {
         Picasso.get()
             .load(R.drawable.avatar)
             .resize(300, 300)
+            .centerCrop()
             .into(ivToInsert)
     } else {
         Picasso.get()

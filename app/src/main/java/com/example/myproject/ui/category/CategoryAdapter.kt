@@ -13,6 +13,7 @@ import com.example.myproject.R
 import com.example.myproject.databinding.ItemRvCategoryBinding
 import com.example.myproject.dataclass.CategoryDto
 import com.example.myproject.ui.category.CategoryFragmentDirections
+import com.example.myproject.utils.myPicassoFun
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import java.lang.Exception
@@ -59,23 +60,9 @@ class CategoryAdapter() :
 
 
         with(holder.binding) {
-            tvNameItemRvCategory.text = category.name.uppercase()
+            tvNameItemCategory.text = category.name.uppercase()
 
-            val img = ImageView(context)
-            Picasso.get()
-                .load(category.urlImage).error(R.drawable.ic_launcher_background)
-                .centerInside()
-                .resize(300, 300)
-                .into(img, object : Callback {
-                    override fun onSuccess() {
-                        categoryLayout.background = img.drawable
-                    }
-
-                    override fun onError(e: Exception?) {
-                        //TODO("Not yet implemented")
-                    }
-
-                })
+            myPicassoFun(category.urlImage, civImageItemCategory)
 
 
             categoryLayout.setOnClickListener {
