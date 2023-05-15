@@ -22,7 +22,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:padding="8dp"
+        android:background="@drawable/blue_gradient">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/civ_user_image"
@@ -43,6 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:text="Title"
+                android:maxLength="16"
                 android:textSize="16sp"
                 android:textStyle="bold"/>
 

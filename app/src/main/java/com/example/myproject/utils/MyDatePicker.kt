@@ -10,20 +10,25 @@ import java.util.*
 class MyDatePicker(val context: Context, private val editText: EditText) {
 
     private var fullDate = ""
+    private var year = 0
+    private var month = 0
+    private var day = 0
+    // use hilt to inject
+    // function to set the textview
+
 
     fun showDatePickerDialog() {
-        val calendar = Calendar.getInstance()
-        val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH)
-        val day = calendar.get(Calendar.DAY_OF_MONTH)
+        Calendar.getInstance().apply {
+            year = get(Calendar.YEAR)
+            month = get(Calendar.MONTH)
+            day = get(Calendar.DAY_OF_MONTH)
+        }
 
-        val datePickerDialog = DatePickerDialog(context,
+        DatePickerDialog(context,
             { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
                 fullDate = "$dayOfMonth-${month + 1}-$year"
                 editText.setText(fullDate)
-            }, year, month, day)
-
-        datePickerDialog.show()
+            }, year, month, day).show()
     }
 
 }

@@ -70,4 +70,15 @@
     <string name="choisir_l_heure_de_rencontre">choisir l\'heure de rencontre</string>
     <string name="description">Description</string>
     <string name="donnez_votre_description">donnez votre description</string>
+    <string name="nom_d_utilisateur">nom d\'utilisateur</string>
+    <string name="email">email</string>
+    <string name="url_de_votre_image">url de votre image</string>
+    <string name="votre_ville">votre ville</string>
+    <string name="mot_de_passe">mot de passe</string>
+    <string name="confirmer_mot_de_passe">confirmer mot de passe</string>
+    <string name="nouveau_compte">Nouveau compte</string>
+    <string name="entrez_votre_email">entrez votre email</string>
+    <string name="entrez_votre_mot_de_passe">entrez votre mot de passe</string>
+    <string name="pas_de_compte_enregistrez_vous_ici">pas de compte ? enregistrez-vous ici !</string>
+    <string name="envoyer">Envoyer</string>
 </resources>
