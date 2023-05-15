@@ -81,6 +81,7 @@ class EditViewModel @Inject constructor(
                             responseUpdate.isSuccessful && (body != null) -> {
                                 _messageLiveData.value =
                                     context.getString(R.string.user_updated)
+                                _messageLiveData.value = responseUpdate.code().toString()
                                 _codeLiveData.value = responseUpdate.code()
                             }
 

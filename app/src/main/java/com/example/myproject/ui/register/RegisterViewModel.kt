@@ -50,8 +50,7 @@ class RegisterViewModel @Inject constructor(
 
 
     fun register() {
-        if
-        (
+        if (
             emailLiveData.value?.isNotBlank() == true
             &&
             usernameLiveData.value?.isNotBlank() == true
@@ -60,14 +59,11 @@ class RegisterViewModel @Inject constructor(
             &&
             cityLiveData.value?.isNotBlank() == true
             &&
-            descriptionLiveData.value?.isNotBlank() == true
-            &&
             passwordLiveData.value?.isNotBlank() == true
         ) {
             if(isEmailValid(emailLiveData.value!!)) {
-                if
-                        (validatePassword
-                        (
+                if(
+                    validatePassword(
                         passwordLiveData.value.toString(),
                         confirmLiveData.value.toString()
                     )
@@ -132,7 +128,7 @@ class RegisterViewModel @Inject constructor(
                 _messageLiveData.value = context.getString(R.string.invalid_email)
 
         } else
-            _messageLiveData.value = context.getString(R.string.empty_fields)
+            _messageLiveData.value = context.getString(R.string.obligatory_fields)
 
     }
 

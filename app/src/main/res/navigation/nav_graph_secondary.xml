@@ -66,5 +66,8 @@
         <argument
             android:name="user"
             app:argType="com.example.myproject.dataclass.authentication.UserDto" />
+        <action
+            android:id="@+id/action_editFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
 </navigation>

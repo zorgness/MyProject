@@ -38,7 +38,10 @@ class EditFragment : Fragment() {
          */
         viewModel.codeLiveData.observe(this) {code ->
             if (code == CODE_200) {
-                findNavController().navigateUp()
+                EditFragmentDirections
+                    .actionEditFragmentToProfileFragment().let{
+                    findNavController().navigate(it)
+                }
             }
         }
 
@@ -75,7 +78,7 @@ class EditFragment : Fragment() {
             }
 
             btnSubmitUpdate.setOnClickListener {
-                viewModel?.update(
+                viewModel.update(
                         email = etUserEmail.text.toString(),
                         username = etUserUsername.text.toString(),
                         imageUrl = etImageUrl.text.toString(),
