@@ -1,4 +1,6 @@
-package com.example.myproject.dataclass
+package com.example.myproject.dataclass.activity_event
+
+import com.example.myproject.dataclass.SerializedName
 
 
 data class ActivityEventPostDto(
@@ -12,4 +14,4 @@ data class ActivityEventPostDto(
     @SerializedName("creator") val creator: String,
     @SerializedName("meetingTime") val meetingTime: String,
 
-)
+    )

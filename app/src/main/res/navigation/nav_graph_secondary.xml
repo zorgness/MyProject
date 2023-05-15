@@ -32,7 +32,7 @@
         tools:layout="@layout/fragment_details_activity" >
         <argument
             android:name="activityEvent"
-            app:argType="com.example.myproject.dataclass.ActivityEventDto" />
+            app:argType="com.example.myproject.dataclass.activity_event.ActivityEventDto" />
         <action
             android:id="@+id/action_detailsActivityFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
@@ -55,5 +55,16 @@
             android:name="profileId"
             app:argType="integer"
             android:defaultValue="0" />
+        <action
+            android:id="@+id/action_profileFragment_to_editFragment"
+            app:destination="@id/editFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editFragment"
+        android:name="com.example.myproject.ui.edit.EditFragment"
+        android:label="EditFragment" >
+        <argument
+            android:name="user"
+            app:argType="com.example.myproject.dataclass.authentication.UserDto" />
     </fragment>
 </navigation>

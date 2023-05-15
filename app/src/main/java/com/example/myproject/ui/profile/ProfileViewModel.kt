@@ -7,8 +7,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myproject.R
-import com.example.myproject.dataclass.GetProfileDto
-import com.example.myproject.dataclass.ProfileDto
+import com.example.myproject.dataclass.profile.GetProfileDto
+import com.example.myproject.dataclass.profile.ProfileDto
 import com.example.myproject.network.ApiService
 import com.example.myproject.utils.MySharedPref
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,25 +26,34 @@ class ProfileViewModel @Inject constructor(
     private val sharedPref: MySharedPref
 ) : ViewModel() {
 
-    private var _userProfileLiveData = MutableLiveData<ProfileDto>()
 
     private var _messageLiveData = MutableLiveData<String>()
 
-    private var _profileIdLiveData = MutableLiveData<Int>(0)
-
     private val _progressBarVisibilityLiveData = MutableLiveData<Boolean>(false)
 
-    val userProfile: LiveData<ProfileDto>
-        get() = _userProfileLiveData
+    private var _profileLiveData = MutableLiveData<ProfileDto>()
+
+    private var _profileIdLiveData = MutableLiveData<Int>(0)
+
+    private var _isCurrentUserLiveData = MutableLiveData<Boolean>()
+
+
+
 
     val messageLiveData: LiveData<String>
         get() = _messageLiveData
 
+    val progressBarVisibilityLiveData: LiveData<Boolean>
+        get() = _progressBarVisibilityLiveData
+
     private val profileIdLiveData: LiveData<Int>
         get() = _profileIdLiveData
 
-    val progressBarVisibilityLiveData: LiveData<Boolean>
-        get() = _progressBarVisibilityLiveData
+    val profileLiveData: LiveData<ProfileDto>
+        get() = _profileLiveData
+
+   val isCurrentUserLiveData: LiveData<Boolean>
+        get() = _isCurrentUserLiveData
 
 
     fun setProfileId(profileId: Int) {
@@ -68,8 +77,9 @@ class ProfileViewModel @Inject constructor(
                         _messageLiveData.value = context.getString(R.string.server_error)
                     }
                     responseUserProfile.isSuccessful && (body != null) -> {
-                        _userProfileLiveData.value = body.profile
+                        _profileLiveData.value = body.profile
                         _progressBarVisibilityLiveData.value = false
+                        _isCurrentUserLiveData.value = profileIdLiveData.value!! == 0
                     }
 
                     responseUserProfile.code() == 403 ->

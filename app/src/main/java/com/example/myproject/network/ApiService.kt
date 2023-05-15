@@ -1,10 +1,21 @@
 package com.example.myproject.network
 
 import com.example.myproject.dataclass.*
+import com.example.myproject.dataclass.activity_event.ActivityEventDto
+import com.example.myproject.dataclass.activity_event.ActivityEventPostDto
+import com.example.myproject.dataclass.activity_event.GetActivityByCategoryDto
+import com.example.myproject.dataclass.activity_event.GetActivityEventDto
+import com.example.myproject.dataclass.authentication.*
+import com.example.myproject.dataclass.booking.BookingDto
+import com.example.myproject.dataclass.booking.InfoBookingDto
+import com.example.myproject.dataclass.category.GetCategoriesDto
+import com.example.myproject.dataclass.profile.GetProfileDto
 import retrofit2.Response
 import retrofit2.http.*
 
 interface ApiService {
+
+
 
     @Headers("Content-Type: application/json")
     @POST(ApiRoutes.REGISTER)
@@ -13,6 +24,10 @@ interface ApiService {
     @Headers("Content-Type: application/json")
     @POST(ApiRoutes.LOGIN)
     suspend fun login(@Body loginInfo: LoginDto): Response<SessionDto>?
+
+    @Headers("Content-Type: application/merge-patch+json")
+    @PATCH(ApiRoutes.UPDATE)
+    suspend fun update(@Path("userId") userId: Int, @Body updateInfo: UpdateDto): Response<UserDto>?
 
     @GET(ApiRoutes.CATEGORY)
     suspend fun fetchAllCategories(): Response<GetCategoriesDto>?

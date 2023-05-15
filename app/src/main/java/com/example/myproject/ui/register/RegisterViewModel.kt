@@ -10,8 +10,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myproject.R
-import com.example.myproject.dataclass.RegisterDto
-import com.example.myproject.dataclass.UserDto
+import com.example.myproject.dataclass.authentication.RegisterDto
+import com.example.myproject.dataclass.authentication.UserDto
 import com.example.myproject.extensions.isLongEnough
 import com.example.myproject.network.ApiService
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -50,7 +50,6 @@ class RegisterViewModel @Inject constructor(
 
 
     fun register() {
-        println(imageUrlLiveData.value)
         if
         (
             emailLiveData.value?.isNotBlank() == true

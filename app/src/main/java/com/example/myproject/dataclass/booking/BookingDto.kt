@@ -1,6 +1,8 @@
-package com.example.myproject.dataclass
+package com.example.myproject.dataclass.booking
 
 
+import com.example.myproject.dataclass.activity_event.ActivityEventDto
+import com.example.myproject.dataclass.authentication.UserDto
 import com.squareup.moshi.Json
 
 data class BookingDto(

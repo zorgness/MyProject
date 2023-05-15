@@ -72,7 +72,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linear_layout_top_bar"
-            app:navGraph="@navigation/nav_graph_secondary" />
+            app:navGraph="@navigation/nav_graph_secondary"
+            tools:layout="@layout/fragment_main" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_nav"

@@ -1,4 +1,4 @@
-package com.example.myproject.dataclass
+package com.example.myproject.dataclass.authentication
 
 
 import com.squareup.moshi.Json

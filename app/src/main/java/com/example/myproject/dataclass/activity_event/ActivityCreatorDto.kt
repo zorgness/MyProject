@@ -1,4 +1,4 @@
-package com.example.myproject.dataclass
+package com.example.myproject.dataclass.activity_event
 
 
 import com.squareup.moshi.Json

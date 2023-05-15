@@ -42,6 +42,7 @@
     <string name="home">home</string>
     <string name="server_error">erreur du serveur</string>
     <string name="empty_fields">tous les champs doivent être remplis</string>
+    <string name="obligatory_fields">remplir les champs obligatoires</string>
     <string name="no_connection">pas de connection</string>
     <string name="user_avatar">user_avatar</string>
     <string name="pwd_and_confirm_not_equals">mot de passe et confirmation sont différents</string>
@@ -82,4 +83,9 @@
     <string name="pas_de_compte_enregistrez_vous_ici">pas de compte ? enregistrez-vous ici !</string>
     <string name="envoyer">Envoyer</string>
     <string name="booking_request_success">Demande ajouté</string>
+    <string name="pencil">pencil</string>
+    <string name="editer_profile">Editer profile</string>
+    <string name="resource_introuvable">resource introuvable</string>
+    <string name="non_obligatoire">non obligatoire</string>
+    <string name="user_updated">utilisateur édité</string>
 </resources>

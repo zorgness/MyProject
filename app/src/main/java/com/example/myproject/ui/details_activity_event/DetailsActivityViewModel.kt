@@ -1,6 +1,5 @@
 package com.example.myproject.ui.details_activity_event
 
-import CODE_201
 import ERROR_400
 import ERROR_403
 import ERROR_422
@@ -11,8 +10,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myproject.R
-import com.example.myproject.dataclass.BookingDto
-import com.example.myproject.dataclass.InfoBookingDto
+import com.example.myproject.dataclass.booking.BookingDto
+import com.example.myproject.dataclass.booking.InfoBookingDto
 import com.example.myproject.extensions.toHydraUserId
 import com.example.myproject.network.ApiService
 import com.example.myproject.utils.MySharedPref

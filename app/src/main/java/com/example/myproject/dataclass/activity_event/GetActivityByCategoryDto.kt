@@ -1,6 +1,7 @@
-package com.example.myproject.dataclass
+package com.example.myproject.dataclass.activity_event
 
 
+import com.example.myproject.dataclass.activity_event.ActivityEventDto
 import com.squareup.moshi.Json
 
 data class GetActivityByCategoryDto(

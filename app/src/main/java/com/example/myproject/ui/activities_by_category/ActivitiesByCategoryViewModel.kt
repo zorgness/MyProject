@@ -7,8 +7,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myproject.R
-import com.example.myproject.dataclass.ActivityEventDto
-import com.example.myproject.dataclass.GetActivityByCategoryDto
+import com.example.myproject.dataclass.activity_event.ActivityEventDto
+import com.example.myproject.dataclass.activity_event.GetActivityByCategoryDto
 import com.example.myproject.network.ApiService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

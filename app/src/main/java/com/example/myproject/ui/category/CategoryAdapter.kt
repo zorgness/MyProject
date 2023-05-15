@@ -4,19 +4,13 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myproject.R
 import com.example.myproject.databinding.ItemRvCategoryBinding
-import com.example.myproject.dataclass.CategoryDto
-import com.example.myproject.ui.category.CategoryFragmentDirections
+import com.example.myproject.dataclass.category.CategoryDto
 import com.example.myproject.utils.myPicassoFun
-import com.squareup.picasso.Callback
-import com.squareup.picasso.Picasso
-import java.lang.Exception
 
 class CategoryDiffUtil : DiffUtil.ItemCallback<CategoryDto>() {
     override fun areItemsTheSame(oldItem: CategoryDto, newItem: CategoryDto): Boolean {

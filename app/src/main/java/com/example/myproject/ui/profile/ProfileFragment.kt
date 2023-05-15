@@ -8,9 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.myproject.R
 import com.example.myproject.databinding.FragmentProfileBinding
+import com.example.myproject.dataclass.authentication.UserDto
 import com.example.myproject.extensions.myToast
 import com.example.myproject.user_info.user_history.UserSharedViewModel
 import com.example.myproject.utils.myPicassoFun
@@ -21,34 +23,49 @@ class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
-    private val profileViewModel: ProfileViewModel by viewModels()
+    private val viewModel: ProfileViewModel by viewModels()
     private val args: ProfileFragmentArgs by navArgs()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        profileViewModel.messageLiveData.observe(this) {message ->
+
+        viewModel.messageLiveData.observe(this) {message ->
             requireContext().myToast(message)
         }
 
-        profileViewModel.setProfileId(args.profileId)
-        profileViewModel.fetchUserProfile()
+        viewModel.isCurrentUserLiveData.observe(this) {isCurrentUser ->
+            binding.ivEdit.visibility = if(isCurrentUser) View.VISIBLE else View.GONE
+        }
+
+        viewModel.setProfileId(args.profileId)
+        viewModel.fetchUserProfile()
 
 
-        profileViewModel.userProfile.observe(this) { profile->
+        viewModel.profileLiveData.observe(this) { profile->
             with(binding) {
 
                 myPicassoFun(profile.imageUrl, civProfileImage)
                 tvUsername.text = profile.username
                 tvProfileBio.text = profile.description
                 tvCity.text = profile.city
-                profile.bookings.forEach { bookings ->
+               /* profile.bookings.forEach { bookings ->
                     tvBooking.text = bookings.activity.title + "\n"
-                }
+                }*/
 
+                binding.ivEdit.setOnClickListener {
+                    with(profile) {
+                        ProfileFragmentDirections
+                            .actionProfileFragmentToEditFragment(
+                                UserDto(email, username,  city, description, imageUrl)
+                            ).let {
+                                findNavController().navigate(it)
+                            }
+                    }
+                }
             }
         }
 
-        profileViewModel.progressBarVisibilityLiveData.observe(this) {
+        viewModel.progressBarVisibilityLiveData.observe(this) {
             binding.progressBar.visibility = if(it) View.VISIBLE else View.GONE
         }
     }
