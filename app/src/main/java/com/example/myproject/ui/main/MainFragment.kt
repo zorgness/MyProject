@@ -25,7 +25,7 @@ import com.example.myproject.databinding.FragmentLoginBinding
 import com.example.myproject.databinding.FragmentMainBinding
 import com.example.myproject.ui.category.CategoryFragment
 import com.example.myproject.ui.login.LoginViewModel
-import com.example.myproject.user_info.user_history.profile.ProfileFragment
+import com.example.myproject.ui.profile.ProfileFragment
 import com.example.myproject.utils.myPicassoFun
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,14 +43,6 @@ class MainFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
 
-        /*myViewModel.fetchUserImageUrl()
-
-        myViewModel.imageUrlLiveData.observe(this)  { url ->
-            val img = ImageView(context)
-            myPicassoFun(url, img)
-        }*/
-
-
         myViewModel.isLoggedOutLiveData.observe(this) { isLoggedOut ->
              if (isLoggedOut) {
                  MainFragmentDirections.actionMainFragmentToLoginFragment().let{
@@ -58,20 +50,7 @@ class MainFragment : Fragment() {
                  }
              }
         }
-
-     /*  myViewModel.isGoToHome.observe(this) { isGoToHome ->
-            if (isGoToHome) {
-               *//* childFragmentManager.commit {
-                    replace(R.id.nav_host, CategoryFragment())
-                }*//*
-                navController.navigateUp()
-
-            }
-        }*/
-
     }
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -82,6 +61,9 @@ class MainFragment : Fragment() {
         binding.viewModel = myViewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
+        /**
+         * Initialize the nav host fragment
+         */
         val navHostFragment =
             childFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment
 

@@ -42,12 +42,21 @@
 
 
         <TextView
-            android:id="@+id/profile_bio"
+            android:id="@+id/tv_profile_bio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/my_green"
             android:textSize="16sp"
             android:layout_marginTop="16dp"/>
+
+        <TextView
+            android:id="@+id/tv_booking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/my_green"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"/>
+
 
         <ProgressBar
             android:id="@+id/progressBar"

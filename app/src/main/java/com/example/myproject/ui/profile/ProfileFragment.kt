@@ -1,4 +1,4 @@
-package com.example.myproject.user_info.user_history.profile
+package com.example.myproject.ui.profile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -22,7 +22,7 @@ class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     private val profileViewModel: ProfileViewModel by viewModels()
-    //private val args: ProfileFragmentArgs by navArgs()
+    private val args: ProfileFragmentArgs by navArgs()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -30,7 +30,7 @@ class ProfileFragment : Fragment() {
             requireContext().myToast(message)
         }
 
-        //profileViewModel.setProfileId(args.profileId)
+        profileViewModel.setProfileId(args.profileId)
         profileViewModel.fetchUserProfile()
 
 
@@ -39,8 +39,12 @@ class ProfileFragment : Fragment() {
 
                 myPicassoFun(profile.imageUrl, civProfileImage)
                 tvUsername.text = profile.username
-                profileBio.text = profile.description
+                tvProfileBio.text = profile.description
                 tvCity.text = profile.city
+                profile.bookings.forEach { bookings ->
+                    tvBooking.text = bookings.activity.title + "\n"
+                }
+
             }
         }
 

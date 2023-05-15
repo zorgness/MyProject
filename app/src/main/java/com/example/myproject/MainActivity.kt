@@ -15,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import com.example.myproject.extensions.myToast
 import com.example.myproject.ui.category.CategoryFragment
 import com.example.myproject.ui.login.LoginFragment
-import com.example.myproject.user_info.user_history.profile.ProfileFragment
+import com.example.myproject.ui.profile.ProfileFragment
 import com.example.myproject.utils.myPicassoFun
 
 

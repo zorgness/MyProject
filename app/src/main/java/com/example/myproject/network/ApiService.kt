@@ -23,11 +23,15 @@ interface ApiService {
     @GET(ApiRoutes.ACTIVITY_EVENT_BY_ID)
     suspend fun getActivityEventById(@Path("activityEventId") activityEventId: Int): Response<GetActivityEventDto>?
 
-    @GET(ApiRoutes.USERPROFILE)
+    @GET(ApiRoutes.USER_PROFILE)
     suspend fun fetchUserProfile(@Path("userId") userId: Int): Response<GetProfileDto>?
 
     @Headers("Content-Type: application/json")
     @POST(ApiRoutes.ACTIVITY_EVENT)
     suspend fun createActivityEvent(@Body activityEventInfo: ActivityEventPostDto): Response<ActivityEventDto>?
+
+    @Headers("Content-Type: application/json")
+    @POST(ApiRoutes.BOOKING)
+    suspend fun addBooking(@Body bookingToPostDto: InfoBookingDto): Response<BookingDto>?
 
 }

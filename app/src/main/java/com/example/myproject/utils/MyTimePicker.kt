@@ -9,7 +9,6 @@ import java.util.*
 
 class MyTimePicker(val context: Context, private val editText: EditText) {
 
-        private var fullDate = ""
         private var hour: Int = 0
         private var minute: Int = 0
 

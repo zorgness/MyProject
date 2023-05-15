@@ -81,4 +81,5 @@
     <string name="entrez_votre_mot_de_passe">entrez votre mot de passe</string>
     <string name="pas_de_compte_enregistrez_vous_ici">pas de compte ? enregistrez-vous ici !</string>
     <string name="envoyer">Envoyer</string>
+    <string name="booking_request_success">Demande ajouté</string>
 </resources>

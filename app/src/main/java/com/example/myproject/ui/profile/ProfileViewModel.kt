@@ -1,4 +1,4 @@
-package com.example.myproject.user_info.user_history.profile
+package com.example.myproject.ui.profile
 
 import android.content.Context
 import android.system.ErrnoException

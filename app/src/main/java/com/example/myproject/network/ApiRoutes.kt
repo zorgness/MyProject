@@ -8,6 +8,7 @@ object ApiRoutes {
     const val CATEGORY = "/api/categories"
     const val ACTIVITY_EVENT = "/api/activity_events"
     const val ACTIVITY_EVENT_BY_ID = "/api/activity_events/custom/{activityEventId}"
-    const val USERPROFILE = "/api/users/profile/{userId}"
+    const val USER_PROFILE = "/api/users/profile/{userId}"
+    const val BOOKING = "/api/bookings"
 
 }

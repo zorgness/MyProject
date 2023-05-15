@@ -35,12 +35,12 @@ class ActivityEventFormFragment : Fragment() {
         /**
          * Navigate to the list of activities by category relative to the new activity inserted
          */
-       /* myViewModel.newItemCategoryId.observe(this) { categoryId ->
+       myViewModel.newItemCategoryId.observe(this) { categoryId ->
             ActivityEventFormFragmentDirections
-                .actionActivityEventFormFragmentToActivityByCategoryFragment(categoryId).let {
+                .actionActivityEventFormFragmentToActivitiesByCategoryFragment(categoryId).let {
                     findNavController().navigate(it)
                 }
-        }*/
+        }
 
 
     }

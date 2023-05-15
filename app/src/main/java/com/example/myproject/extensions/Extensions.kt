@@ -20,6 +20,10 @@ fun Int.toHydraCategoryId(): String {
     return "api/categories/$this"
 }
 
+fun Int.toHydraActivitiesId(): String {
+    return "api/activity_events/$this"
+}
+
 fun String.isLongEnough(): Boolean {
     return this.length >= 6
 }

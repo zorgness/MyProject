@@ -75,8 +75,6 @@ class LoginViewModel @Inject constructor(
                                     saveImageUrl(body.imageUrl)
                                 }
 
-
-
                                 _messageLiveData.value =
                                     "${context.getString(R.string.welcome)} ${body.username} "
                                 _statusLiveData.value = body.status

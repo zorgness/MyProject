@@ -16,4 +16,8 @@ data class ProfileDto(
     val description: String,
     @Json(name = "imageUrl")
     val imageUrl: String,
+    @Json(name = "activities")
+    val activities: List<ActivityEventDto> = listOf(),
+    @Json(name = "bookings")
+    val bookings: List<BookingDto>  = listOf()
 )

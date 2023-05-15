@@ -15,7 +15,7 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    android:backgroundTint="@color/my_green"
+
     >
 
     <LinearLayout
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="8dp"
-        android:background="@drawable/blue_gradient">
+        android:background="@drawable/card_bg">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/civ_user_image"

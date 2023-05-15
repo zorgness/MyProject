@@ -4,12 +4,12 @@ package com.example.myproject.dataclass
 import com.squareup.moshi.Json
 
 data class UserDto(
-    @Json(name = "@context")
+  /*  @Json(name = "@context")
     val context: String,
     @Json(name = "@id")
     val idHydra: String,
     @Json(name = "@type")
-    val type: String,
+    val type: String,*/
     @Json(name = "email")
     val email: String,
     @Json(name = "username")

@@ -43,15 +43,17 @@
         android:label="ActivityEventFormFragment" >
         <action
             android:id="@+id/action_activityEventFormFragment_to_activitiesByCategoryFragment"
-            app:destination="@id/activitiesByCategoryFragment" />
+            app:destination="@id/activitiesByCategoryFragment"
+            app:popUpTo="@id/activityEventFormFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.myproject.user_info.user_history.profile.ProfileFragment"
-        android:label="ProfileFragment" />
-    <fragment
-        android:id="@+id/userHistoryFragment"
-        android:name="com.example.myproject.user_info.user_history.UserHistoryFragment"
-        android:label="fragment_user_history"
-        tools:layout="@layout/fragment_user_history" />
+        android:name="com.example.myproject.ui.profile.ProfileFragment"
+        android:label="ProfileFragment" >
+        <argument
+            android:name="profileId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
 </navigation>

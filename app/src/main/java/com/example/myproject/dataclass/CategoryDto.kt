@@ -7,10 +7,10 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class CategoryDto(
-    @Json(name = "@id")
-    val idHydra: String,
-    @Json(name = "@type")
-    val type: String,
+  /*  @Json(name = "@id")
+    val idHydra: String,*/
+  /*  @Json(name = "@type")
+    val type: String,*/
     @Json(name = "id")
     val id: Int,
     @Json(name = "name")

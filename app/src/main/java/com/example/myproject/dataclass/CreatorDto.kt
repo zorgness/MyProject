@@ -9,8 +9,8 @@ import kotlinx.parcelize.Parcelize
 data class CreatorDto(
     @Json(name = "id")
     val id: Int,
-    @Json(name = "@type")
-    val type: String,
+    /*@Json(name = "@type")
+    val type: String,*/
     @Json(name = "email")
     val email: String,
     @Json(name = "username")
