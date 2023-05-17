@@ -60,6 +60,8 @@ class ProfileViewModel @Inject constructor(
         _profileIdLiveData.value = profileId
     }
 
+
+
     fun fetchUserProfile() {
 
         val profileId = if(profileIdLiveData.value!! > 0) profileIdLiveData.value else sharedPref.getUserId()

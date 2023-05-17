@@ -56,17 +56,17 @@ class CategoryViewModel @Inject constructor(
     fun fetchAllCategories() {
         viewModelScope.launch {
 
-            val token = sharedPref.getToken()
+          /*  val token = sharedPref.getToken()
             val headers = HashMap<String, String>()
 
             if (token != null) {
                 headers["Authorization"] = "Bearer $token"
             }
-
+*/
             try {
                 _progressBarVisibilityLiveData.value = true
                 val responseCategories: Response<GetCategoriesDto>? = withContext(Dispatchers.IO) {
-                    apiService.fetchAllCategories(headers)
+                    apiService.fetchAllCategories()
                 }
 
                 val body = responseCategories?.body()

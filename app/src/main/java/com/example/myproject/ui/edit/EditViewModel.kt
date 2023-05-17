@@ -13,6 +13,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.myproject.R
 import com.example.myproject.dataclass.authentication.UpdateDto
 import com.example.myproject.dataclass.authentication.UserDto
+import com.example.myproject.event.Event
 import com.example.myproject.network.ApiService
 import com.example.myproject.utils.MySharedPref
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -31,12 +32,12 @@ class EditViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _messageLiveData = MutableLiveData<String>()
-    private val _codeLiveData = MutableLiveData<Int>()
+    private val _codeLiveData = MutableLiveData<Event<Int>>()
 
     val messageLiveData: LiveData<String>
         get() = _messageLiveData
 
-    val codeLiveData: LiveData<Int>
+    val codeLiveData: LiveData<Event<Int>>
         get() = _codeLiveData
 
 
@@ -81,8 +82,7 @@ class EditViewModel @Inject constructor(
                             responseUpdate.isSuccessful && (body != null) -> {
                                 _messageLiveData.value =
                                     context.getString(R.string.user_updated)
-                                _messageLiveData.value = responseUpdate.code().toString()
-                                _codeLiveData.value = responseUpdate.code()
+                                _codeLiveData.value = Event(responseUpdate.code())
                             }
 
                             responseUpdate.code() == ERROR_400 ->

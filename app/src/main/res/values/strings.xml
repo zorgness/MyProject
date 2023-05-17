@@ -6,6 +6,7 @@
 
     <!--AUTH-->
     <string name="login">Login</string>
+    <string name="logout">logout</string>
     <string name="register">Register</string>
     <string name="welcome">Welcome</string>
     <string name="password">password</string>
@@ -34,6 +35,7 @@
 
     <!--  ACTIVITIES EVENT-->
     <string name="nouvel_v_nement">nouvel événement</string>
+    <string name="new_event">new</string>
     <string name="activity_event_create">événement ajouter</string>
     <string name="details">details</string>
     <string name="rejoindre">Rejoindre</string>

@@ -36,11 +36,14 @@ class EditFragment : Fragment() {
         /**
          * Redirect user to profile if success on update
          */
-        viewModel.codeLiveData.observe(this) {code ->
-            if (code == CODE_200) {
-                EditFragmentDirections
-                    .actionEditFragmentToProfileFragment().let{
-                    findNavController().navigate(it)
+        viewModel.codeLiveData.observe(this) {event->
+            event.getContentIfNotHandled()?.let {code->
+                requireContext().myToast(code.toString())
+                if (code == CODE_200) {
+                    EditFragmentDirections
+                        .actionEditFragmentToProfileFragment().let{
+                            findNavController().navigate(it)
+                        }
                 }
             }
         }
