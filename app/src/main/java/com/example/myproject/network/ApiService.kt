@@ -30,7 +30,7 @@ interface ApiService {
     suspend fun update(@Path("userId") userId: Int, @Body updateInfo: UpdateDto): Response<UserDto>?
 
     @GET(ApiRoutes.CATEGORY)
-    suspend fun fetchAllCategories(): Response<GetCategoriesDto>?
+    suspend fun fetchAllCategories(@HeaderMap headers: Map<String, String>,): Response<GetCategoriesDto>?
 
     @GET(ApiRoutes.ACTIVITY_EVENT)
     suspend fun fetchActivityByCategory(@Query("category") categoryId: Int): Response<GetActivityByCategoryDto>?

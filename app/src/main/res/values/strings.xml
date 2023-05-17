@@ -1,66 +1,40 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">MyProject</string>
-    <string name="fun4mate">Fun4Mate</string>
-    <string name="login">Login</string>
-    <string name="login_label">login</string>
-    <string name="enter_your_login">enter your login</string>
-    <string name="enter_your_password">enter your password</string>
-    <string name="password">password</string>
-    <string name="submit">Submit</string>
-    <string name="no_account_yet_register_here">no account yet, register here</string>
-    <string name="register">Register</string>
-    <string name="confirm_password">confirm password</string>
-    <string name="add_new_article">add new article</string>
-    <string name="welcome">Welcome</string>
-    <string name="logout">logout</string>
-    <string name="edit">edit</string>
-    <string name="delete">delete</string>
-    <string name="email_label">email</string>
-    <string name="enter_your_email">enter your email</string>
-    <string name="username_label">username</string>
-    <string name="enter_your_username">enter your username</string>
-    <string name="city_label">city</string>
-    <string name="enter_your_city">enter your city</string>
-    <string name="new_event">New</string>
-    <string name="profil">profil</string>
-    <string name="profile">profile</string>
-
+    <string name="heymate">HeyMate</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
+    <!--AUTH-->
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="welcome">Welcome</string>
+    <string name="password">password</string>
+    <string name="user_registreted">Utilisateur créé</string>
     <string name="password_to_short">minimum 6 caractères pour le mot de passe</string>
+    <string name="wrong_credential">mauvais email ou mot de passe</string>
+    <string name="edit_profile">Editer profile</string>
+    <string name="submit">Submit</string>
+    <string name="invalid_email">email invalide</string>
+    <string name="user_avatar">user_avatar</string>
+    <string name="pwd_and_confirm_not_equals">mot de passe et confirmation sont différents</string>
+    <string name="user_updated">utilisateur édité</string>
+
+
+    <!-- ERROR-->
+
+    <string name="server_error">erreur du serveur</string>
     <string name="unauthorized">probléme d\'autorisation</string>
     <string name="parameter_problem">probléme de paramétres</string>
-    <string name="activity_event_create">événement ajouter</string>
-    <string name="invalid_email">email invalide</string>
     <string name="unprocessable_entity">création impossible</string>
-    <string name="input_problem">probléme de paramétres</string>
-    <string name="user_registreted">Utilisateur créé</string>
-    <string name="notification">notification</string>
-    <string name="wrong_credential">mauvais email ou mot de passe</string>
-    <string name="history">history</string>
-    <string name="home">home</string>
-    <string name="server_error">erreur du serveur</string>
     <string name="empty_fields">tous les champs doivent être remplis</string>
     <string name="obligatory_fields">remplir les champs obligatoires</string>
     <string name="no_connection">pas de connection</string>
-    <string name="user_avatar">user_avatar</string>
-    <string name="pwd_and_confirm_not_equals">mot de passe et confirmation sont différents</string>
+    <string name="resource_introuvable">resource introuvable</string>
+    <string name="non_obligatoire">non obligatoire</string>
+
+    <!--  ACTIVITIES EVENT-->
     <string name="nouvel_v_nement">nouvel événement</string>
-    <string name="enregister">enregister</string>
-    <string name="supprimer">supprimer</string>
-    <string name="mettre_jour">mettre à jour</string>
-    <string name="image_url">image_url</string>
-    <string name="contenu">description</string>
-    <string name="titre_label">titre</string>
-    <string name="localisation">localisation</string>
-    <string name="nombre_de_personnes">nombre de personnes</string>
-    <string name="point_de_rencontre">point de rencontre</string>
-    <string name="date">date</string>
-    <string name="url_image">url image</string>
-    <string name="enter_your_image_url">enter your image url</string>
-    <string name="user_image_preview">user image preview</string>
-    <string name="heymate">HeyMate</string>
+    <string name="activity_event_create">événement ajouter</string>
     <string name="details">details</string>
     <string name="rejoindre">Rejoindre</string>
     <string name="heure_de_la_rencontre">heure de la rencontre</string>
@@ -71,6 +45,19 @@
     <string name="choisir_l_heure_de_rencontre">choisir l\'heure de rencontre</string>
     <string name="description">Description</string>
     <string name="donnez_votre_description">donnez votre description</string>
+    <string name="image_url">image_url</string>
+    <string name="contenu">description</string>
+    <string name="titre_label">titre</string>
+    <string name="localisation">localisation</string>
+    <string name="nombre_de_personnes">nombre de personnes</string>
+    <string name="point_de_rencontre">point de rencontre</string>
+    <string name="date">date</string>
+    <string name="user_image_preview">user image preview</string>
+    <string name="booking_request_success">Demande ajouté</string>
+
+    <!-- PROFILE-->
+
+    <string name="profile">profile</string>
     <string name="nom_d_utilisateur">nom d\'utilisateur</string>
     <string name="email">email</string>
     <string name="url_de_votre_image">url de votre image</string>
@@ -81,11 +68,16 @@
     <string name="entrez_votre_email">entrez votre email</string>
     <string name="entrez_votre_mot_de_passe">entrez votre mot de passe</string>
     <string name="pas_de_compte_enregistrez_vous_ici">pas de compte ? enregistrez-vous ici !</string>
-    <string name="envoyer">Envoyer</string>
-    <string name="booking_request_success">Demande ajouté</string>
+
+
+    <!-- DIVERS-->
+    <string name="notification">notification</string>
+    <string name="history">history</string>
+    <string name="enregister">enregister</string>
+    <string name="supprimer">supprimer</string>
+    <string name="mettre_jour">mettre à jour</string>
     <string name="pencil">pencil</string>
-    <string name="editer_profile">Editer profile</string>
-    <string name="resource_introuvable">resource introuvable</string>
-    <string name="non_obligatoire">non obligatoire</string>
-    <string name="user_updated">utilisateur édité</string>
+    <string name="envoyer">Envoyer</string>
+
+
 </resources>

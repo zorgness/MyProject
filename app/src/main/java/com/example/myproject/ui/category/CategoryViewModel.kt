@@ -9,6 +9,7 @@ import com.example.myproject.R
 import com.example.myproject.dataclass.category.CategoryDto
 import com.example.myproject.dataclass.category.GetCategoriesDto
 import com.example.myproject.network.ApiService
+import com.example.myproject.utils.MySharedPref
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -20,6 +21,7 @@ import javax.inject.Inject
 @HiltViewModel
 class CategoryViewModel @Inject constructor(
     private val apiService: ApiService,
+    private val sharedPref: MySharedPref,
     private val context: Context
 ) : ViewModel() {
 
@@ -54,10 +56,17 @@ class CategoryViewModel @Inject constructor(
     fun fetchAllCategories() {
         viewModelScope.launch {
 
+            val token = sharedPref.getToken()
+            val headers = HashMap<String, String>()
+
+            if (token != null) {
+                headers["Authorization"] = "Bearer $token"
+            }
+
             try {
                 _progressBarVisibilityLiveData.value = true
                 val responseCategories: Response<GetCategoriesDto>? = withContext(Dispatchers.IO) {
-                    apiService.fetchAllCategories()
+                    apiService.fetchAllCategories(headers)
                 }
 
                 val body = responseCategories?.body()
