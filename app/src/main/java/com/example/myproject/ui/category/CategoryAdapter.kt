@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myproject.R
 import com.example.myproject.databinding.ItemRvCategoryBinding
 import com.example.myproject.dataclass.category.CategoryDto
+import com.example.myproject.utils.CategoryBackground
 import com.example.myproject.utils.myPicassoFun
 
 class CategoryDiffUtil : DiffUtil.ItemCallback<CategoryDto>() {
@@ -58,6 +59,11 @@ class CategoryAdapter() :
 
             myPicassoFun(category.urlImage, civImageItemCategory)
 
+            categoryLayout.setBackgroundResource(
+                CategoryBackground
+                    .getDrawableResource(category.id)
+                    ?: 0
+            )
 
             categoryLayout.setOnClickListener {
                 onItemClick?.invoke(category.id)

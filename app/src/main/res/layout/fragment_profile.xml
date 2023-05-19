@@ -1,85 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:padding="16dp">
+    android:orientation="vertical"
+    >
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:background="@color/cardview_light_background"
-        android:elevation="8dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@color/my_green"
-            android:gravity="center">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/civ_profile_image"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                tools:src="@drawable/avatar"/>
-
-
-            <ImageView
-                android:id="@+id/iv_edit"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="12dp"
-                app:srcCompat="@android:drawable/ic_menu_edit"
-                android:contentDescription="@string/pencil"
-                />
-
-        </LinearLayout>
-
-
+        android:layout_height="300dp"
+        android:background="#fece2f"
+        android:padding="20dp">
 
         <TextView
             android:id="@+id/tv_city"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/my_green"
             android:textSize="20sp"
-            android:layout_marginTop="16dp"
+            android:layout_margin="16dp"
+            android:textStyle="bold"
             tools:text="city"
-            android:layout_gravity="end"/>
+            android:layout_alignParentEnd="true"
+            />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_profile_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerVertical="true"
+            tools:src="@drawable/avatar"/>
+
 
 
         <TextView
             android:id="@+id/tv_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/my_green"
+            android:textColor="@color/black"
             android:textSize="28sp"
             android:textStyle="bold"
-            android:layout_marginTop="16dp"
+            android:layout_toEndOf="@+id/civ_profile_image"
+            android:layout_centerVertical="true"
+            android:includeFontPadding="false"
+            android:layout_marginStart="32dp"
             tools:text="username"
-            android:layout_gravity="center_horizontal"/>
+            />
+
+        <ImageView
+            android:id="@+id/iv_edit"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="12dp"
+            app:srcCompat="@android:drawable/ic_menu_edit"
+            android:contentDescription="@string/pencil"
+            android:layout_toEndOf="@+id/tv_username"
+            android:layout_centerVertical="true"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-100dp"
+        android:layout_width="match_parent"
+        android:padding="20dp">
+        <com.google.android.material.card.MaterialCardView
+            android:layout_height="125dp"
+            android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            app:cardBackgroundColor="@color/my_yellow"
+            app:cardElevation="10dp">
+            <RelativeLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:padding="5dp">
+                <ImageView
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="30dp"
+                    android:layout_width="30dp"
+                    android:src="@drawable/ic_launcher_background"
+                    android:contentDescription="@string/icon_creation" />
+
+                <TextView
+                    android:id="@+id/tv_number_creation"
+                    android:includeFontPadding="false"
+                    android:layout_centerInParent="true"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    tools:text="5"
+                    android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/tv_creation_label"
+                    android:includeFontPadding="false"
+                    android:layout_below="@id/tv_number_creation"
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/cr_ation_s"
+                    android:textSize="16sp" />
 
 
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-        <TextView
-            android:id="@+id/tv_profile_bio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/my_green"
-            android:textSize="16sp"
-            android:layout_marginTop="16dp"/>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_height="125dp"
+            android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            app:cardBackgroundColor="#fece2f"
+            app:cardElevation="10dp">
+            <RelativeLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:padding="5dp">
+                <ImageView
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="30dp"
+                    android:layout_width="30dp"
+                    android:src="@drawable/ic_launcher_background"
+                    android:contentDescription="@string/icon_participation" />
 
-        <TextView
-            android:id="@+id/tv_booking"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/my_green"
-            android:textSize="16sp"
-            android:layout_marginTop="16dp"/>
+                <TextView
+                    android:id="@+id/tv_number_participation"
+                    android:includeFontPadding="false"
+                    android:layout_centerInParent="true"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    tools:text="12"
+                    android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/tv_participation_label"
+                    android:includeFontPadding="false"
+                    android:layout_below="@+id/tv_number_participation"
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/participation_s"
+                    android:textSize="16sp" />
+
+
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_bio_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/who_am_i"
+        android:layout_marginStart="20dp"
+        android:textSize="28sp"/>
+
+
+    <TextView
+        android:id="@+id/tv_profile_bio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:textSize="16sp"
+        tools:text="Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially uncised in t."
+        android:layout_marginTop="16dp"/>
 
 
         <ProgressBar
@@ -93,9 +178,9 @@
             />
 
 
-    </LinearLayout>
+
+</LinearLayout>
 
 
 
-</RelativeLayout>
 

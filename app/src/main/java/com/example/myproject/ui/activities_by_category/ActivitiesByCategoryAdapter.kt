@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myproject.R
 import com.example.myproject.databinding.ItemRvActivityEventBinding
 import com.example.myproject.dataclass.activity_event.ActivityEventDto
+import com.example.myproject.utils.CategoryBackground
 import com.example.myproject.utils.dateFormatter
 import com.example.myproject.utils.myPicassoFun
 
@@ -58,6 +59,13 @@ class ActivitiesByCategoryAdapter():  ListAdapter<ActivityEventDto, ActivitiesBy
             tvLocation.text = activityEvent.location
             tvDate.text = dateFormatter(activityEvent.startAt)
             myPicassoFun(activityEvent.creator.imageUrl, civUserImage)
+
+            layoutActivityEvent
+                .setBackgroundResource(
+                    CategoryBackground
+                        .getDrawableResource(activityEvent.category.id)
+                        ?: 0
+                )
 
             cardActivityEvent.setOnClickListener {
                 onItemClick?.invoke(activityEvent)

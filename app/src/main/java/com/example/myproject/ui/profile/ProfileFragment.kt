@@ -48,15 +48,15 @@ class ProfileFragment : Fragment() {
                 tvUsername.text = profile.username
                 tvProfileBio.text = profile.description
                 tvCity.text = profile.city
-               /* profile.bookings.forEach { bookings ->
-                    tvBooking.text = bookings.activity.title + "\n"
-                }*/
+
+                tvNumberCreation.text = profile.activities.count().toString()
+                tvNumberParticipation.text = profile.bookings.count().toString()
 
                 binding.ivEdit.setOnClickListener {
                     with(profile) {
                         ProfileFragmentDirections
                             .actionProfileFragmentToEditFragment(
-                                UserDto(email, username,  city, description, imageUrl)
+                                UserDto(id, email, username,  city, description, imageUrl)
                             ).let {
                                 findNavController().navigate(it)
                             }

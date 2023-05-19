@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="8dp"
-            android:background="@drawable/card_bg">
+            android:background="@drawable/card_escalade">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/civ_image_item_category"

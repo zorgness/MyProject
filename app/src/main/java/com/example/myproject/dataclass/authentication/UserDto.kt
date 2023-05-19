@@ -13,6 +13,8 @@ data class UserDto(
     val idHydra: String,
     @Json(name = "@type")
     val type: String,*/
+    @Json(name = "id")
+    val id: Int,
     @Json(name = "email")
     val email: String,
     @Json(name = "username")

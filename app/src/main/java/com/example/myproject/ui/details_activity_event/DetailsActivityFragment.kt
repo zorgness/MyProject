@@ -66,6 +66,11 @@ class DetailsActivityFragment : Fragment() {
                     }
             }
 
+           /* args.activityEvent.bookings.forEach {booking->
+
+
+            }*/
+
             binding.btnJoin.setOnClickListener() {
                 viewModel.createBooking(args.activityEvent.id.toHydraActivitiesId())
             }

@@ -80,6 +80,11 @@
     <string name="mettre_jour">mettre à jour</string>
     <string name="pencil">pencil</string>
     <string name="envoyer">Envoyer</string>
+    <string name="participation_s">participation(s)</string>
+    <string name="cr_ation_s">création(s)</string>
+    <string name="icon_participation">icon_participation</string>
+    <string name="icon_creation">icon_creation</string>
+    <string name="who_am_i">Qui suis-je ?</string>
 
 
 </resources>
