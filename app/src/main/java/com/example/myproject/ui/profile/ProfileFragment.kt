@@ -46,7 +46,7 @@ class ProfileFragment : Fragment() {
 
                 myPicassoFun(profile.imageUrl, civProfileImage)
                 tvUsername.text = profile.username
-                tvProfileBio.text = profile.description
+                tvProfileBio.text = profile.description.ifEmpty { "pas de description" }
                 tvCity.text = profile.city
 
                 tvNumberCreation.text = profile.activities.count().toString()
