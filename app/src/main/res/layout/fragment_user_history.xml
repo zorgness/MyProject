@@ -20,7 +20,9 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
-            android:text="John Doe"
+            android:textColor="@color/my_dark_blue"
+            android:textStyle="bold"
+            tools:text="John Doe"
             android:textSize="24sp" />
 
         <!-- Swipe Pager -->

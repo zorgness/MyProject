@@ -46,8 +46,10 @@
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_new_edit">
+            app:layout_constraintTop_toBottomOf="@+id/tv_new_edit"
+            app:layout_constraintVertical_bias="0.0">
 
             <EditText
                 android:id="@+id/et_title_article"
@@ -58,8 +60,8 @@
                 android:hint="@string/titre_label"
                 android:inputType="textPersonName"
                 android:text="@={viewModel.titleLd}"
-                android:textColorHighlight="@color/my_green"
-                android:textColorHint="@color/my_green" />
+                android:textColorHighlight="@color/my_dark_blue"
+                android:textColorHint="@color/my_dark_blue" />
 
 
             <EditText
@@ -72,10 +74,9 @@
                 android:gravity="top|start"
                 android:hint="@string/contenu"
                 android:inputType="textMultiLine"
-                android:text="@={viewModel.descriptionLd}"
                 android:lines="6"
-                android:textColorHint="@color/my_green" />
-
+                android:text="@={viewModel.descriptionLd}"
+                android:textColorHint="@color/my_dark_blue" />
 
             <EditText
                 android:id="@+id/et_location"
@@ -85,23 +86,25 @@
                 android:autofillHints="location"
                 android:ems="10"
                 android:hint="@string/localisation"
-                android:text="@={viewModel.locationLd}"
                 android:inputType="textPersonName"
-                android:textColorHint="@color/my_green" />
+                android:text="@={viewModel.locationLd}"
+                android:textColorHint="@color/my_dark_blue" />
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_gravity="center_vertical">
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal">
+
                 <ImageView
                     android:id="@+id/iv_calendar"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_marginTop="16dp"
-                    app:srcCompat="@drawable/calendar"
-                    android:contentDescription="@string/calendar" />
+                    android:contentDescription="@string/calendar"
+                    app:srcCompat="@drawable/calendar" />
+
                 <EditText
                     android:id="@+id/et_selected_date"
                     android:layout_width="match_parent"
@@ -109,14 +112,13 @@
                     android:layout_marginTop="16dp"
                     android:autofillHints="meeting_point"
                     android:ems="10"
-                    android:hint="@string/choisir_une_date"
-                    android:text="@={viewModel.startAtLd}"
-                    android:inputType="text|date"
                     android:enabled="false"
-                    android:textColorHint="@color/my_green" />
+                    android:hint="@string/choisir_une_date"
+                    android:inputType="text|date"
+                    android:text="@={viewModel.startAtLd}"
+                    android:textColorHint="@color/my_dark_blue" />
 
             </LinearLayout>
-
 
 
             <EditText
@@ -127,23 +129,25 @@
                 android:autofillHints="meeting_point"
                 android:ems="10"
                 android:hint="@string/point_de_rencontre"
-                android:text="@={viewModel.meetingPointLd}"
                 android:inputType="textPersonName"
-                android:textColorHint="@color/my_green" />
+                android:text="@={viewModel.meetingPointLd}"
+                android:textColorHint="@color/my_dark_blue" />
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_gravity="center_vertical">
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal">
+
                 <ImageView
                     android:id="@+id/iv_clock"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_marginTop="16dp"
-                    app:srcCompat="@drawable/clock"
-                    android:contentDescription="@string/clock" />
+                    android:contentDescription="@string/clock"
+                    app:srcCompat="@drawable/clock" />
+
                 <EditText
                     android:id="@+id/et_meeting_time"
                     android:layout_width="match_parent"
@@ -151,11 +155,11 @@
                     android:layout_marginTop="16dp"
                     android:autofillHints="meeting_time"
                     android:ems="10"
-                    android:hint="@string/choisir_l_heure_de_rencontre"
-                    android:text="@={viewModel.meetingTimeLd}"
-                    android:inputType="text|date"
                     android:enabled="false"
-                    android:textColorHint="@color/my_green" />
+                    android:hint="@string/choisir_l_heure_de_rencontre"
+                    android:inputType="text|date"
+                    android:text="@={viewModel.meetingTimeLd}"
+                    android:textColorHint="@color/my_dark_blue" />
 
             </LinearLayout>
 
@@ -167,24 +171,21 @@
                 android:autofillHints="max_people"
                 android:ems="10"
                 android:hint="@string/nombre_de_personnes"
-                android:text="@={viewModel.maxOfPeopleLd}"
                 android:inputType="number"
-                android:textColorHint="@color/my_green" />
-
-
+                android:text="@={viewModel.maxOfPeopleLd}"
+                android:textColorHint="@color/my_dark_blue" />
 
 
             <Spinner
                 android:id="@+id/spinner_category_form"
-                android:layout_height="48dp"
-                android:layout_marginTop="16dp"
                 android:layout_width="200dp"
+                android:layout_height="48dp"
                 android:layout_gravity="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:backgroundTint="@color/my_green"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/my_dark_blue"
                 android:selectedItemPosition="@={viewModel.positionSelectedLd}"
-                />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
 
             <Button
@@ -192,8 +193,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:text="@string/enregister"
-                android:onClick="@{() -> viewModel.createActivityEvent()}"/>
+                android:onClick="@{() -> viewModel.createActivityEvent()}"
+                android:text="@string/enregister" />
 
 
             <!--       <LinearLayout

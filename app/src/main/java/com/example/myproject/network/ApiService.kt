@@ -49,4 +49,8 @@ interface ApiService {
     @POST(ApiRoutes.BOOKING)
     suspend fun addBooking(@Body bookingToPostDto: InfoBookingDto): Response<BookingDto>?
 
+
+    @DELETE(ApiRoutes.ACTIVITY_EVENT_DELETE)
+    suspend fun deleteActivityEvent(@Path("activityId") activityId: Int): Response<Any>?
+
 }

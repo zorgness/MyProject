@@ -1,11 +1,13 @@
 package com.example.myproject.ui.details_activity_event
 
 import CODE_201
+import CODE_204
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -13,6 +15,7 @@ import com.example.myproject.R
 import com.example.myproject.databinding.FragmentDetailsActivityBinding
 import com.example.myproject.extensions.myToast
 import com.example.myproject.extensions.toHydraActivitiesId
+import com.example.myproject.sharedviewmodel.SharedViewModel
 import com.example.myproject.utils.dateFormatter
 import com.example.myproject.utils.myPicassoFun
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,12 +26,21 @@ class DetailsActivityFragment : Fragment() {
     private var _binding: FragmentDetailsActivityBinding? = null
     private val binding get() = _binding!!
     private val viewModel: DetailsActivityViewModel by viewModels()
+    private val sharedViewModel: SharedViewModel by activityViewModels()
     private val args: DetailsActivityFragmentArgs by navArgs()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         viewModel.messageLiveData.observe(this) { message ->
             requireContext().myToast(message)
+        }
+
+        viewModel.currentUserIdLiveData.observe(this) { currentUserId ->
+            if(currentUserId == args.activityEvent.creator.id) {
+                binding.btnJoin.visibility = View.GONE
+                binding.btnGroupUpdateDelete.visibility = View.VISIBLE
+            }
+
         }
 
         viewModel.codeLiveData.observe(this) { code ->
@@ -38,8 +50,11 @@ class DetailsActivityFragment : Fragment() {
                         findNavController().navigate(it)
                     }
             }
+            if(code == CODE_204) {
+                sharedViewModel.refreshListByCategoryId(args.activityEvent.category.id)
+                findNavController().popBackStack()
+            }
         }
-
     }
 
     override fun onCreateView(
@@ -61,9 +76,10 @@ class DetailsActivityFragment : Fragment() {
 
            binding.civUserImage.setOnClickListener {
                 DetailsActivityFragmentDirections
-                    .actionDetailsActivityFragmentToProfileFragment(creator.id).let {
-                        findNavController().navigate(it)
-                    }
+                    .actionDetailsActivityFragmentToProfileFragment(creator.id)
+                        .let {
+                            findNavController().navigate(it)
+                        }
             }
 
            /* args.activityEvent.bookings.forEach {booking->
@@ -73,6 +89,10 @@ class DetailsActivityFragment : Fragment() {
 
             binding.btnJoin.setOnClickListener() {
                 viewModel.createBooking(args.activityEvent.id.toHydraActivitiesId())
+            }
+
+            binding.btnDelete.setOnClickListener {
+                viewModel.deleteActivity(args.activityEvent.id)
             }
 
         }

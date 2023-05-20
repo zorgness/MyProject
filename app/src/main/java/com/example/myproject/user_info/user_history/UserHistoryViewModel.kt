@@ -11,7 +11,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class UserSharedViewModel @Inject constructor(
+class UserHistoryViewModel @Inject constructor(
     private val apiService: ApiService,
     private val context: Context,
     private val sharedPref: MySharedPref

@@ -70,4 +70,9 @@
             android:id="@+id/action_editFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/userHistoryFragment"
+        android:name="com.example.myproject.user_info.user_history.UserHistoryFragment"
+        android:label="fragment_user_history"
+        tools:layout="@layout/fragment_user_history" />
 </navigation>

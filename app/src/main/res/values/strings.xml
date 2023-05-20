@@ -56,6 +56,7 @@
     <string name="date">date</string>
     <string name="user_image_preview">user image preview</string>
     <string name="booking_request_success">Demande ajouté</string>
+    <string name="delete_request_success">supprimer avec succés</string>
 
     <!-- PROFILE-->
 
@@ -89,6 +90,8 @@
     <string name="icon_date">icon_date</string>
     <string name="icon_people">icon_people</string>
     <string name="pas_d_v_nement_pour_cette_categorie">Pas d\'événement pour cette categorie</string>
+    <string name="historique">historique</string>
+    <string name="editer">Editer</string>
 
 
 </resources>

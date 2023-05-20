@@ -1,7 +1,9 @@
 package com.example.myproject.ui.details_activity_event
 
+import CODE_204
 import ERROR_400
 import ERROR_403
+import ERROR_404
 import ERROR_422
 import android.content.Context
 import android.system.ErrnoException
@@ -31,16 +33,21 @@ class DetailsActivityViewModel @Inject constructor(
 ): ViewModel() {
 
 
-
     private val _messageLiveData = MutableLiveData<String>()
+
+    private val _codeLiveData = MutableLiveData<Int>()
+
+    private val _currentUserIdLiveData = MutableLiveData<Int>(sharedPref.getUserId())
 
     val messageLiveData: LiveData<String>
         get() = _messageLiveData
 
-    private val _codeLiveData = MutableLiveData<Int>()
-
     val codeLiveData: LiveData<Int>
         get() = _codeLiveData
+
+    val currentUserIdLiveData: LiveData<Int>
+        get() = _currentUserIdLiveData
+
 
    fun createBooking(activityHydraId: String) {
 
@@ -86,5 +93,43 @@ class DetailsActivityViewModel @Inject constructor(
           _messageLiveData.value = context.getString(R.string.no_connection)
       }
   }
+
+    fun deleteActivity(activityId: Int) {
+
+        try {
+            viewModelScope.launch {
+                val responseDelete: Response<Any>? = withContext(Dispatchers.IO) {
+                    apiService.deleteActivityEvent(activityId)
+                }
+
+                val headers = responseDelete?.headers()
+
+                when {
+                    responseDelete == null -> {
+                        _messageLiveData.value = context.getString(R.string.server_error)
+                    }
+
+                    responseDelete.isSuccessful && (headers != null) -> {
+
+                        if(responseDelete.code() == CODE_204 )
+                            _messageLiveData.value = context.getString(R.string.delete_request_success)
+                        _codeLiveData.value = responseDelete.code()
+
+                    }
+
+                    responseDelete.code() == ERROR_404 ->
+                        _messageLiveData.value = context.getString(R.string.resource_introuvable)
+                }
+            }
+
+
+
+        } catch (e: ConnectException) {
+            _messageLiveData.value = context.getString(R.string.no_connection)
+        } catch (erno: ErrnoException) {
+            _messageLiveData.value = context.getString(R.string.no_connection)
+        }
+
+    }
 
 }

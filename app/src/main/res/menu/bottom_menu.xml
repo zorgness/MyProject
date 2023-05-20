@@ -10,7 +10,7 @@
         android:title="@string/profile"
         android:icon="@drawable/avatar"/>
     <item
-        android:id="@+id/btn_notification"
-        android:title="@string/notification"
-        android:icon="@android:drawable/ic_menu_info_details"/>
+        android:id="@+id/userHistoryFragment"
+        android:title="@string/historique"
+        android:icon="@android:drawable/ic_menu_recent_history"/>
 </menu>

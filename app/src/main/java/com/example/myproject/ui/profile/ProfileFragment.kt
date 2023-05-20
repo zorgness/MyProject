@@ -5,16 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.myproject.R
 import com.example.myproject.databinding.FragmentProfileBinding
 import com.example.myproject.dataclass.authentication.UserDto
 import com.example.myproject.extensions.myToast
-import com.example.myproject.user_info.user_history.UserSharedViewModel
 import com.example.myproject.utils.myPicassoFun
 import dagger.hilt.android.AndroidEntryPoint
 
