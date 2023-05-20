@@ -49,6 +49,9 @@ interface ApiService {
     @POST(ApiRoutes.BOOKING)
     suspend fun addBooking(@Body bookingToPostDto: InfoBookingDto): Response<BookingDto>?
 
+    @Headers("Content-Type: application/merge-patch+json")
+    @PATCH(ApiRoutes.ACTIVITY_EVENT_DELETE)
+    suspend fun updateActivityEvent(@Path("activityId") activityId: Int, @Body updateActivity: ActivityEventPostDto): Response<ActivityEventDto>?
 
     @DELETE(ApiRoutes.ACTIVITY_EVENT_DELETE)
     suspend fun deleteActivityEvent(@Path("activityId") activityId: Int): Response<Any>?

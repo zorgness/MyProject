@@ -37,6 +37,7 @@
     <string name="nouvel_v_nement">nouvel événement</string>
     <string name="new_event">new</string>
     <string name="activity_event_create">événement ajouter</string>
+    <string name="activity_event_updated">événement modifier</string>
     <string name="details">details</string>
     <string name="rejoindre">Rejoindre</string>
     <string name="heure_de_la_rencontre">heure de la rencontre</string>

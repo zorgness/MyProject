@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.myproject.R
 import com.example.myproject.databinding.FragmentActivityEventFormBinding
 import com.example.myproject.extensions.myToast
@@ -23,24 +24,34 @@ class ActivityEventFormFragment : Fragment() {
 
     private var _binding: FragmentActivityEventFormBinding? = null
     private val binding get() = _binding!!
-    private val myViewModel: ActivityEventFormViewModel by viewModels()
+    private val viewModel: ActivityEventFormViewModel by viewModels()
+    private val args: ActivityEventFormFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        myViewModel.messageLiveData.observe(this) { message ->
+        viewModel.messageLiveData.observe(this) { message ->
             requireContext().myToast(message)
         }
+
+        args.activityEventDto.let {
+            viewModel.setActivityToUpdate(it)
+
+        }
+
 
         /**
          * Navigate to the list of activities by category relative to the new activity inserted
          */
-       myViewModel.newItemCategoryId.observe(this) { categoryId ->
+       viewModel.newOrUpdatedItemCategoryId.observe(this) { categoryId ->
             ActivityEventFormFragmentDirections
                 .actionActivityEventFormFragmentToActivitiesByCategoryFragment(categoryId).let {
                     findNavController().navigate(it)
                 }
-        }
+       }
+
+
+
 
 
     }
@@ -57,8 +68,14 @@ class ActivityEventFormFragment : Fragment() {
                         container,
                         false
                    )
-        binding.viewModel = myViewModel
+        binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
+        args.activityEventDto.let {
+
+            binding.btnSaveActivity.visibility = View.GONE
+            binding.btnEditActivity.visibility = View.VISIBLE
+        }
 
 
 

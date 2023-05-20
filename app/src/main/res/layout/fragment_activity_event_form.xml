@@ -103,7 +103,7 @@
                     android:layout_height="48dp"
                     android:layout_marginTop="16dp"
                     android:contentDescription="@string/calendar"
-                    app:srcCompat="@drawable/calendar" />
+                    app:srcCompat="@android:drawable/ic_menu_my_calendar" />
 
                 <EditText
                     android:id="@+id/et_selected_date"
@@ -146,7 +146,7 @@
                     android:layout_height="48dp"
                     android:layout_marginTop="16dp"
                     android:contentDescription="@string/clock"
-                    app:srcCompat="@drawable/clock" />
+                    app:srcCompat="@android:drawable/ic_menu_recent_history" />
 
                 <EditText
                     android:id="@+id/et_meeting_time"
@@ -189,45 +189,21 @@
 
 
             <Button
-                android:id="@+id/btn_save_article"
+                android:id="@+id/btn_save_activity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:onClick="@{() -> viewModel.createActivityEvent()}"
                 android:text="@string/enregister" />
 
-
-            <!--       <LinearLayout
-                       android:id="@+id/btn_group_update_delete"
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:layout_gravity="center"
-                       android:layout_marginTop="40dp"
-                       android:gravity="center"
-                       android:orientation="horizontal">
-
-                       <Button
-                           android:id="@+id/btn_delete_article"
-                           android:layout_width="0dp"
-                           android:layout_height="wrap_content"
-                           android:layout_weight="1"
-                           android:text="@string/supprimer" />
-
-                       <Space
-                           android:layout_width="0dp"
-                           android:layout_height="wrap_content"
-                           android:layout_weight="0.1" />
-
-                       <Button
-                           android:id="@+id/btn_edit_article"
-                           android:layout_width="0dp"
-                           android:layout_height="wrap_content"
-                           android:layout_weight="1"
-                           android:text="@string/mettre_jour" />
-
-
-                   </LinearLayout>-->
-
+            <Button
+                android:id="@+id/btn_edit_activity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:onClick="@{() -> viewModel.updateActivityEvent()}"
+                android:text="@string/mettre_jour"
+                android:visibility="gone"/>
 
         </LinearLayout>
 

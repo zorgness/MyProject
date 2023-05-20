@@ -86,9 +86,16 @@ class DetailsActivityFragment : Fragment() {
 
 
             }*/
-
-            binding.btnJoin.setOnClickListener() {
+           binding.btnJoin.setOnClickListener() {
                 viewModel.createBooking(args.activityEvent.id.toHydraActivitiesId())
+           }
+
+           binding.btnEdit.setOnClickListener {
+                DetailsActivityFragmentDirections
+                    .actionDetailsActivityFragmentToActivityEventFormFragment(args.activityEvent)
+                        .let {
+                            findNavController().navigate(it)
+                        }
             }
 
             binding.btnDelete.setOnClickListener {

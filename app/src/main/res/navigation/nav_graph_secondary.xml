@@ -32,10 +32,14 @@
         tools:layout="@layout/fragment_details_activity" >
         <argument
             android:name="activityEvent"
-            app:argType="com.example.myproject.dataclass.activity_event.ActivityEventDto" />
+            app:argType="com.example.myproject.dataclass.activity_event.ActivityEventDto"
+            />
         <action
             android:id="@+id/action_detailsActivityFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_detailsActivityFragment_to_activityEventFormFragment"
+            app:destination="@id/activityEventFormFragment" />
     </fragment>
     <fragment
         android:id="@+id/activityEventFormFragment"
@@ -46,6 +50,11 @@
             app:destination="@id/activitiesByCategoryFragment"
             app:popUpTo="@id/activityEventFormFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="activityEventDto"
+            app:argType="com.example.myproject.dataclass.activity_event.ActivityEventDto"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
