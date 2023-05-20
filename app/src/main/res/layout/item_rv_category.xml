@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="8dp"
+            android:padding="4dp"
             android:background="@drawable/card_escalade">
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -34,7 +34,7 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:src="@drawable/avatar"
-                android:padding="8dp"
+                android:padding="4dp"
                 android:layout_gravity="center_vertical"
                 />
 
@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 tools:text="Title"
-                android:textColor="@color/my_green"
+                android:textColor="@color/my_dark_blue"
                 android:textSize="32sp"
                 android:textStyle="bold"
                 android:textAlignment="center"

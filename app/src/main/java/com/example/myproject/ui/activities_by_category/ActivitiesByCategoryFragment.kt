@@ -19,7 +19,7 @@ class ActivitiesByCategoryFragment : Fragment() {
 
     private var _binding: FragmentActivitiesByCategoryBinding? = null
     private val  binding get() = _binding!!
-    private val activitiesByCatViewModel: ActivitiesByCategoryViewModel by viewModels()
+    private val viewModel: ActivitiesByCategoryViewModel by viewModels()
     private lateinit var activitiesByCategoryAdapter: ActivitiesByCategoryAdapter
     private val args: ActivitiesByCategoryFragmentArgs by navArgs()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,28 +27,31 @@ class ActivitiesByCategoryFragment : Fragment() {
 
         activitiesByCategoryAdapter = ActivitiesByCategoryAdapter()
 
-        activitiesByCatViewModel.messageLiveData.observe(this) {message ->
+        viewModel.messageLiveData.observe(this) {message ->
             requireContext().myToast(message)
         }
 
-       activitiesByCatViewModel.fetchActivityEventByCategory(args.categoryId)
+       viewModel.fetchActivityEventByCategory(args.categoryId)
 
-        activitiesByCatViewModel.activityEventByCategoryLiveData.observe(this)  {activitiesEventsByCategory->
+        viewModel.activityEventByCategoryLiveData.observe(this)  {activitiesEventsByCategory->
+            if(activitiesEventsByCategory.isEmpty())
+                binding.tvEmptyCategory.visibility = View.VISIBLE
             activitiesByCategoryAdapter.submitList(activitiesEventsByCategory)
+
         }
 
         activitiesByCategoryAdapter.setOnItemClick { activityEventItem->
-            activitiesByCatViewModel.setActivityEvent(activityEventItem)
+            viewModel.setActivityEvent(activityEventItem)
         }
 
-       activitiesByCatViewModel.activityEventLiveData.observe(this) {activityEventItem->
+       viewModel.activityEventLiveData.observe(this) {activityEventItem->
            ActivitiesByCategoryFragmentDirections
                .actionActivitiesByCategoryFragmentToDetailsActivityFragment(activityEventItem).let {
                     findNavController().navigate(it)
                 }
         }
 
-        activitiesByCatViewModel.progressBarVisibilityLiveData.observe(this) {
+        viewModel.progressBarVisibilityLiveData.observe(this) {
             binding.progressBar.visibility = if(it) View.VISIBLE else View.GONE
         }
 

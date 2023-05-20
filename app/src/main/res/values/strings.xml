@@ -5,9 +5,9 @@
 
 
     <!--AUTH-->
-    <string name="login">Login</string>
+    <string name="login">Connectez-vous</string>
     <string name="logout">logout</string>
-    <string name="register">Register</string>
+    <string name="register">Nouveau compte</string>
     <string name="welcome">Welcome</string>
     <string name="password">password</string>
     <string name="user_registreted">Utilisateur créé</string>
@@ -88,6 +88,7 @@
     <string name="icon_location">icon_location</string>
     <string name="icon_date">icon_date</string>
     <string name="icon_people">icon_people</string>
+    <string name="pas_d_v_nement_pour_cette_categorie">Pas d\'événement pour cette categorie</string>
 
 
 </resources>

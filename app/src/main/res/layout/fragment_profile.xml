@@ -77,12 +77,12 @@
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:padding="5dp">
-                <ImageView
+              <!--  <ImageView
                     android:layout_centerHorizontal="true"
                     android:layout_height="30dp"
                     android:layout_width="30dp"
                     android:src="@drawable/inspiration"
-                    android:contentDescription="@string/icon_creation" />
+                    android:contentDescription="@string/icon_creation" />-->
 
                 <TextView
                     android:id="@+id/tv_number_creation"
@@ -119,12 +119,12 @@
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:padding="5dp">
-                <ImageView
+               <!-- <ImageView
                     android:layout_centerHorizontal="true"
                     android:layout_height="30dp"
                     android:layout_width="30dp"
                     android:src="@drawable/group"
-                    android:contentDescription="@string/icon_participation" />
+                    android:contentDescription="@string/icon_participation" />-->
 
                 <TextView
                     android:id="@+id/tv_number_participation"

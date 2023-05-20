@@ -18,6 +18,8 @@
         tools:context=".ui.category.CategoryFragment">
 
 
+
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -48,6 +50,16 @@
             android:indeterminateDrawable="@drawable/progress_bg"
             android:layout_gravity="center"
             />
+
+        <TextView
+            android:id="@+id/tv_empty_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:textColor="@color/my_dark_blue"
+            android:text="@string/pas_d_v_nement_pour_cette_categorie"
+            android:visibility="gone"/>
 
 
     </FrameLayout>
