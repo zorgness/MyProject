@@ -38,7 +38,7 @@
             android:id="@+id/tv_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="@color/my_dark_blue"
             android:textSize="28sp"
             android:textStyle="bold"
             android:layout_toEndOf="@+id/civ_profile_image"
@@ -99,6 +99,8 @@
                     android:layout_centerHorizontal="true"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@color/my_dark_blue"
                     android:text="@string/cr_ation_s"
                     android:textSize="16sp" />
 
@@ -130,6 +132,7 @@
                     android:layout_centerInParent="true"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
+                    android:textColor="@color/my_dark_blue"
                     tools:text="12"
                     android:textSize="20sp" />
                 <TextView
@@ -140,6 +143,8 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:text="@string/participation_s"
+                    android:textStyle="bold"
+                    android:textColor="@color/my_dark_blue"
                     android:textSize="16sp" />
 
 
@@ -154,6 +159,8 @@
         android:layout_height="wrap_content"
         android:text="@string/who_am_i"
         android:layout_marginStart="20dp"
+        android:textColor="@color/my_dark_blue"
+        android:textStyle="bold"
         android:textSize="28sp"/>
 
 
