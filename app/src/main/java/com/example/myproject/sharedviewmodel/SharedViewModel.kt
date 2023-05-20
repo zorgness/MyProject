@@ -9,12 +9,12 @@ import javax.inject.Inject
 @HiltViewModel
 class SharedViewModel @Inject constructor(): ViewModel() {
     
-    private val _refreshListLiveData = MutableLiveData<Int>()
+    private val _categoryListUpdatedLiveData = MutableLiveData<Int>()
     
-    val refreshListLiveData: LiveData<Int>
-        get() = _refreshListLiveData
+    val categoryListUpdatedLiveData: LiveData<Int>
+        get() = _categoryListUpdatedLiveData
 
     fun refreshListByCategoryId(categoryId: Int) {
-        _refreshListLiveData.value = categoryId
+        _categoryListUpdatedLiveData.value = categoryId
     }
 }
