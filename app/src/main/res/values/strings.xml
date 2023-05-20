@@ -40,7 +40,7 @@
     <string name="details">details</string>
     <string name="rejoindre">Rejoindre</string>
     <string name="heure_de_la_rencontre">heure de la rencontre</string>
-    <string name="nombre_de_personnes_1d">maximum de personnes : %1$d</string>
+    <string name="nombre_de_personnes_1d">%1$d personne(s)</string>
     <string name="calendar">calendar</string>
     <string name="choisir_une_date">choisir une date</string>
     <string name="clock">clock</string>
@@ -85,6 +85,9 @@
     <string name="icon_participation">icon_participation</string>
     <string name="icon_creation">icon_creation</string>
     <string name="who_am_i">Qui suis-je ?</string>
+    <string name="icon_location">icon_location</string>
+    <string name="icon_date">icon_date</string>
+    <string name="icon_people">icon_people</string>
 
 
 </resources>

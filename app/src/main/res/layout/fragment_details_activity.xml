@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -16,242 +15,181 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:orientation="vertical"
-            >
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:background="#fece2f"
-            android:padding="20dp">
-
-            <TextView
-                android:id="@+id/tv_city"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:layout_margin="16dp"
-                android:textStyle="bold"
-                tools:text="city"
-                android:layout_alignParentEnd="true"
-                />
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/civ_user_image"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_centerVertical="true"
-                tools:src="@drawable/avatar"/>
-
-
-
-            <TextView
-                android:id="@+id/tv_username"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="28sp"
-                android:textStyle="bold"
-                android:layout_toEndOf="@+id/civ_user_image"
-                android:layout_centerVertical="true"
-                android:includeFontPadding="false"
-                android:layout_marginStart="32dp"
-                tools:text="username"
-                />
-
-
-        </RelativeLayout>
+            android:orientation="vertical">
 
             <RelativeLayout
-              android:id="@+id/relativeLayout"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              app:layout_constraintBottom_toBottomOf="parent"
-              app:layout_constraintEnd_toEndOf="parent"
-              app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintTop_toTopOf="parent"
-
-              >
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@color/my_yellow"
+                android:padding="20dp">
 
 
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/civ_user_image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerVertical="true"
+                    tools:src="@drawable/avatar" />
 
 
+                <TextView
+                    android:id="@+id/tv_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="32dp"
+                    android:layout_toEndOf="@+id/civ_user_image"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/black"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    tools:text="username" />
 
 
-              <TextView
-                  android:id="@+id/tv_title"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_centerHorizontal="true"
-                  android:layout_marginTop="20dp"
-                  android:textSize="20sp"
-                  tools:text="Title" />
+            </RelativeLayout>
 
-              <TextView
-                  android:id="@+id/tv_location"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_below="@+id/tv_title"
-                  android:layout_alignParentStart="true"
-                  android:layout_marginTop="20dp"
-                  tools:text="Location" />
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
 
-              <TextView
-                  android:id="@+id/tv_category"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_below="@+id/tv_title"
-                  android:layout_alignParentEnd="true"
-                  android:layout_marginTop="20dp"
-                  tools:text="Category" />
-
-              <TextView
-                  android:id="@+id/tv_date"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_below="@+id/tv_location"
-                  android:layout_alignParentEnd="true"
-                  android:layout_marginTop="30dp"
-                  tools:text="Date" />
+                >
 
 
-              <TextView
-                  android:id="@+id/tv_max_people"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_below="@+id/tv_location"
-                  android:layout_alignParentStart="true"
-                  android:layout_marginTop="30dp"
-                  android:text="@string/nombre_de_personnes_1d"
-                  tools:text="Number of People" />
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="20dp"
+                    android:textColor="@color/my_green"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    tools:text="Title" />
+
+                <ImageView
+                    android:id="@+id/location_icon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_below="@+id/tv_title"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:contentDescription="@string/icon_location"
+                    android:src="@drawable/location" />
+
+                <TextView
+                    android:id="@+id/tv_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_title"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="60dp"
+                    android:layout_marginTop="20dp"
+                    tools:text="Location" />
+
+                <ImageView
+                    android:id="@+id/category_icon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_below="@+id/tv_title"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="100dp"
+                    android:contentDescription="@string/icon_location"
+                    android:src="@drawable/run" />
+
+                <TextView
+                    android:id="@+id/tv_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_title"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="20dp"
+                    tools:text="Category" />
+
+                <ImageView
+                    android:id="@+id/date_icon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_below="@+id/tv_location"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="100dp"
+                    android:contentDescription="@string/icon_date"
+                    android:src="@drawable/calendar_2" />
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_location"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="30dp"
+                    tools:text="Date" />
+
+                <ImageView
+                    android:id="@+id/icon_people"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_below="@+id/tv_location"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginStart="20dp"
+                    android:contentDescription="@string/icon_people"
+                    android:src="@drawable/group" />
 
 
-
-              <TextView
-                  android:id="@+id/tv_description"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_below="@+id/tv_max_people"
-                  android:layout_centerHorizontal="true"
-                  android:layout_marginTop="24dp"
-                  tools:text="Description" />
-
-
-              <Button
-                  android:id="@+id/btn_join"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_centerHorizontal="true"
-                  android:text="@string/rejoindre"
-                  android:layout_marginTop="200dp"
-                  android:layout_below="@+id/tv_description"
-                  />
+                <TextView
+                    android:id="@+id/tv_max_people"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_location"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="60dp"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/nombre_de_personnes_1d"
+                    tools:text="Number of People" />
 
 
+                <TextView
+                    android:id="@+id/tv_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_max_people"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="30dp"
+                    tools:text="Description" />
 
-          </RelativeLayout>
 
+                <Button
+                    android:id="@+id/btn_join"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_description"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="200dp"
+                    android:text="@string/rejoindre" />
+
+
+            </RelativeLayout>
 
 
         </LinearLayout>
 
 
-        <!-- <RelativeLayout
-             android:id="@+id/relativeLayout"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             app:layout_constraintBottom_toBottomOf="parent"
-             app:layout_constraintEnd_toEndOf="parent"
-             app:layout_constraintStart_toStartOf="parent"
-             app:layout_constraintTop_toTopOf="parent"
-             android:padding="60dp"
-             >
-
-
-
-
-
-
-             <TextView
-                 android:id="@+id/tv_title"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_centerHorizontal="true"
-                 android:layout_marginTop="20dp"
-                 android:textSize="20sp"
-                 tools:text="Title" />
-
-             <TextView
-                 android:id="@+id/tv_location"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_below="@+id/tv_title"
-                 android:layout_alignParentStart="true"
-                 android:layout_marginTop="20dp"
-                 tools:text="Location" />
-
-             <TextView
-                 android:id="@+id/tv_category"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_below="@+id/tv_title"
-                 android:layout_alignParentEnd="true"
-                 android:layout_marginTop="20dp"
-                 tools:text="Category" />
-
-             <TextView
-                 android:id="@+id/tv_date"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_below="@+id/tv_location"
-                 android:layout_alignParentEnd="true"
-                 android:layout_marginTop="30dp"
-                 tools:text="Date" />
-
-
-             <TextView
-                 android:id="@+id/tv_max_people"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_below="@+id/tv_location"
-                 android:layout_alignParentStart="true"
-                 android:layout_marginTop="30dp"
-                 android:text="@string/nombre_de_personnes_1d"
-                 tools:text="Number of People" />
-
-
-
-             <TextView
-                 android:id="@+id/tv_description"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_below="@+id/tv_max_people"
-                 android:layout_centerHorizontal="true"
-                 android:layout_marginTop="24dp"
-                 tools:text="Description" />
-
-
-             <Button
-                 android:id="@+id/btn_join"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_centerHorizontal="true"
-                 android:text="@string/rejoindre"
-                 android:layout_marginTop="200dp"
-                 android:layout_below="@+id/tv_description"
-                 />
-
-
-
-         </RelativeLayout>
-     -
-     -->
     </ScrollView>
-
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
