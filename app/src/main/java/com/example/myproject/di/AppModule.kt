@@ -1,4 +1,4 @@
-package com.example.myproject.dagger_module
+package com.example.myproject.di
 
 import android.content.Context
 import com.example.myproject.network.ApiRoutes

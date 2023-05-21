@@ -38,7 +38,6 @@ class EditFragment : Fragment() {
          */
         viewModel.codeLiveData.observe(this) {event->
             event.getContentIfNotHandled()?.let {code->
-                requireContext().myToast(code.toString())
                 if (code == CODE_200) {
                     EditFragmentDirections
                         .actionEditFragmentToProfileFragment().let{

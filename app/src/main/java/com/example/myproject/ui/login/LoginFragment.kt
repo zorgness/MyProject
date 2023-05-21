@@ -26,9 +26,8 @@ class LoginFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
        myViewModel.messageLiveData.observe(this) { message ->
-            requireContext().myToast(message)
-        }
-
+               requireContext().myToast(message)
+       }
 
         myViewModel.statusLiveData.observe(this) { status ->
             if (status == STATUS_REQUEST_SUCCESS) {
