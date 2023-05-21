@@ -19,6 +19,7 @@ import com.example.myproject.extensions.myToast
 import com.example.myproject.extensions.toHydraActivitiesId
 import com.example.myproject.sharedviewmodel.SharedViewModel
 import com.example.myproject.utils.ConfirmActionDialog
+import com.example.myproject.utils.MyCircleImage
 import com.example.myproject.utils.dateFormatter
 import com.example.myproject.utils.myPicassoFun
 import dagger.hilt.android.AndroidEntryPoint
@@ -51,6 +52,12 @@ class DetailsActivityFragment : Fragment() {
                     bookingIdCurrentUser = booking.id
                     binding.btnJoin.visibility = View.GONE
                     binding.btnCancelBooking.visibility = View.VISIBLE
+
+                    if(booking.isPending)
+                        binding.tvStatusPending.visibility = View.VISIBLE
+
+                    if(booking.isAccepted)
+                        binding.tvStatusConfirmed.visibility = View.VISIBLE
                 }
             }
         }
@@ -118,6 +125,21 @@ class DetailsActivityFragment : Fragment() {
                             findNavController().navigate(it)
                         }
                 }
+
+              /*   MyCircleImage(
+                     context = requireContext(),
+                     imageUrl = booking.userAccount.imageUrl,
+                     onItemClick = {
+                         DetailsActivityFragmentDirections
+                             .actionDetailsActivityFragmentToProfileFragment(booking.userAccount.id)
+                                 .let {
+                                     findNavController().navigate(it)
+                                 }
+
+                     }
+                 ).let {
+                     binding.linearLayoutAvatar.addView(it)
+                 }*/
 
             }
 
