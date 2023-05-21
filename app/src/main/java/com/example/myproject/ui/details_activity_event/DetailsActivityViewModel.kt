@@ -56,7 +56,7 @@ class DetailsActivityViewModel @Inject constructor(
       try {
           viewModelScope.launch {
                val responseBooking: Response<BookingDto>? = withContext(Dispatchers.IO) {
-                   apiService.addBooking(InfoBookingDto(userId, activityHydraId))
+                   apiService.createBooking(InfoBookingDto(userId, activityHydraId))
                }
 
                 val body = responseBooking?.body()
@@ -130,6 +130,42 @@ class DetailsActivityViewModel @Inject constructor(
             _messageLiveData.value = context.getString(R.string.no_connection)
         }
 
+    }
+
+    fun cancelBooking(booKingId: Int) {
+        try {
+
+            viewModelScope.launch {
+
+                val responseCancel: Response<Any>? = withContext(Dispatchers.IO) {
+                    apiService.cancelBooking(booKingId)
+                }
+
+
+                when {
+                    responseCancel == null -> {
+                        _messageLiveData.value = context.getString(R.string.server_error)
+                    }
+
+                    responseCancel.isSuccessful -> {
+
+                        if(responseCancel.code() == CODE_204 )
+                            _messageLiveData.value = context.getString(R.string.cancel_success)
+                            _codeLiveData.value = responseCancel.code()
+
+                    }
+
+                    responseCancel.code() == ERROR_404 ->
+                        _messageLiveData.value = context.getString(R.string.resource_introuvable)
+                }
+
+            }
+
+        } catch (e: ConnectException) {
+            _messageLiveData.value = context.getString(R.string.no_connection)
+        } catch (erno: ErrnoException) {
+            _messageLiveData.value = context.getString(R.string.no_connection)
+        }
     }
 
 }

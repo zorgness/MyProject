@@ -12,6 +12,7 @@ const val ERROR_401 = 401
 const val ERROR_403 = 403
 const val ERROR_404 = 404
 const val ERROR_422 = 422
+const val ERROR_500 = 500
 
 const val STATUS_REQUEST_SUCCESS = 1
 const val STATUS_REQUEST_FAILURE = 0

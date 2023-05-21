@@ -3,6 +3,7 @@ package com.example.myproject.ui.register
 import ERROR_400
 import ERROR_403
 import ERROR_422
+import ERROR_500
 import android.content.Context
 import android.system.ErrnoException
 import androidx.lifecycle.LiveData
@@ -91,7 +92,6 @@ class RegisterViewModel @Inject constructor(
                                     responseRegister == null ->
                                         _messageLiveData.value = context.getString(R.string.server_error)
 
-
                                     responseRegister.isSuccessful && (body != null) -> {
                                         _messageLiveData.value = context.getString(R.string.user_registreted)
                                         _codeLiveData.value = responseRegister.code()
@@ -105,6 +105,9 @@ class RegisterViewModel @Inject constructor(
 
                                     responseRegister.code() == ERROR_422 ->
                                         _messageLiveData.value = context.getString(R.string.unprocessable_entity)
+
+                                    responseRegister.code() == ERROR_500 ->
+                                        _messageLiveData.value = context.getString(R.string.username_or_email_already_exist)
 
                                 }
 

@@ -16,7 +16,7 @@ import com.example.myproject.databinding.FragmentDetailsActivityBinding
 import com.example.myproject.extensions.myToast
 import com.example.myproject.extensions.toHydraActivitiesId
 import com.example.myproject.sharedviewmodel.SharedViewModel
-import com.example.myproject.utils.ConfirmDeleteDialog
+import com.example.myproject.utils.ConfirmActionDialog
 import com.example.myproject.utils.dateFormatter
 import com.example.myproject.utils.myPicassoFun
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +29,7 @@ class DetailsActivityFragment : Fragment() {
     private val viewModel: DetailsActivityViewModel by viewModels()
     private val sharedViewModel: SharedViewModel by activityViewModels()
     private val args: DetailsActivityFragmentArgs by navArgs()
+    private var bookingIdCurrentUser: Int? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -42,10 +43,18 @@ class DetailsActivityFragment : Fragment() {
                 binding.btnGroupUpdateDelete.visibility = View.VISIBLE
             }
 
+            args.activityEvent.bookings.forEach { booking ->
+                if(currentUserId == booking.userAccount.id) {
+                    bookingIdCurrentUser = booking.id
+                    binding.btnJoin.visibility = View.GONE
+                    binding.btnCancelBooking.visibility = View.VISIBLE
+                }
+            }
         }
 
         viewModel.codeLiveData.observe(this) { code ->
             if(code == CODE_201) {
+                sharedViewModel.refreshListByCategoryId(args.activityEvent.category.id)
                 DetailsActivityFragmentDirections
                     .actionDetailsActivityFragmentToProfileFragment().let {
                         findNavController().navigate(it)
@@ -65,15 +74,22 @@ class DetailsActivityFragment : Fragment() {
         _binding = FragmentDetailsActivityBinding.inflate(inflater, container, false)
 
         with(args.activityEvent) {
+
+
             binding.tvTitle.text = title
             binding.tvDate.text = dateFormatter(startAt)
             binding.tvLocation.text = location
             binding.tvDescription.text = description
             binding.tvUsername.text = creator.username
             binding.tvCategory.text = category.name
-            binding.tvMaxPeople.text = requireContext().getString(R.string.nombre_de_personnes_1d).format(maxOfPeople)
+            binding.tvMaxPeople.text = requireContext().getString(R.string.nombre_de_personnes_1d).format(maxOfPeople - bookings.count())
 
             myPicassoFun(creator.imageUrl, binding.civUserImage)
+
+            if(maxOfPeople <= bookings.count()) {
+                binding.tvNoMoreBookings.visibility = View.VISIBLE
+                binding.btnJoin.visibility = View.GONE
+            }
 
            binding.civUserImage.setOnClickListener {
                 DetailsActivityFragmentDirections
@@ -81,14 +97,21 @@ class DetailsActivityFragment : Fragment() {
                         .let {
                             findNavController().navigate(it)
                         }
-            }
+           }
 
            /* args.activityEvent.bookings.forEach {booking->
 
 
             }*/
            binding.btnJoin.setOnClickListener() {
-                viewModel.createBooking(args.activityEvent.id.toHydraActivitiesId())
+               ConfirmActionDialog(
+                   onConfirm = {
+                       viewModel
+                           .createBooking(args.activityEvent.id.toHydraActivitiesId())
+                   },
+                   resId = R.string.comfirm_booking
+               ).show(childFragmentManager, ConfirmActionDialog.TAG)
+
            }
 
            binding.btnEdit.setOnClickListener {
@@ -100,12 +123,23 @@ class DetailsActivityFragment : Fragment() {
             }
 
             binding.btnDelete.setOnClickListener {
-                ConfirmDeleteDialog(
+                ConfirmActionDialog(
                     onConfirm = {
-                        viewModel.deleteActivity(args.activityEvent.id)
-                    }
-                ).show(childFragmentManager,ConfirmDeleteDialog.TAG)
+                        viewModel
+                            .deleteActivity(args.activityEvent.id)
+                    },
+                    resId = R.string.confirm_delete
+                ).show(childFragmentManager, ConfirmActionDialog.TAG)
+            }
 
+            binding.btnCancelBooking.setOnClickListener {
+                ConfirmActionDialog(
+                    onConfirm = {
+                        viewModel
+                            .cancelBooking(bookingIdCurrentUser ?: 0)
+                    },
+                    resId = R.string.comfirm_cancel
+                ).show(childFragmentManager, ConfirmActionDialog.TAG)
             }
 
         }

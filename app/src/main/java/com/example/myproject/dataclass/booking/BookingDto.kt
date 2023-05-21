@@ -10,10 +10,12 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class BookingDto(
+    @Json(name = "id")
+    val id: Int,
     @Json(name = "userAccount")
     val userAccount: UserDto,
-    @Json(name = "activity")
-    val activity: BookingActivityDto,
+  /*  @Json(name = "activity")
+    val activity: BookingActivityDto,*/
     @Json(name = "isPending")
     val isPending: Boolean,
     @Json(name = "isAccepted")

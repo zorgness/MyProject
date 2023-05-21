@@ -36,7 +36,9 @@
             />
         <action
             android:id="@+id/action_detailsActivityFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
+            app:destination="@id/profileFragment"
+            app:popUpTo="@id/detailsActivityFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_detailsActivityFragment_to_activityEventFormFragment"
             app:destination="@id/activityEventFormFragment" />

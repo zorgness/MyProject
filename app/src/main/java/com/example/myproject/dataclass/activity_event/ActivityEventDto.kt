@@ -34,6 +34,6 @@ data class ActivityEventDto(
     val creator: CreatorDto,
     @Json(name = "meetingTime")
     val meetingTime: String,
-  /*  @Json(name = "bookings")
-    val bookings: List<BookingDto> = listOf()*/
+    @Json(name = "bookings")
+    val bookings: List<BookingDto> = listOf()
 ): Parcelable

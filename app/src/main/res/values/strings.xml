@@ -19,6 +19,7 @@
     <string name="user_avatar">user_avatar</string>
     <string name="pwd_and_confirm_not_equals">mot de passe et confirmation sont différents</string>
     <string name="user_updated">utilisateur édité</string>
+    <string name="username_or_email_already_exist">nom d\'utilisateur ou email déjà utilisé</string>
 
 
     <!-- ERROR-->
@@ -75,6 +76,12 @@
     <string name="pas_de_compte_enregistrez_vous_ici">pas de compte ? enregistrez-vous ici !</string>
 
 
+   <!-- BOOKING-->
+    <string name="comfirm_booking">Voulez-vous réserver pour cette événement ?</string>
+    <string name="comfirm_cancel">Voulez-vous annuler pour cette événement ?</string>
+    <string name="cancel_success">annuler avec succés</string>
+
+
     <!-- DIVERS-->
     <string name="ok">ok</string>
     <string name="no">annuler</string>
@@ -96,6 +103,8 @@
     <string name="pas_d_v_nement_pour_cette_categorie">Pas d\'événement pour cette categorie</string>
     <string name="historique">historique</string>
     <string name="editer">Editer</string>
+    <string name="annuler">Annuler</string>
+    <string name="ev_nement_complet">Evénement complet</string>
 
 
 </resources>

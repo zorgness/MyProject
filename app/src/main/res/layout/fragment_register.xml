@@ -181,7 +181,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
                     android:onClick="@{() -> viewModel.register()}"
-                    android:text="@string/submit" />
+                    android:text="@string/envoyer" />
 
 
             </LinearLayout>
