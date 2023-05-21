@@ -58,6 +58,7 @@
     <string name="user_image_preview">user image preview</string>
     <string name="booking_request_success">Demande ajouté</string>
     <string name="delete_request_success">supprimer avec succés</string>
+    <string name="confirm_delete">Voulez-vous supprimer cette événement</string>
 
     <!-- PROFILE-->
 
@@ -75,6 +76,8 @@
 
 
     <!-- DIVERS-->
+    <string name="ok">ok</string>
+    <string name="no">annuler</string>
     <string name="notification">notification</string>
     <string name="history">history</string>
     <string name="enregister">enregister</string>

@@ -16,6 +16,7 @@ import com.example.myproject.databinding.FragmentDetailsActivityBinding
 import com.example.myproject.extensions.myToast
 import com.example.myproject.extensions.toHydraActivitiesId
 import com.example.myproject.sharedviewmodel.SharedViewModel
+import com.example.myproject.utils.ConfirmDeleteDialog
 import com.example.myproject.utils.dateFormatter
 import com.example.myproject.utils.myPicassoFun
 import dagger.hilt.android.AndroidEntryPoint
@@ -99,7 +100,12 @@ class DetailsActivityFragment : Fragment() {
             }
 
             binding.btnDelete.setOnClickListener {
-                viewModel.deleteActivity(args.activityEvent.id)
+                ConfirmDeleteDialog(
+                    onConfirm = {
+                        viewModel.deleteActivity(args.activityEvent.id)
+                    }
+                ).show(childFragmentManager,ConfirmDeleteDialog.TAG)
+
             }
 
         }
