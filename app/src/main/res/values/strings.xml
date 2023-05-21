@@ -105,6 +105,7 @@
     <string name="editer">Editer</string>
     <string name="annuler">Annuler</string>
     <string name="ev_nement_complet">Evénement complet</string>
+    <string name="participants">participants:</string>
 
 
 </resources>

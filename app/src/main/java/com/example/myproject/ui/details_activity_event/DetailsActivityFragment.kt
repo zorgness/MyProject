@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -20,6 +22,7 @@ import com.example.myproject.utils.ConfirmActionDialog
 import com.example.myproject.utils.dateFormatter
 import com.example.myproject.utils.myPicassoFun
 import dagger.hilt.android.AndroidEntryPoint
+import de.hdodenhof.circleimageview.CircleImageView
 
 @AndroidEntryPoint
 class DetailsActivityFragment : Fragment() {
@@ -75,7 +78,6 @@ class DetailsActivityFragment : Fragment() {
 
         with(args.activityEvent) {
 
-
             binding.tvTitle.text = title
             binding.tvDate.text = dateFormatter(startAt)
             binding.tvLocation.text = location
@@ -91,30 +93,46 @@ class DetailsActivityFragment : Fragment() {
                 binding.btnJoin.visibility = View.GONE
             }
 
-           binding.civUserImage.setOnClickListener {
+            binding.civUserImage.setOnClickListener {
                 DetailsActivityFragmentDirections
                     .actionDetailsActivityFragmentToProfileFragment(creator.id)
                         .let {
                             findNavController().navigate(it)
                         }
-           }
+            }
 
-           /* args.activityEvent.bookings.forEach {booking->
+            args.activityEvent.bookings.forEach {booking->
+                val density = requireContext().resources.displayMetrics.density
+                val circleImageView = CircleImageView(requireContext())
+                val params = LinearLayout.LayoutParams((65 * density).toInt(),(65 * density).toInt())
+                circleImageView.layoutParams = params
+                circleImageView.setPadding((8 * density).toInt(),0,0,0)
 
+                myPicassoFun(booking.userAccount.imageUrl, circleImageView)
+                binding.linearLayoutAvatar.addView(circleImageView)
 
-            }*/
-           binding.btnJoin.setOnClickListener() {
-               ConfirmActionDialog(
+                circleImageView.setOnClickListener {
+                    DetailsActivityFragmentDirections
+                        .actionDetailsActivityFragmentToProfileFragment(booking.userAccount.id)
+                        .let {
+                            findNavController().navigate(it)
+                        }
+                }
+
+            }
+
+            binding.btnJoin.setOnClickListener() {
+                ConfirmActionDialog(
                    onConfirm = {
                        viewModel
                            .createBooking(args.activityEvent.id.toHydraActivitiesId())
                    },
                    resId = R.string.comfirm_booking
-               ).show(childFragmentManager, ConfirmActionDialog.TAG)
+                ).show(childFragmentManager, ConfirmActionDialog.TAG)
 
-           }
+            }
 
-           binding.btnEdit.setOnClickListener {
+            binding.btnEdit.setOnClickListener {
                 DetailsActivityFragmentDirections
                     .actionDetailsActivityFragmentToActivityEventFormFragment(args.activityEvent)
                         .let {

@@ -16,6 +16,7 @@ import com.example.myproject.dataclass.booking.BookingDto
 import com.example.myproject.dataclass.booking.InfoBookingDto
 import com.example.myproject.extensions.toHydraUserId
 import com.example.myproject.network.ApiService
+import com.example.myproject.utils.BookingDialog
 import com.example.myproject.utils.MySharedPref
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -39,6 +40,8 @@ class DetailsActivityViewModel @Inject constructor(
 
     private val _currentUserIdLiveData = MutableLiveData<Int>(sharedPref.getUserId())
 
+    val _bookingLiveData = MutableLiveData<BookingDto>()
+
     val messageLiveData: LiveData<String>
         get() = _messageLiveData
 
@@ -47,6 +50,9 @@ class DetailsActivityViewModel @Inject constructor(
 
     val currentUserIdLiveData: LiveData<Int>
         get() = _currentUserIdLiveData
+
+    val bookingLiveData: LiveData<BookingDto>
+        get() = _bookingLiveData
 
 
    fun createBooking(activityHydraId: String) {
@@ -68,8 +74,6 @@ class DetailsActivityViewModel @Inject constructor(
 
                     responseBooking.isSuccessful && (body != null) -> {
 
-                        /*if(responseBooking.code() == CODE_201 )
-                            _messageLiveData.value = context.getString(R.string.booking_request_success)*/
                         _codeLiveData.value = responseBooking.code()
 
                     }
