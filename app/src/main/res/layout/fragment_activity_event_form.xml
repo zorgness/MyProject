@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/nouvel_v_nement"
-            android:textColor="@color/my_green"
+            android:textColor="@color/my_dark_blue"
             android:textSize="28sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"

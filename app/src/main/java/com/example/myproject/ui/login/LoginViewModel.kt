@@ -44,7 +44,7 @@ class LoginViewModel @Inject constructor(
 
     private val _statusLiveData = MutableLiveData<Int>()
 
-    private val _errorLiveData = MutableLiveData<LoginState?>()
+    private val _loginStateLiveData = MutableLiveData<LoginState?>()
 
     /**
      * Variables used for Two way binding in xml
@@ -58,12 +58,10 @@ class LoginViewModel @Inject constructor(
     val statusLiveData: LiveData<Int>
         get() = _statusLiveData
 
-    private val errorLiveData: LiveData<LoginState?>
-        get() = _errorLiveData
+    private val loginStateLiveData: LiveData<LoginState?>
+        get() = _loginStateLiveData
 
     fun login(){
-
-        _errorLiveData.value = null
 
         if (
             emailLiveData.value?.isNotBlank() == true
@@ -83,7 +81,7 @@ class LoginViewModel @Inject constructor(
                     when {
                         responseLogin == null -> {
                              _messageLiveData.value = context.getString(R.string.server_error)
-                             //_errorLiveData.value = LoginState.ERROR_SERVER
+                             //_loginStateLiveData.value = LoginState.ERROR_SERVER
                         }
 
                         responseLogin.isSuccessful && (body != null) -> {
@@ -98,44 +96,44 @@ class LoginViewModel @Inject constructor(
                                 }
 
                                 _messageLiveData.value = context.getString(R.string.welcome)
-                                //_errorLiveData.value = LoginState.AUTHENTICATED
+                                //_loginStateLiveData.value = LoginState.AUTHENTICATED
                                 _statusLiveData.value = body.status
 
                             }
                         }
                         responseLogin.code() == ERROR_401 ->
                             _messageLiveData.value = context.getString(R.string.wrong_credential)
-                            //_errorLiveData.value = LoginState.WRONG_CREDENTIAL
+                            //_loginStateLiveData.value = LoginState.WRONG_CREDENTIAL
 
                         responseLogin.code() == ERROR_403 ->
                             _messageLiveData.value = context.getString(R.string.unauthorized)
-                            //_errorLiveData.value = LoginState.ERROR_AUTHORIZATION
+                            //_loginStateLiveData.value = LoginState.ERROR_AUTHORIZATION
                     }
                 }
             }
             catch (e: ConnectException) {
                 _messageLiveData.value = context.getString(R.string.no_connection)
-                //_errorLiveData.value = LoginState.NO_CONNECTION
+                //_loginStateLiveData.value = LoginState.NO_CONNECTION
             }
             catch (erno: ErrnoException) {
                 _messageLiveData.value = context.getString(R.string.no_connection)
-                //_errorLiveData.value = LoginState.NO_CONNECTION
+                //_loginStateLiveData.value = LoginState.NO_CONNECTION
             }
         }
         else {
             _messageLiveData.value = context.getString(R.string.empty_fields)
-            //_errorLiveData.value = LoginState.EMPTY_FIELDS
+            //_loginStateLiveData.value = LoginState.EMPTY_FIELDS
         }
 
 
-      /*  errorLiveData.value?.let {
-            _messageLiveData.value = context.getString(showErrorMessage(it))
+      /*  loginStateLiveData.value?.let {
+            _messageLiveData.value = context.getString(showStateMessage(it))
         }*/
 
     }
 
 
-    private fun showErrorMessage(loginState: LoginState) =
+    private fun showStateMessage(loginState: LoginState) =
             when(loginState) {
                     LoginState.AUTHENTICATED -> R.string.welcome
                     LoginState.WRONG_CREDENTIAL -> R.string.wrong_credential
