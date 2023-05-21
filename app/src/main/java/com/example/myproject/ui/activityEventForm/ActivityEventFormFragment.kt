@@ -1,5 +1,6 @@
 package com.example.myproject.ui.activityEventForm
 
+import CODE_200
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,16 +8,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.myproject.R
 import com.example.myproject.databinding.FragmentActivityEventFormBinding
 import com.example.myproject.extensions.myToast
+import com.example.myproject.sharedviewmodel.SharedViewModel
 import com.example.myproject.utils.MyDatePicker
 import com.example.myproject.utils.MyTimePicker
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
 
 
 @AndroidEntryPoint
@@ -25,6 +27,7 @@ class ActivityEventFormFragment : Fragment() {
     private var _binding: FragmentActivityEventFormBinding? = null
     private val binding get() = _binding!!
     private val viewModel: ActivityEventFormViewModel by viewModels()
+    private val sharedViewModel: SharedViewModel by activityViewModels()
     private val args: ActivityEventFormFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,16 +46,29 @@ class ActivityEventFormFragment : Fragment() {
         /**
          * Navigate to the list of activities by category relative to the new activity inserted
          */
-       viewModel.newOrUpdatedItemCategoryId.observe(this) { categoryId ->
+       viewModel.newItemCategoryId.observe(this) { categoryId ->
             ActivityEventFormFragmentDirections
-                .actionActivityEventFormFragmentToActivitiesByCategoryFragment(categoryId).let {
-                    findNavController().navigate(it)
-                }
+                .actionActivityEventFormFragmentToActivitiesByCategoryFragment(categoryId)
+                    .let {
+                        findNavController().navigate(it)
+                    }
        }
 
-
-
-
+        viewModel.codeLiveData.observe(this) { code ->
+            if(code == CODE_200) {
+                sharedViewModel
+                    .refreshListByCategoryId(
+                        args.activityEventDto?.category?.id ?: 0
+                    )
+                ActivityEventFormFragmentDirections
+                    .actionActivityEventFormFragmentToActivitiesByCategoryFragment(
+                        args.activityEventDto?.category?.id ?: 0
+                    )
+                        .let {
+                            findNavController().navigate(it)
+                        }
+                }
+        }
 
     }
 
@@ -71,13 +87,10 @@ class ActivityEventFormFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        args.activityEventDto.let {
-
+        if (args.activityEventDto != null) {
             binding.btnSaveActivity.visibility = View.GONE
             binding.btnEditActivity.visibility = View.VISIBLE
         }
-
-
 
         /**
          * Launch the DATE PICKER DIALOG

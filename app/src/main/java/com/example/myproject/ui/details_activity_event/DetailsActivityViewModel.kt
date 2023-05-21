@@ -113,7 +113,7 @@ class DetailsActivityViewModel @Inject constructor(
 
                         if(responseDelete.code() == CODE_204 )
                             _messageLiveData.value = context.getString(R.string.delete_request_success)
-                        _codeLiveData.value = responseDelete.code()
+                            _codeLiveData.value = responseDelete.code()
 
                     }
 

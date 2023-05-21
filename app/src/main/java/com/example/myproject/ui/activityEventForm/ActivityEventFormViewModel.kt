@@ -4,6 +4,7 @@ import CODE_200
 import CODE_201
 import ERROR_400
 import ERROR_403
+import ERROR_404
 import ERROR_422
 import android.content.Context
 import android.system.ErrnoException
@@ -36,18 +37,23 @@ class ActivityEventFormViewModel @Inject constructor(
 
     private val _messageLiveData = MutableLiveData<String>()
 
-    private val _newOrUpdatedItemCategoryId = MutableLiveData<Int>()
+    private val _newItemCategoryId = MutableLiveData<Int>()
 
     private val _activityIdToUpdateLiveData = MutableLiveData<Int>()
 
-    val newOrUpdatedItemCategoryId: LiveData<Int>
-       get() = _newOrUpdatedItemCategoryId
+    private val _codeLiveData = MutableLiveData<Int>()
+
+    val newItemCategoryId: LiveData<Int>
+       get() = _newItemCategoryId
 
     val messageLiveData: LiveData<String>
         get() = _messageLiveData
 
     private val activityIdToUpdateLiveData: LiveData<Int>
         get() = _activityIdToUpdateLiveData
+
+    val codeLiveData: LiveData<Int>
+        get() = _codeLiveData
 
     /**
      * Variables used for Two way binding in xml
@@ -67,7 +73,7 @@ class ActivityEventFormViewModel @Inject constructor(
 
 
     /**
-     * Set the values on Edit
+     * Set the fields values on Edit
      */
     fun setActivityToUpdate(activityEventDto: ActivityEventDto?) {
         _activityIdToUpdateLiveData.value = activityEventDto?.id
@@ -132,7 +138,7 @@ class ActivityEventFormViewModel @Inject constructor(
                         responseNewActivityEvent.isSuccessful && (body != null) -> {
                             if(responseNewActivityEvent.code() == CODE_201) {
                                 _messageLiveData.value = context.getString(R.string.activity_event_create)
-                                _newOrUpdatedItemCategoryId.value = categoryId
+                                _newItemCategoryId.value = categoryId
                             }
                         }
 
@@ -208,15 +214,15 @@ class ActivityEventFormViewModel @Inject constructor(
                             _messageLiveData.value = context.getString(R.string.server_error)
 
                         responseUpdateActivityEvent.isSuccessful && (body != null) -> {
-                            if(responseUpdateActivityEvent.code() == CODE_200) {
                                 _messageLiveData.value = context.getString(R.string.activity_event_updated)
-                                _newOrUpdatedItemCategoryId.value = categoryId
-                            }
+                                _codeLiveData.value = responseUpdateActivityEvent.code()
                         }
 
                         responseUpdateActivityEvent.code() == ERROR_400 ->
                             _messageLiveData.value = context.getString(R.string.parameter_problem)
 
+                        responseUpdateActivityEvent.code() == ERROR_404 ->
+                            _messageLiveData.value = context.getString(R.string.resource_introuvable)
 
                         responseUpdateActivityEvent.code() == ERROR_422 ->
                             _messageLiveData.value = context.getString(R.string.unprocessable_entity)
