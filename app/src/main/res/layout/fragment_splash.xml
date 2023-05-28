@@ -12,11 +12,10 @@
         android:id="@+id/tv_splash_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/heymate"
+        android:text="@string/heybro"
         android:textStyle="normal|bold|italic"
         android:textSize="60sp"
         android:layout_marginTop="220dp"
-        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

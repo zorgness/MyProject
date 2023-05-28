@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">MyProject</string>
-    <string name="heymate">HeyMate</string>
+    <string name="heybro">HeyBro</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
