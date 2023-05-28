@@ -32,7 +32,7 @@ class ActivitiesListFragment : Fragment() {
         }
 
 
-        viewModel.fetchActivitiesByCategory(args.categoryId)
+        viewModel.fetchActivitiesByCategory(categoryId = args.categoryId)
 
         viewModel.listToShowLiveData.observe(this)  { activitiesEventsByCategory->
                 activitiesByCategoryAdapter.submitList(activitiesEventsByCategory)

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -36,7 +37,6 @@ class ProfileFragment : Fragment() {
         viewModel.setProfileId(args.profileId)
         viewModel.fetchUserProfile()
 
-
         viewModel.profileLiveData.observe(this) { profile->
             with(binding) {
 
@@ -58,12 +58,37 @@ class ProfileFragment : Fragment() {
                             }
                     }
                 }
+
+                tvNumberCreation.setOnClickListener {
+                    ProfileFragmentDirections
+                        .actionProfileFragmentToUserListFragment(
+                            isCreator = true,
+                            profileId = profile.id,
+                        ).let {
+                            findNavController().navigate(it)
+                        }
+                }
+
+                tvNumberParticipation.setOnClickListener {
+                    ProfileFragmentDirections
+                        .actionProfileFragmentToUserListFragment(
+                            isCreator = false,
+                            profileId = profile.id,
+                        ).let {
+                            findNavController().navigate(it)
+                        }
+                }
             }
         }
 
         viewModel.progressBarVisibilityLiveData.observe(this) {
             binding.progressBar.visibility = if(it) View.VISIBLE else View.GONE
         }
+
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+           findNavController().popBackStack()
+        }
+
     }
 
     override fun onCreateView(

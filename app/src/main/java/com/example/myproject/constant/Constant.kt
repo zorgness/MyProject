@@ -15,4 +15,3 @@ const val ERROR_422 = 422
 const val ERROR_500 = 500
 
 const val STATUS_REQUEST_SUCCESS = 1
-const val STATUS_REQUEST_FAILURE = 0

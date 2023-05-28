@@ -24,6 +24,7 @@
         <action
             android:id="@+id/action_activitiesByCategoryFragment_to_detailsActivityFragment"
             app:destination="@id/detailsActivityFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/detailsActivityFragment"
@@ -69,6 +70,17 @@
         <action
             android:id="@+id/action_profileFragment_to_editFragment"
             app:destination="@id/editFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_activitiesListFragment"
+            app:destination="@id/activitiesListFragment"
+            app:popUpTo="@id/profileFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_profileFragment_to_userListFragment"
+            app:destination="@id/userListFragment"
+            app:popUpTo="@id/profileFragment"
+            app:popUpToInclusive="true"
+             />
     </fragment>
     <fragment
         android:id="@+id/editFragment"
@@ -86,4 +98,20 @@
         android:name="com.example.myproject.user_info.user_history.UserHistoryFragment"
         android:label="fragment_user_history"
         tools:layout="@layout/fragment_user_history" />
+    <fragment
+        android:id="@+id/userListFragment"
+        android:name="com.example.myproject.ui.user_list.UserListFragment"
+        android:label="UserListFragment" >
+        <argument
+            android:name="profileId"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <argument
+            android:name="isCreator"
+            app:argType="boolean" />
+        <action
+            android:id="@+id/action_userListFragment_to_detailsActivityFragment"
+            app:destination="@id/detailsActivityFragment" />
+
+    </fragment>
 </navigation>

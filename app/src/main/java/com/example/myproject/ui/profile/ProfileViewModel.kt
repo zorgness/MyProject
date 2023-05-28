@@ -67,7 +67,7 @@ class ProfileViewModel @Inject constructor(
         headers["Authorization"] = "Bearer ${sharedPref.getToken()}"
 
         try {
-            _progressBarVisibilityLiveData.value = true
+            //_progressBarVisibilityLiveData.value = true
             viewModelScope.launch {
                 val responseUserProfile: Response<GetProfileDto>? = withContext(Dispatchers.IO) {
                     apiService.fetchUserProfile(headers, profileId!!)

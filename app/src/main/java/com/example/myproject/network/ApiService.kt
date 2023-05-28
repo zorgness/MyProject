@@ -38,7 +38,14 @@ interface ApiService {
     @GET(ApiRoutes.ACTIVITY_EVENT)
     suspend fun fetchActivitiesByCategory(
         @HeaderMap headers: Map<String, String>,
-        @Query("category") categoryId: Int
+        @Query("category") categoryId: Int,
+    ): Response<GetActivitiesDto>?
+
+    @Headers("Content-Type: application/json")
+    @GET(ApiRoutes.ACTIVITY_EVENT)
+    suspend fun fetchActivitiesByCreator(
+        @HeaderMap headers: Map<String, String>,
+        @Query("creator") creatorId: Int,
     ): Response<GetActivitiesDto>?
 
     @GET(ApiRoutes.ACTIVITY_EVENT_BY_ID)

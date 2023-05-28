@@ -1,4 +1,4 @@
-package com.example.myproject.ui.activities_list
+package com.example.myproject.ui.user_list
 
 import android.content.Context
 import android.system.ErrnoException
@@ -20,11 +20,11 @@ import java.net.ConnectException
 import javax.inject.Inject
 
 @HiltViewModel
-class ActivitiesListViewModel @Inject constructor(
+class UserListViewModel @Inject constructor(
     private val apiService: ApiService,
     private val sharedPref: MySharedPref,
     private val context: Context
-) : ViewModel() {
+): ViewModel() {
 
     // LIST TO BE DISPLAY
     private val _listToShowLiveData = MutableLiveData<List<ActivityEventDto>>()
@@ -58,7 +58,7 @@ class ActivitiesListViewModel @Inject constructor(
     }
 
 
-    fun fetchActivitiesByCategory(categoryId: Int) {
+    fun fetchActivitiesByProfile(profileId: Int?, isCreator: Boolean) {
         headers["Authorization"] = "Bearer ${sharedPref.getToken() ?: ""}"
 
         try {
@@ -66,9 +66,8 @@ class ActivitiesListViewModel @Inject constructor(
                 val responseActivityByCategory: Response<GetActivitiesDto>? =
                     withContext(Dispatchers.IO) {
 
-                        apiService.fetchActivitiesByCategory(
-                            headers = headers,
-                            categoryId = categoryId,
+                        apiService.fetchActivitiesAll(
+                            headers = headers
                         )
                     }
 
@@ -82,8 +81,19 @@ class ActivitiesListViewModel @Inject constructor(
 
                     responseActivityByCategory.isSuccessful && (body != null) -> {
 
-                        _listToShowLiveData.value = body.activitiesEvent
+                        if (isCreator) {
+                            _listToShowLiveData.value = body.activitiesEvent.filter { element ->
+                                element.creator.id == profileId
+                            }
+                        } else {
+                            _listToShowLiveData.value = body.activitiesEvent.filter { activity ->
+                                activity.bookings.any { booking ->
+                                    booking.userAccount.id == profileId
+                                }
+                            }
+                        }
                         _progressBarVisibilityLiveData.value = false
+
                     }
 
 
@@ -102,4 +112,3 @@ class ActivitiesListViewModel @Inject constructor(
 
     }
 }
-

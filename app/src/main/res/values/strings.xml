@@ -76,7 +76,7 @@
     <string name="pas_de_compte_enregistrez_vous_ici">pas de compte ? enregistrez-vous ici !</string>
 
 
-   <!-- BOOKING-->
+    <!-- BOOKING-->
     <string name="comfirm_booking">Voulez-vous réserver pour cette événement ?</string>
     <string name="comfirm_cancel">Voulez-vous annuler pour cette événement ?</string>
     <string name="cancel_success">annuler avec succés</string>

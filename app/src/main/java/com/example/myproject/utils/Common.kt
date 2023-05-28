@@ -10,8 +10,8 @@ fun myPicassoFun(url: String, ivToInsert: ImageView) {
     if (url.isEmpty()) {
         Picasso.get()
             .load(R.drawable.avatar)
-            .resize(300, 300)
             .centerCrop()
+            .resize(300, 300)
             .into(ivToInsert)
     } else {
         Picasso.get()

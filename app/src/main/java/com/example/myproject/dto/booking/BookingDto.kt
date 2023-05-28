@@ -2,6 +2,7 @@ package com.example.myproject.dto.booking
 
 
 import android.os.Parcelable
+import com.example.myproject.dto.activity_event.ActivityEventDto
 import com.example.myproject.dto.authentication.UserDto
 import com.squareup.moshi.Json
 import kotlinx.parcelize.Parcelize
@@ -12,8 +13,8 @@ data class BookingDto(
     val id: Int,
     @Json(name = "userAccount")
     val userAccount: UserDto,
-  /*  @Json(name = "activity")
-    val activity: BookingActivityDto,*/
+    /*@Json(name = "activity")
+    val activity: ActivityEventDto,*/
     @Json(name = "isPending")
     val isPending: Boolean,
     @Json(name = "isAccepted")
