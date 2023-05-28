@@ -11,8 +11,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myproject.R
-import com.example.myproject.dataclass.authentication.UpdateDto
-import com.example.myproject.dataclass.authentication.UserDto
+import com.example.myproject.dto.authentication.UpdateDto
+import com.example.myproject.dto.authentication.UserDto
 import com.example.myproject.event.Event
 import com.example.myproject.network.ApiService
 import com.example.myproject.utils.MySharedPref
@@ -60,7 +60,7 @@ class EditViewModel @Inject constructor(
                     viewModelScope.launch {
 
                         val responseUpdate: Response<UserDto>? = withContext(Dispatchers.IO) {
-                            apiService.update(
+                            apiService.updateUser(
                                 sharedPref.getUserId(),
                                 UpdateDto(
                                     email,
@@ -87,13 +87,13 @@ class EditViewModel @Inject constructor(
 
                             responseUpdate.code() == ERROR_400 ->
                                 _messageLiveData.value =
-                                    context.getString(R.string.parameter_problem)
+                                    context.getString(R.string.error_parameter)
 
                             responseUpdate.code() == ERROR_403 ->
                                 _messageLiveData.value = context.getString(R.string.unauthorized)
 
                             responseUpdate.code() == ERROR_404 ->
-                                _messageLiveData.value = context.getString(R.string.resource_introuvable)
+                                _messageLiveData.value = context.getString(R.string.unknow_resource)
 
                             responseUpdate.code() == ERROR_422 ->
                                 _messageLiveData.value =

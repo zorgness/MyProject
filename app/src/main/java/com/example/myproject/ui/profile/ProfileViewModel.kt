@@ -7,8 +7,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myproject.R
-import com.example.myproject.dataclass.profile.GetProfileDto
-import com.example.myproject.dataclass.profile.ProfileDto
+import com.example.myproject.dto.profile.GetProfileDto
+import com.example.myproject.dto.profile.ProfileDto
 import com.example.myproject.network.ApiService
 import com.example.myproject.utils.MySharedPref
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -38,8 +38,6 @@ class ProfileViewModel @Inject constructor(
     private var _isCurrentUserLiveData = MutableLiveData<Boolean>()
 
 
-
-
     val messageLiveData: LiveData<String>
         get() = _messageLiveData
 
@@ -55,6 +53,7 @@ class ProfileViewModel @Inject constructor(
    val isCurrentUserLiveData: LiveData<Boolean>
         get() = _isCurrentUserLiveData
 
+    private val headers = HashMap<String, String>()
 
     fun setProfileId(profileId: Int) {
         _profileIdLiveData.value = profileId
@@ -65,12 +64,13 @@ class ProfileViewModel @Inject constructor(
     fun fetchUserProfile() {
 
         val profileId = if(profileIdLiveData.value!! > 0) profileIdLiveData.value else sharedPref.getUserId()
+        headers["Authorization"] = "Bearer ${sharedPref.getToken()}"
 
         try {
             _progressBarVisibilityLiveData.value = true
             viewModelScope.launch {
                 val responseUserProfile: Response<GetProfileDto>? = withContext(Dispatchers.IO) {
-                    apiService.fetchUserProfile(profileId!!)
+                    apiService.fetchUserProfile(headers, profileId!!)
                 }
                 val body = responseUserProfile?.body()
 

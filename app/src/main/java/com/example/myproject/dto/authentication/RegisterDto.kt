@@ -1,6 +1,6 @@
-package com.example.myproject.dataclass.authentication
+package com.example.myproject.dto.authentication
 
-import com.example.myproject.dataclass.SerializedName
+import com.example.myproject.dto.SerializedName
 
 data class RegisterDto(
     @SerializedName("email") val email: String,

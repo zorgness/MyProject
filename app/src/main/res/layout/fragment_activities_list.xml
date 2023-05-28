@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.myproject.ui.activities_by_category.ActivitiesByCategoryViewModel" />
+            type="com.example.myproject.ui.activities_list.ActivitiesListViewModel" />
 
     </data>
 

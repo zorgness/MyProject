@@ -1,4 +1,4 @@
-package com.example.myproject.dataclass.category
+package com.example.myproject.dto.category
 
 
 import android.os.Parcelable

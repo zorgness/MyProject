@@ -1,4 +1,4 @@
-package com.example.myproject.dataclass.profile
+package com.example.myproject.dto.authentication
 
 
 import android.os.Parcelable
@@ -6,11 +6,15 @@ import com.squareup.moshi.Json
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class CreatorDto(
+data class UserDto(
+  /*  @Json(name = "@context")
+    val context: String,
+    @Json(name = "@id")
+    val idHydra: String,
+    @Json(name = "@type")
+    val type: String,*/
     @Json(name = "id")
     val id: Int,
-    /*@Json(name = "@type")
-    val type: String,*/
     @Json(name = "email")
     val email: String,
     @Json(name = "username")

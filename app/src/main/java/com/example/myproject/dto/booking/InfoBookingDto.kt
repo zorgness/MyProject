@@ -1,4 +1,4 @@
-package com.example.myproject.dataclass.booking
+package com.example.myproject.dto.booking
 
 
 import com.squareup.moshi.Json

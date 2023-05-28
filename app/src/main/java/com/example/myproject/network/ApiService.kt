@@ -1,15 +1,12 @@
 package com.example.myproject.network
 
-import com.example.myproject.dataclass.*
-import com.example.myproject.dataclass.activity_event.ActivityEventDto
-import com.example.myproject.dataclass.activity_event.ActivityEventPostDto
-import com.example.myproject.dataclass.activity_event.GetActivityByCategoryDto
-import com.example.myproject.dataclass.activity_event.GetActivityEventDto
-import com.example.myproject.dataclass.authentication.*
-import com.example.myproject.dataclass.booking.BookingDto
-import com.example.myproject.dataclass.booking.InfoBookingDto
-import com.example.myproject.dataclass.category.GetCategoriesDto
-import com.example.myproject.dataclass.profile.GetProfileDto
+import com.example.myproject.dto.*
+import com.example.myproject.dto.activity_event.*
+import com.example.myproject.dto.authentication.*
+import com.example.myproject.dto.booking.BookingDto
+import com.example.myproject.dto.booking.InfoBookingDto
+import com.example.myproject.dto.category.GetCategoriesDto
+import com.example.myproject.dto.profile.GetProfileDto
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -27,10 +24,15 @@ interface ApiService {
 
     @Headers("Content-Type: application/merge-patch+json")
     @PATCH(ApiRoutes.UPDATE)
-    suspend fun update(@Path("userId") userId: Int, @Body updateInfo: UpdateDto): Response<UserDto>?
+    suspend fun updateUser(@Path("userId") userId: Int, @Body updateInfo: UpdateDto): Response<UserDto>?
 
+    @Headers("Content-Type: application/json")
     @GET(ApiRoutes.CATEGORY)
-    suspend fun fetchAllCategories(): Response<GetCategoriesDto>?
+    suspend fun fetchAllCategories(@HeaderMap headers: Map<String, String>): Response<GetCategoriesDto>?
+
+    @Headers("Content-Type: application/json")
+    @GET(ApiRoutes.ACTIVITY_EVENT)
+    suspend fun fetchActivitiesAll(@HeaderMap headers: Map<String, String>): Response<GetActivitiesDto>?
 
     @GET(ApiRoutes.ACTIVITY_EVENT)
     suspend fun fetchActivityByCategory(@Query("category") categoryId: Int): Response<GetActivityByCategoryDto>?
@@ -38,25 +40,45 @@ interface ApiService {
     @GET(ApiRoutes.ACTIVITY_EVENT_BY_ID)
     suspend fun getActivityEventById(@Path("activityEventId") activityEventId: Int): Response<GetActivityEventDto>?
 
-    @GET(ApiRoutes.USER_PROFILE)
-    suspend fun fetchUserProfile(@Path("userId") userId: Int): Response<GetProfileDto>?
+    @Headers("Content-Type: application/json")
+    @GET(ApiRoutes.PROFILE)
+    suspend fun fetchUserProfile(
+        @HeaderMap headers: Map<String, String>,
+        @Path("userId") userId: Int
+    ): Response<GetProfileDto>?
 
     @Headers("Content-Type: application/json")
     @POST(ApiRoutes.ACTIVITY_EVENT)
-    suspend fun createActivityEvent(@Body activityEventInfo: ActivityEventPostDto): Response<ActivityEventDto>?
+    suspend fun createActivityEvent(
+        @HeaderMap headers: Map<String, String>,
+        @Body activityEventInfo: ActivityEventPostDto
+    ): Response<ActivityEventDto>?
 
     @Headers("Content-Type: application/json")
     @POST(ApiRoutes.BOOKING)
-    suspend fun createBooking(@Body bookingToPostDto: InfoBookingDto): Response<BookingDto>?
+    suspend fun createBooking(
+        @HeaderMap headers: Map<String, String>,
+        @Body bookingToPostDto: InfoBookingDto
+    ): Response<BookingDto>?
 
     @Headers("Content-Type: application/merge-patch+json")
     @PATCH(ApiRoutes.ACTIVITY_EVENT_DELETE)
-    suspend fun updateActivityEvent(@Path("activityId") activityId: Int, @Body updateActivity: ActivityEventPostDto): Response<ActivityEventDto>?
+    suspend fun updateActivityEvent(
+        @HeaderMap headers: Map<String, String>,
+        @Path("activityId") activityId: Int,
+        @Body updateActivity: ActivityEventPostDto
+    ): Response<ActivityEventDto>?
 
     @DELETE(ApiRoutes.ACTIVITY_EVENT_DELETE)
-    suspend fun deleteActivityEvent(@Path("activityId") activityId: Int): Response<Any>?
+    suspend fun deleteActivityEvent(
+        @HeaderMap headers: Map<String, String>,
+        @Path("activityId") activityId: Int
+    ): Response<Any>?
 
     @DELETE(ApiRoutes.BOOKING + "/{bookingId}")
-    suspend fun cancelBooking(@Path("bookingId") bookingId: Int): Response<Any>?
+    suspend fun cancelBooking(
+        @HeaderMap headers: Map<String, String>,
+        @Path("bookingId") bookingId: Int
+    ): Response<Any>?
 
 }

@@ -1,3 +1,3 @@
-package com.example.myproject.dataclass
+package com.example.myproject.dto
 
 annotation class SerializedName(val value: String)

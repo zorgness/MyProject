@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.myproject.databinding.FragmentProfileBinding
-import com.example.myproject.dataclass.authentication.UserDto
+import com.example.myproject.dto.authentication.UserDto
 import com.example.myproject.extensions.myToast
 import com.example.myproject.utils.myPicassoFun
 import dagger.hilt.android.AndroidEntryPoint

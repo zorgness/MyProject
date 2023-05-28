@@ -10,9 +10,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myproject.R
-import com.example.myproject.dataclass.authentication.LoginDto
-import com.example.myproject.dataclass.authentication.SessionDto
-import com.example.myproject.event.Event
+import com.example.myproject.dto.authentication.LoginDto
+import com.example.myproject.dto.authentication.SessionDto
 import com.example.myproject.network.ApiService
 import com.example.myproject.utils.MySharedPref
 import dagger.hilt.android.lifecycle.HiltViewModel

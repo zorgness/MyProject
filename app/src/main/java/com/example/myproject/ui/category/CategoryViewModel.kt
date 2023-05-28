@@ -1,13 +1,15 @@
 package com.example.myproject.ui.category
 
+import ERROR_401
+import ERROR_403
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myproject.R
-import com.example.myproject.dataclass.category.CategoryDto
-import com.example.myproject.dataclass.category.GetCategoriesDto
+import com.example.myproject.dto.category.CategoryDto
+import com.example.myproject.dto.category.GetCategoriesDto
 import com.example.myproject.network.ApiService
 import com.example.myproject.utils.MySharedPref
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -46,7 +48,7 @@ class CategoryViewModel @Inject constructor(
     val progressBarVisibilityLiveData: LiveData<Boolean>
         get() = _progressBarVisibilityLiveData
 
-
+    private val headers = HashMap<String, String>()
 
     fun setCategoryId(categoryId: Int) {
         _categoryIdLiveData.value = categoryId
@@ -56,17 +58,12 @@ class CategoryViewModel @Inject constructor(
     fun fetchAllCategories() {
         viewModelScope.launch {
 
-          /*  val token = sharedPref.getToken()
-            val headers = HashMap<String, String>()
+            headers["Authorization"] = "Bearer ${sharedPref.getToken()}"
 
-            if (token != null) {
-                headers["Authorization"] = "Bearer $token"
-            }
-*/
             try {
                 _progressBarVisibilityLiveData.value = true
                 val responseCategories: Response<GetCategoriesDto>? = withContext(Dispatchers.IO) {
-                    apiService.fetchAllCategories()
+                    apiService.fetchAllCategories(headers)
                 }
 
                 val body = responseCategories?.body()
@@ -79,10 +76,13 @@ class CategoryViewModel @Inject constructor(
 
                     responseCategories.isSuccessful && (body != null) -> {
                         _categoriesLiveData.value = body.categories
+
                     }
 
+                    responseCategories.code() == ERROR_401 ->
+                        _messageLiveData.value = context.getString(R.string.error_parameter)
 
-                    responseCategories.code() == 403 ->
+                    responseCategories.code() == ERROR_403 ->
                         _messageLiveData.value = context.getString(R.string.unauthorized)
                 }
 

@@ -12,12 +12,12 @@
         android:label="CategoryFragment" >
         <action
             android:id="@+id/action_categoryFragment_to_activitiesByCategoryFragment"
-            app:destination="@id/activitiesByCategoryFragment" />
+            app:destination="@id/activitiesListFragment" />
     </fragment>
     <fragment
-        android:id="@+id/activitiesByCategoryFragment"
-        android:name="com.example.myproject.ui.activities_by_category.ActivitiesByCategoryFragment"
-        android:label="ActivitiesByCategoryFragment" >
+        android:id="@+id/activitiesListFragment"
+        android:name="com.example.myproject.ui.activities_list.ActivitiesListFragment"
+        android:label="ActivitiesListFragment" >
         <argument
             android:name="categoryId"
             app:argType="integer" />
@@ -32,7 +32,7 @@
         tools:layout="@layout/fragment_details_activity" >
         <argument
             android:name="activityEvent"
-            app:argType="com.example.myproject.dataclass.activity_event.ActivityEventDto"
+            app:argType="com.example.myproject.dto.activity_event.ActivityEventDto"
             />
         <action
             android:id="@+id/action_detailsActivityFragment_to_profileFragment"
@@ -49,12 +49,12 @@
         android:label="ActivityEventFormFragment" >
         <action
             android:id="@+id/action_activityEventFormFragment_to_activitiesByCategoryFragment"
-            app:destination="@id/activitiesByCategoryFragment"
+            app:destination="@id/activitiesListFragment"
             app:popUpTo="@id/activityEventFormFragment"
             app:popUpToInclusive="true" />
         <argument
             android:name="activityEventDto"
-            app:argType="com.example.myproject.dataclass.activity_event.ActivityEventDto"
+            app:argType="com.example.myproject.dto.activity_event.ActivityEventDto"
             app:nullable="true"
             android:defaultValue="@null" />
     </fragment>
@@ -76,7 +76,7 @@
         android:label="EditFragment" >
         <argument
             android:name="user"
-            app:argType="com.example.myproject.dataclass.authentication.UserDto" />
+            app:argType="com.example.myproject.dto.authentication.UserDto" />
         <action
             android:id="@+id/action_editFragment_to_profileFragment"
             app:destination="@id/profileFragment" />

@@ -1,10 +1,8 @@
-package com.example.myproject.dataclass.booking
+package com.example.myproject.dto.booking
 
 
 import android.os.Parcelable
-import com.example.myproject.dataclass.activity_event.ActivityEventDto
-import com.example.myproject.dataclass.activity_event.BookingActivityDto
-import com.example.myproject.dataclass.authentication.UserDto
+import com.example.myproject.dto.authentication.UserDto
 import com.squareup.moshi.Json
 import kotlinx.parcelize.Parcelize
 

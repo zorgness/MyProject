@@ -1,6 +1,5 @@
 package com.example.myproject.ui.activityEventForm
 
-import CODE_200
 import CODE_201
 import ERROR_400
 import ERROR_403
@@ -13,8 +12,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myproject.R
-import com.example.myproject.dataclass.activity_event.ActivityEventDto
-import com.example.myproject.dataclass.activity_event.ActivityEventPostDto
+import com.example.myproject.dto.activity_event.ActivityEventDto
+import com.example.myproject.dto.activity_event.ActivityEventPostDto
 import com.example.myproject.extensions.toHydraCategoryId
 import com.example.myproject.extensions.toHydraUserId
 import com.example.myproject.network.ApiService
@@ -70,6 +69,7 @@ class ActivityEventFormViewModel @Inject constructor(
     var startAtLd = MutableLiveData<String>("")
 
     var categoryId: Int? = null
+    private val headers = HashMap<String, String>()
 
 
     /**
@@ -91,6 +91,7 @@ class ActivityEventFormViewModel @Inject constructor(
     fun createActivityEvent() {
 
         categoryId = positionSelectedLd.value?.plus(1)
+        headers["Authorization"] = "Bearer ${sharedPref.getToken() ?: ""}"
 
         if (
             titleLd.value?.isNotBlank() == true
@@ -114,6 +115,7 @@ class ActivityEventFormViewModel @Inject constructor(
                 viewModelScope.launch {
                     val responseNewActivityEvent: Response<ActivityEventDto>? = withContext(Dispatchers.IO) {
                         apiService.createActivityEvent(
+                            headers,
                             ActivityEventPostDto(
                                 title = titleLd.value!!,
                                 description = descriptionLd.value!!,
@@ -143,7 +145,7 @@ class ActivityEventFormViewModel @Inject constructor(
                         }
 
                         responseNewActivityEvent.code() == ERROR_400 ->
-                            _messageLiveData.value = context.getString(R.string.parameter_problem)
+                            _messageLiveData.value = context.getString(R.string.error_parameter)
 
                         responseNewActivityEvent.code() == ERROR_403 ->
                             _messageLiveData.value = context.getString(R.string.unauthorized)
@@ -168,6 +170,7 @@ class ActivityEventFormViewModel @Inject constructor(
     fun updateActivityEvent() {
 
         categoryId = positionSelectedLd.value?.plus(1)
+        headers["Authorization"] = "Bearer ${sharedPref.getToken() ?: ""}"
 
         if (
             titleLd.value?.isNotBlank() == true
@@ -191,6 +194,7 @@ class ActivityEventFormViewModel @Inject constructor(
                 viewModelScope.launch {
                     val responseUpdateActivityEvent: Response<ActivityEventDto>? = withContext(Dispatchers.IO) {
                         apiService.updateActivityEvent(
+                            headers,
                             activityId = activityIdToUpdateLiveData.value!!,
                             ActivityEventPostDto(
                                 title = titleLd.value!!,
@@ -219,10 +223,10 @@ class ActivityEventFormViewModel @Inject constructor(
                         }
 
                         responseUpdateActivityEvent.code() == ERROR_400 ->
-                            _messageLiveData.value = context.getString(R.string.parameter_problem)
+                            _messageLiveData.value = context.getString(R.string.error_parameter)
 
                         responseUpdateActivityEvent.code() == ERROR_404 ->
-                            _messageLiveData.value = context.getString(R.string.resource_introuvable)
+                            _messageLiveData.value = context.getString(R.string.unknow_resource)
 
                         responseUpdateActivityEvent.code() == ERROR_422 ->
                             _messageLiveData.value = context.getString(R.string.unprocessable_entity)

@@ -12,11 +12,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myproject.R
-import com.example.myproject.dataclass.booking.BookingDto
-import com.example.myproject.dataclass.booking.InfoBookingDto
+import com.example.myproject.dto.booking.BookingDto
+import com.example.myproject.dto.booking.InfoBookingDto
 import com.example.myproject.extensions.toHydraUserId
 import com.example.myproject.network.ApiService
-import com.example.myproject.utils.BookingDialog
 import com.example.myproject.utils.MySharedPref
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -54,15 +53,21 @@ class DetailsActivityViewModel @Inject constructor(
     val bookingLiveData: LiveData<BookingDto>
         get() = _bookingLiveData
 
+    private val headers = HashMap<String, String>()
+
 
    fun createBooking(activityHydraId: String) {
 
       val userId = sharedPref.getUserId().toHydraUserId()
+       headers["Authorization"] = "Bearer ${sharedPref.getToken() ?: ""}"
 
       try {
           viewModelScope.launch {
                val responseBooking: Response<BookingDto>? = withContext(Dispatchers.IO) {
-                   apiService.createBooking(InfoBookingDto(userId, activityHydraId))
+                   apiService.createBooking(
+                       headers,
+                       InfoBookingDto(userId, activityHydraId)
+                   )
                }
 
                 val body = responseBooking?.body()
@@ -79,7 +84,7 @@ class DetailsActivityViewModel @Inject constructor(
                     }
 
                    responseBooking.code() == ERROR_400 ->
-                       _messageLiveData.value = context.getString(R.string.parameter_problem)
+                       _messageLiveData.value = context.getString(R.string.error_parameter)
 
                    responseBooking.code() == ERROR_403 ->
                        _messageLiveData.value = context.getString(R.string.unauthorized)
@@ -100,10 +105,12 @@ class DetailsActivityViewModel @Inject constructor(
 
     fun deleteActivity(activityId: Int) {
 
+        headers["Authorization"] = "Bearer ${sharedPref.getToken() ?: ""}"
+
         try {
             viewModelScope.launch {
                 val responseDelete: Response<Any>? = withContext(Dispatchers.IO) {
-                    apiService.deleteActivityEvent(activityId)
+                    apiService.deleteActivityEvent(headers, activityId)
                 }
 
                 val headers = responseDelete?.headers()
@@ -122,7 +129,7 @@ class DetailsActivityViewModel @Inject constructor(
                     }
 
                     responseDelete.code() == ERROR_404 ->
-                        _messageLiveData.value = context.getString(R.string.resource_introuvable)
+                        _messageLiveData.value = context.getString(R.string.unknow_resource)
                 }
             }
 
@@ -137,12 +144,15 @@ class DetailsActivityViewModel @Inject constructor(
     }
 
     fun cancelBooking(booKingId: Int) {
+
+        headers["Authorization"] = "Bearer ${sharedPref.getToken() ?: ""}"
+
         try {
 
             viewModelScope.launch {
 
                 val responseCancel: Response<Any>? = withContext(Dispatchers.IO) {
-                    apiService.cancelBooking(booKingId)
+                    apiService.cancelBooking(headers, booKingId)
                 }
 
 
@@ -160,7 +170,7 @@ class DetailsActivityViewModel @Inject constructor(
                     }
 
                     responseCancel.code() == ERROR_404 ->
-                        _messageLiveData.value = context.getString(R.string.resource_introuvable)
+                        _messageLiveData.value = context.getString(R.string.unknow_resource)
                 }
 
             }

@@ -1,10 +1,10 @@
-package com.example.myproject.dataclass.activity_event
+package com.example.myproject.dto.activity_event
 
 
 import android.os.Parcelable
-import com.example.myproject.dataclass.booking.BookingDto
-import com.example.myproject.dataclass.category.CategoryDto
-import com.example.myproject.dataclass.profile.CreatorDto
+import com.example.myproject.dto.booking.BookingDto
+import com.example.myproject.dto.category.CategoryDto
+import com.example.myproject.dto.profile.CreatorDto
 import com.squareup.moshi.Json
 import kotlinx.parcelize.Parcelize
 

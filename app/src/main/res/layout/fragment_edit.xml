@@ -109,7 +109,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/non_obligatoire"
+                    android:text="@string/non_obligatory"
                     android:layout_marginTop="12dp"
                     />
 

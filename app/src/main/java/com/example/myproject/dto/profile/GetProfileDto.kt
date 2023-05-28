@@ -1,7 +1,6 @@
-package com.example.myproject.dataclass.profile
+package com.example.myproject.dto.profile
 
 
-import com.example.myproject.dataclass.profile.ProfileDto
 import com.squareup.moshi.Json
 
 data class GetProfileDto(

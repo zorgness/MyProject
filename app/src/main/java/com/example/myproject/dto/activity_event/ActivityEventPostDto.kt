@@ -1,6 +1,6 @@
-package com.example.myproject.dataclass.activity_event
+package com.example.myproject.dto.activity_event
 
-import com.example.myproject.dataclass.SerializedName
+import com.example.myproject.dto.SerializedName
 
 
 data class ActivityEventPostDto(

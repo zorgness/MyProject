@@ -11,8 +11,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myproject.R
-import com.example.myproject.dataclass.authentication.RegisterDto
-import com.example.myproject.dataclass.authentication.UserDto
+import com.example.myproject.dto.authentication.RegisterDto
+import com.example.myproject.dto.authentication.UserDto
 import com.example.myproject.extensions.isLongEnough
 import com.example.myproject.network.ApiService
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -98,7 +98,7 @@ class RegisterViewModel @Inject constructor(
                                     }
 
                                     responseRegister.code() == ERROR_400 ->
-                                        _messageLiveData.value = context.getString(R.string.parameter_problem)
+                                        _messageLiveData.value = context.getString(R.string.error_parameter)
 
                                     responseRegister.code() == ERROR_403 ->
                                         _messageLiveData.value = context.getString(R.string.unauthorized)

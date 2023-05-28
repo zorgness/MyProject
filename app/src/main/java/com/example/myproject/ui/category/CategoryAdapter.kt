@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myproject.R
 import com.example.myproject.databinding.ItemRvCategoryBinding
-import com.example.myproject.dataclass.category.CategoryDto
+import com.example.myproject.dto.category.CategoryDto
 import com.example.myproject.utils.CategoryBackground
 import com.example.myproject.utils.myPicassoFun
 
@@ -61,7 +61,7 @@ class CategoryAdapter() :
 
             categoryLayout.setBackgroundResource(
                 CategoryBackground
-                    .getDrawableResource(category.id)
+                    .getDrawableResource(category.id % 6)
                     ?: 0
             )
 

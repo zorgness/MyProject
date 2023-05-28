@@ -1,6 +1,5 @@
-package com.example.myproject.dataclass.category
+package com.example.myproject.dto.category
 
-import com.example.myproject.dataclass.category.CategoryDto
 import com.squareup.moshi.Json
 
 data class GetCategoriesDto(

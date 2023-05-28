@@ -5,7 +5,7 @@ import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import com.example.myproject.R
-import com.example.myproject.dataclass.booking.BookingDto
+import com.example.myproject.dto.booking.BookingDto
 
 class BookingDialog(val bookingDto: BookingDto): DialogFragment() {
 

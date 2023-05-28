@@ -11,7 +11,12 @@ import android.content.SharedPreferences
 
 class MySharedPref(context: Context) {
 
-    private val sharedPreferences: SharedPreferences = context.getSharedPreferences(SHAREDPREF_NAME, Context.MODE_PRIVATE)
+    private val sharedPreferences: SharedPreferences
+
+    init {
+        sharedPreferences =  context.getSharedPreferences(SHAREDPREF_NAME, Context.MODE_PRIVATE)
+    }
+
 
     private fun saveString(key: String, value: String) {
         sharedPreferences.edit().putString(key, value).apply()

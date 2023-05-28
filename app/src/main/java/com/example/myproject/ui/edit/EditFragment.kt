@@ -34,7 +34,7 @@ class EditFragment : Fragment() {
         }
 
         /**
-         * Redirect user to profile if success on update
+         * Redirect user to profile if success on updateUser
          */
         viewModel.codeLiveData.observe(this) {event->
             event.getContentIfNotHandled()?.let {code->

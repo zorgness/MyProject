@@ -1,4 +1,4 @@
-package com.example.myproject.ui.activities_by_category
+package com.example.myproject.ui.activities_list
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,20 +10,21 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myproject.databinding.FragmentActivitiesByCategoryBinding
+import com.example.myproject.databinding.FragmentActivitiesListBinding
+
 import com.example.myproject.extensions.myToast
 import com.example.myproject.sharedviewmodel.SharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ActivitiesByCategoryFragment : Fragment() {
+class ActivitiesListFragment : Fragment() {
 
-    private var _binding: FragmentActivitiesByCategoryBinding? = null
+    private var _binding: FragmentActivitiesListBinding? = null
     private val  binding get() = _binding!!
-    private val viewModel: ActivitiesByCategoryViewModel by viewModels()
+    private val viewModel: ActivitiesListViewModel by viewModels()
     private val sharedViewModel: SharedViewModel by activityViewModels()
     private lateinit var activitiesByCategoryAdapter: ActivitiesByCategoryAdapter
-    private val args: ActivitiesByCategoryFragmentArgs by navArgs()
+    private val args: ActivitiesListFragmentArgs by navArgs()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -33,13 +34,15 @@ class ActivitiesByCategoryFragment : Fragment() {
             requireContext().myToast(message)
         }
 
-       viewModel.fetchActivityEventByCategory(args.categoryId)
+       viewModel.fetchListToShow(args.categoryId)
 
-        viewModel.activityEventByCategoryLiveData.observe(this)  {activitiesEventsByCategory->
-            if(activitiesEventsByCategory.isEmpty())
+        viewModel.activitiesListLiveData.observe(this)  { activitiesEventsByCategory->
+                activitiesByCategoryAdapter.submitList(activitiesEventsByCategory)
+        }
+
+        viewModel.isEmptyListLiveData.observe(this) {isEmpty->
+            if (isEmpty)
                 binding.tvEmptyCategory.visibility = View.VISIBLE
-            activitiesByCategoryAdapter.submitList(activitiesEventsByCategory)
-
         }
 
         activitiesByCategoryAdapter.setOnItemClick { activityEventItem->
@@ -47,7 +50,7 @@ class ActivitiesByCategoryFragment : Fragment() {
         }
 
         viewModel.activityEventLiveData.observe(this) {activityEventItem->
-           ActivitiesByCategoryFragmentDirections
+           ActivitiesListFragmentDirections
                .actionActivitiesByCategoryFragmentToDetailsActivityFragment(activityEventItem).let {
                     findNavController().navigate(it)
                 }
@@ -58,7 +61,7 @@ class ActivitiesByCategoryFragment : Fragment() {
         }
 
         sharedViewModel.categoryListUpdatedLiveData.observe(this) { categoryId->
-            viewModel.fetchActivityEventByCategory(categoryId)
+            viewModel.fetchListToShow(categoryId)
         }
 
 
@@ -77,7 +80,7 @@ class ActivitiesByCategoryFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding =  FragmentActivitiesByCategoryBinding.inflate(layoutInflater)
+        _binding =  FragmentActivitiesListBinding.inflate(layoutInflater)
 
         binding.rvActivityEvent.layoutManager = LinearLayoutManager(container?.context)
 
