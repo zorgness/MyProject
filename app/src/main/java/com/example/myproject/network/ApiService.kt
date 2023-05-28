@@ -12,8 +12,6 @@ import retrofit2.http.*
 
 interface ApiService {
 
-
-
     @Headers("Content-Type: application/json")
     @POST(ApiRoutes.REGISTER)
     suspend fun register(@Body registerInfo: RegisterDto): Response<UserDto>?
@@ -41,15 +39,6 @@ interface ApiService {
         @Query("category") categoryId: Int,
     ): Response<GetActivitiesDto>?
 
-    @Headers("Content-Type: application/json")
-    @GET(ApiRoutes.ACTIVITY_EVENT)
-    suspend fun fetchActivitiesByCreator(
-        @HeaderMap headers: Map<String, String>,
-        @Query("creator") creatorId: Int,
-    ): Response<GetActivitiesDto>?
-
-    @GET(ApiRoutes.ACTIVITY_EVENT_BY_ID)
-    suspend fun getActivityEventById(@Path("activityEventId") activityEventId: Int): Response<GetActivityEventDto>?
 
     @Headers("Content-Type: application/json")
     @GET(ApiRoutes.PROFILE)
@@ -80,6 +69,7 @@ interface ApiService {
         @Body updateActivity: ActivityEventPostDto
     ): Response<ActivityEventDto>?
 
+    @Headers("Content-Type: application/json")
     @DELETE(ApiRoutes.ACTIVITY_EVENT_DELETE)
     suspend fun deleteActivityEvent(
         @HeaderMap headers: Map<String, String>,

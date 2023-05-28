@@ -59,7 +59,7 @@ class ProfileFragment : Fragment() {
                     }
                 }
 
-                tvNumberCreation.setOnClickListener {
+                cardCreation.setOnClickListener {
                     ProfileFragmentDirections
                         .actionProfileFragmentToUserListFragment(
                             isCreator = true,
@@ -69,7 +69,7 @@ class ProfileFragment : Fragment() {
                         }
                 }
 
-                tvNumberParticipation.setOnClickListener {
+                cardParticipation.setOnClickListener {
                     ProfileFragmentDirections
                         .actionProfileFragmentToUserListFragment(
                             isCreator = false,

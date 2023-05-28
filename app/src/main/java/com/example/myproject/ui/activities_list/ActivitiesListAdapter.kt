@@ -63,7 +63,7 @@ class ActivitiesByCategoryAdapter():  ListAdapter<ActivityEventDto, ActivitiesBy
             layoutActivityEvent
                 .setBackgroundResource(
                     CategoryBackground
-                        .getDrawableResource(activityEvent.category.id)
+                        .getDrawableResource(activityEvent.category.id % 6)
                         ?: 0
                 )
 
