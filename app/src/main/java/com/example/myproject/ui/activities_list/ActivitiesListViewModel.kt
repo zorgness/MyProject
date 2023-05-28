@@ -26,56 +26,40 @@ class ActivitiesListViewModel @Inject constructor(
     private val context: Context
 ) : ViewModel() {
 
-    private val _activitiesListLiveData = MutableLiveData<List<ActivityEventDto>>()
+    // LIST TO BE DISPLAY
+    private val _listToShowLiveData = MutableLiveData<List<ActivityEventDto>>()
 
+    val listToShowLiveData: LiveData<List<ActivityEventDto>>
+        get() = _listToShowLiveData
+
+    // USE TO PASS PARCELABLE TO DETAILS FRAGMENT WITH NAV ARGS
     private val _activityEventLiveData = MutableLiveData<ActivityEventDto>()
 
+    val activityEventLiveData: LiveData<ActivityEventDto>
+        get() = _activityEventLiveData
+
+    // PROGRESS BAR
     private val _progressBarVisibilityLiveData = MutableLiveData<Boolean>(true)
 
-    private val _isEmptyListLiveData = MutableLiveData<Boolean>(false)
+    val progressBarVisibilityLiveData: LiveData<Boolean>
+        get() = _progressBarVisibilityLiveData
 
+    // DISPLAY MESSAGE FOR USER
     private val _messageLiveData = MutableLiveData<String>()
 
     val messageLiveData: LiveData<String>
         get() = _messageLiveData
 
-    //List
-    val activitiesListLiveData: LiveData<List<ActivityEventDto>>
-        get() = _activitiesListLiveData
-
-    val activityEventLiveData: LiveData<ActivityEventDto>
-        get() = _activityEventLiveData
-
-    val progressBarVisibilityLiveData: LiveData<Boolean>
-        get() = _progressBarVisibilityLiveData
-
-    val isEmptyListLiveData: LiveData<Boolean>
-        get() = _isEmptyListLiveData
-
-    var activitiesFullList = listOf<ActivityEventDto>()
-
     private val headers = HashMap<String, String>()
 
-    init {
-        fetchActivitiesAll()
-    }
-    fun fetchListToShow(categoryId: Int) {
 
-        //_activitiesListLiveData.value = activitiesFullList
 
-      /*  if(categoryId > 0){
-            _activitiesListLiveData.value = activitiesFullList.filter { element -> element.category.id == categoryId }
-        } else {
-            _activitiesListLiveData.value = activitiesFullList
-        }*/
-
-    }
     fun setActivityEvent(activityEvent: ActivityEventDto){
         _activityEventLiveData.value = activityEvent
     }
 
 
-    private fun fetchActivitiesAll() {
+    fun fetchActivitiesByCategory(categoryId: Int) {
         headers["Authorization"] = "Bearer ${sharedPref.getToken() ?: ""}"
 
         try {
@@ -83,7 +67,7 @@ class ActivitiesListViewModel @Inject constructor(
                 val responseActivityByCategory: Response<GetActivitiesDto>? =
                     withContext(Dispatchers.IO) {
 
-                        apiService.fetchActivitiesAll(headers)
+                        apiService.fetchActivitiesByCategory(headers, categoryId)
                     }
 
                 val body = responseActivityByCategory?.body()
@@ -96,10 +80,8 @@ class ActivitiesListViewModel @Inject constructor(
 
                     responseActivityByCategory.isSuccessful && (body != null) -> {
 
-                        _activitiesListLiveData.value  = body.activitiesEvent
+                         _listToShowLiveData.value = body.activitiesEvent
                         _progressBarVisibilityLiveData.value = false
-                      /*  if(body.activitiesEvent.isEmpty())
-                            _isEmptyListLiveData.value = true*/
                     }
 
 

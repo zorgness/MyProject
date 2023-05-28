@@ -63,9 +63,8 @@ class ActivityEventFormFragment : Fragment() {
                 ActivityEventFormFragmentDirections
                     .actionActivityEventFormFragmentToActivitiesByCategoryFragment(
                         args.activityEventDto?.category?.id ?: 0
-                    )
-                        .let {
-                            findNavController().navigate(it)
+                    ).let {
+                                findNavController().navigate(it)
                         }
                 }
         }
@@ -88,6 +87,7 @@ class ActivityEventFormFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         if (args.activityEventDto != null) {
+            binding.tvNewEdit.text = requireContext().getString(R.string.editer)
             binding.btnSaveActivity.visibility = View.GONE
             binding.btnEditActivity.visibility = View.VISIBLE
         }

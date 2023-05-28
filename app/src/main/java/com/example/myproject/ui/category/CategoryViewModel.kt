@@ -3,6 +3,7 @@ package com.example.myproject.ui.category
 import ERROR_401
 import ERROR_403
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -27,30 +28,35 @@ class CategoryViewModel @Inject constructor(
     private val context: Context
 ) : ViewModel() {
 
+    // KEEP TRACK OF SELECTED CATEGORY ID
     private val _categoryIdLiveData = MutableLiveData<Int>()
-
-    private val _categoriesLiveData = MutableLiveData<List<CategoryDto>>()
-
-    private val _messageLiveData = MutableLiveData<String>()
-
-    private val _progressBarVisibilityLiveData = MutableLiveData<Boolean>()
-
 
     val categoryIdLiveData: LiveData<Int>
         get() = _categoryIdLiveData
 
-    val categoriesLiveData: LiveData<List<CategoryDto>>
-        get() = _categoriesLiveData
+    // LIST OF CATEGORIES
+    private val _categoriesListLiveData = MutableLiveData<List<CategoryDto>>()
 
-    val messageLiveData: LiveData<String>
-        get() = _messageLiveData
+    val categoriesListLiveData: LiveData<List<CategoryDto>>
+        get() = _categoriesListLiveData
+
+
+    private val _progressBarVisibilityLiveData = MutableLiveData<Boolean>()
 
     val progressBarVisibilityLiveData: LiveData<Boolean>
         get() = _progressBarVisibilityLiveData
 
+    private val _messageLiveData = MutableLiveData<String>()
+
+    val messageLiveData: LiveData<String>
+        get() = _messageLiveData
+
+
+
     private val headers = HashMap<String, String>()
 
     fun setCategoryId(categoryId: Int) {
+        Log.d("category Id", categoryId.toString())
         _categoryIdLiveData.value = categoryId
     }
 
@@ -75,7 +81,7 @@ class CategoryViewModel @Inject constructor(
                     }
 
                     responseCategories.isSuccessful && (body != null) -> {
-                        _categoriesLiveData.value = body.categories
+                        _categoriesListLiveData.value = body.categories
 
                     }
 

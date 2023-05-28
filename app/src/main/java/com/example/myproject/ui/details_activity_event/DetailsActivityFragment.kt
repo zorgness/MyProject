@@ -62,6 +62,7 @@ class DetailsActivityFragment : Fragment() {
             }
         }
 
+
         viewModel.codeLiveData.observe(this) { code ->
             if(code == CODE_201) {
                 sharedViewModel.refreshListByCategoryId(args.activityEvent.category.id)
@@ -72,7 +73,10 @@ class DetailsActivityFragment : Fragment() {
             }
             if(code == CODE_204) {
                 sharedViewModel.refreshListByCategoryId(args.activityEvent.category.id)
-                findNavController().popBackStack()
+                DetailsActivityFragmentDirections
+                    .actionDetailsActivityFragmentToProfileFragment().let {
+                        findNavController().navigate(it)
+                    }
             }
         }
     }
@@ -125,21 +129,6 @@ class DetailsActivityFragment : Fragment() {
                             findNavController().navigate(it)
                         }
                 }
-
-              /*   MyCircleImage(
-                     context = requireContext(),
-                     imageUrl = booking.userAccount.imageUrl,
-                     onItemClick = {
-                         DetailsActivityFragmentDirections
-                             .actionDetailsActivityFragmentToProfileFragment(booking.userAccount.id)
-                                 .let {
-                                     findNavController().navigate(it)
-                                 }
-
-                     }
-                 ).let {
-                     binding.linearLayoutAvatar.addView(it)
-                 }*/
 
             }
 

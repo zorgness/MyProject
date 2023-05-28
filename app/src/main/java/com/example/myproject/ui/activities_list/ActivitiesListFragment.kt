@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -13,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myproject.databinding.FragmentActivitiesListBinding
 
 import com.example.myproject.extensions.myToast
-import com.example.myproject.sharedviewmodel.SharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,7 +20,6 @@ class ActivitiesListFragment : Fragment() {
     private var _binding: FragmentActivitiesListBinding? = null
     private val  binding get() = _binding!!
     private val viewModel: ActivitiesListViewModel by viewModels()
-    private val sharedViewModel: SharedViewModel by activityViewModels()
     private lateinit var activitiesByCategoryAdapter: ActivitiesByCategoryAdapter
     private val args: ActivitiesListFragmentArgs by navArgs()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,15 +31,14 @@ class ActivitiesListFragment : Fragment() {
             requireContext().myToast(message)
         }
 
-       viewModel.fetchListToShow(args.categoryId)
 
-        viewModel.activitiesListLiveData.observe(this)  { activitiesEventsByCategory->
+        viewModel.fetchActivitiesByCategory(args.categoryId)
+
+        viewModel.listToShowLiveData.observe(this)  { activitiesEventsByCategory->
                 activitiesByCategoryAdapter.submitList(activitiesEventsByCategory)
-        }
-
-        viewModel.isEmptyListLiveData.observe(this) {isEmpty->
-            if (isEmpty)
-                binding.tvEmptyCategory.visibility = View.VISIBLE
+                if(activitiesEventsByCategory.isEmpty()) {
+                    binding.tvEmptyCategory.visibility = View.VISIBLE
+                }
         }
 
         activitiesByCategoryAdapter.setOnItemClick { activityEventItem->
@@ -59,20 +55,6 @@ class ActivitiesListFragment : Fragment() {
         viewModel.progressBarVisibilityLiveData.observe(this) {
             binding.progressBar.visibility = if(it) View.VISIBLE else View.GONE
         }
-
-        sharedViewModel.categoryListUpdatedLiveData.observe(this) { categoryId->
-            viewModel.fetchListToShow(categoryId)
-        }
-
-
-
-      /*  activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                findNavController().popBackStack()
-            }
-        })*/
-
-
 
     }
 

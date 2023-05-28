@@ -102,7 +102,7 @@
                     android:textStyle="bold"
                     android:textColor="@color/my_dark_blue"
                     android:text="@string/cr_ation_s"
-                    android:textSize="16sp" />
+                    android:textSize="12sp" />
 
 
             </RelativeLayout>
@@ -145,7 +145,7 @@
                     android:text="@string/participation_s"
                     android:textStyle="bold"
                     android:textColor="@color/my_dark_blue"
-                    android:textSize="16sp" />
+                    android:textSize="12sp" />
 
 
             </RelativeLayout>

@@ -56,7 +56,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textSize="18sp"
+            android:layout_margin="12dp"
+            android:textSize="16sp"
             android:textColor="@color/my_dark_blue"
             android:text="@string/pas_d_v_nement_pour_cette_categorie"
             android:visibility="gone"/>

@@ -5,10 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myproject.adapter.CategoryAdapter
@@ -36,7 +33,7 @@ class CategoryFragment : Fragment() {
 
         categoryViewModel.fetchAllCategories()
 
-        categoryViewModel.categoriesLiveData.observe(this) { categoriesList ->
+        categoryViewModel.categoriesListLiveData.observe(this) { categoriesList ->
             categoryAdapter.submitList(categoriesList)
         }
 
@@ -44,13 +41,13 @@ class CategoryFragment : Fragment() {
             requireContext().myToast(message)
         }
 
+        // REDIRECTION TO ACTIVITIES LIST BY CATEGORY
         categoryViewModel.categoryIdLiveData.observe(this) { categoryId ->
             CategoryFragmentDirections
                 .actionCategoryFragmentToActivitiesByCategoryFragment(categoryId).let {
                     findNavController().navigate(it)
                 }
         }
-
 
         categoryViewModel.progressBarVisibilityLiveData.observe(this) {
             binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
