@@ -77,7 +77,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@string/rejoindre" />
+                        android:text="@string/rejoindre"
+                        />
 
                     <Button
                         android:id="@+id/btn_cancel_booking"
@@ -94,10 +95,7 @@
                         android:id="@+id/btn_group_update_delete"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
                         android:orientation="horizontal"
-                        android:paddingHorizontal="60dp"
                         android:visibility="gone"
                         >
 
@@ -106,19 +104,23 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/editer"
-                            android:backgroundTint="@color/my_green"/>
+                            android:layout_gravity="start"
+                            android:backgroundTint="@color/my_green"
+                            android:layout_weight="1"/>
 
-                        <Space
+                       <Space
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.4" />
+                            android:layout_weight="1" />
 
                         <Button
                             android:id="@+id/btn_delete"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/supprimer"
-                            android:backgroundTint="@color/my_red"/>
+                            android:layout_gravity="end"
+                            android:backgroundTint="@color/my_red"
+                            android:layout_weight="0.5"/>
 
                     </LinearLayout>
                 </LinearLayout>
@@ -259,7 +261,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:textColor="@color/my_dark_blue"
-                    android:layout_below="@+id/tv_participation"
+                    android:layout_below="@+id/linear_layout_avatar"
                     android:textSize="24sp"
                     android:layout_marginTop="60dp"
                     android:textStyle="bold"

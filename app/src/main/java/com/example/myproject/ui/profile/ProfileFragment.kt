@@ -26,6 +26,10 @@ class ProfileFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
 
+        viewModel.setProfileId(args.profileId)
+
+        viewModel.fetchUserProfile()
+
         viewModel.messageLiveData.observe(this) {message ->
             requireContext().myToast(message)
         }
@@ -34,8 +38,6 @@ class ProfileFragment : Fragment() {
             binding.ivEdit.visibility = if(isCurrentUser) View.VISIBLE else View.GONE
         }
 
-        viewModel.setProfileId(args.profileId)
-        viewModel.fetchUserProfile()
 
         viewModel.profileLiveData.observe(this) { profile->
             with(binding) {
@@ -85,9 +87,9 @@ class ProfileFragment : Fragment() {
             binding.progressBar.visibility = if(it) View.VISIBLE else View.GONE
         }
 
-        requireActivity().onBackPressedDispatcher.addCallback(this) {
+       /* requireActivity().onBackPressedDispatcher.addCallback(this) {
            findNavController().popBackStack()
-        }
+        }*/
 
     }
 
