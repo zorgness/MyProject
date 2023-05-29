@@ -1,5 +1,7 @@
 package com.example.myproject.ui.profile
 
+import ERROR_401
+import ERROR_403
 import android.content.Context
 import android.system.ErrnoException
 import androidx.lifecycle.LiveData
@@ -84,7 +86,10 @@ class ProfileViewModel @Inject constructor(
                         _isCurrentUserLiveData.value = profileIdLiveData.value!! == 0
                     }
 
-                    responseUserProfile.code() == 403 ->
+                    responseUserProfile.code() == ERROR_401 ->
+                        _messageLiveData.value = context.getString(R.string.token_expired)
+
+                    responseUserProfile.code() == ERROR_403 ->
                         _messageLiveData.value = context.getString(R.string.unauthorized)
 
                 }

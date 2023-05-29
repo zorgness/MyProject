@@ -44,7 +44,7 @@ class DetailsActivityFragment : Fragment() {
             if (currentUserId == args.activityEvent.creator.id) {
                 binding.btnJoin.visibility = View.GONE
                 binding.btnGroupUpdateDelete.visibility = View.VISIBLE
-                binding.ivValidation.visibility = View.VISIBLE
+                binding.iconValidation.visibility = View.VISIBLE
             }
 
             args.activityEvent.bookings.forEach { booking ->
@@ -107,7 +107,7 @@ class DetailsActivityFragment : Fragment() {
                     }
             }
 
-            binding.ivValidation.setOnClickListener {
+            binding.iconValidation.setOnClickListener {
                 DetailsActivityFragmentDirections
                     .actionDetailsActivityFragmentToValidationListFragment(creator.id)
                     .let {

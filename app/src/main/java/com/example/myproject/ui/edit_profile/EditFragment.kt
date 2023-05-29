@@ -1,17 +1,15 @@
-package com.example.myproject.ui.edit
+package com.example.myproject.ui.edit_profile
 
 import CODE_200
-import CODE_201
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.myproject.R
 import com.example.myproject.databinding.FragmentEditBinding
 import com.example.myproject.extensions.myToast
 import com.example.myproject.utils.myPicassoFun
@@ -90,6 +88,16 @@ class EditFragment : Fragment() {
             }
 
         }
+
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner, object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    EditFragmentDirections
+                        .actionEditFragmentToProfileFragment().let{
+                            findNavController().navigate(it)
+                        }
+                }
+            })
 
 
         return binding.root

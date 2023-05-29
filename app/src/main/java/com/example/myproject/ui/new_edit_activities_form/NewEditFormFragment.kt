@@ -118,7 +118,7 @@ class NewEditFormFragment : Fragment() {
         ArrayAdapter.createFromResource(
             requireContext(),
             R.array.categories,
-            android.R.layout.simple_spinner_item
+            android.R.layout.preference_category
         ).let { adapter ->
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                     binding.spinnerCategoryForm.adapter = adapter

@@ -1,4 +1,4 @@
-package com.example.myproject.ui.edit
+package com.example.myproject.ui.edit_profile
 
 import ERROR_400
 import ERROR_403
