@@ -1,9 +1,10 @@
 package com.example.myproject.network
 
 import com.example.myproject.dto.*
-import com.example.myproject.dto.activity_event.*
+import com.example.myproject.dto.activities.*
 import com.example.myproject.dto.authentication.*
 import com.example.myproject.dto.booking.BookingDto
+import com.example.myproject.dto.booking.GetBookingsDto
 import com.example.myproject.dto.booking.InfoBookingDto
 import com.example.myproject.dto.category.GetCategoriesDto
 import com.example.myproject.dto.profile.GetProfileDto
@@ -53,6 +54,12 @@ interface ApiService {
         @HeaderMap headers: Map<String, String>,
         @Body activityEventInfo: ActivityEventPostDto
     ): Response<ActivityEventDto>?
+
+    @Headers("Content-Type: application/json")
+    @GET(ApiRoutes.BOOKING)
+    suspend fun fetchBookingsAll(
+        @HeaderMap headers: Map<String, String>
+    ): Response<GetBookingsDto>?
 
     @Headers("Content-Type: application/json")
     @POST(ApiRoutes.BOOKING)

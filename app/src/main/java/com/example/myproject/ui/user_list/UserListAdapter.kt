@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myproject.R
 import com.example.myproject.databinding.ItemRvActivityEventBinding
-import com.example.myproject.dto.activity_event.ActivityEventDto
+import com.example.myproject.dto.activities.ActivityEventDto
 import com.example.myproject.utils.CategoryBackground
 import com.example.myproject.utils.dateFormatter
 import com.example.myproject.utils.myPicassoFun

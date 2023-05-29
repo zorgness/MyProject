@@ -33,7 +33,7 @@
         tools:layout="@layout/fragment_details_activity" >
         <argument
             android:name="activityEvent"
-            app:argType="com.example.myproject.dto.activity_event.ActivityEventDto"
+            app:argType="com.example.myproject.dto.activities.ActivityEventDto"
             />
         <action
             android:id="@+id/action_detailsActivityFragment_to_profileFragment"
@@ -43,10 +43,15 @@
         <action
             android:id="@+id/action_detailsActivityFragment_to_activityEventFormFragment"
             app:destination="@id/activityEventFormFragment" />
+        <action
+            android:id="@+id/action_detailsActivityFragment_to_validationListFragment"
+            app:destination="@id/validationListFragment"
+            app:popUpTo="@id/profileFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/activityEventFormFragment"
-        android:name="com.example.myproject.ui.activityEventForm.ActivityEventFormFragment"
+        android:name="com.example.myproject.ui.new_edit_activities_form.NewEditFormFragment"
         android:label="ActivityEventFormFragment" >
         <action
             android:id="@+id/action_activityEventFormFragment_to_activitiesByCategoryFragment"
@@ -55,7 +60,7 @@
             app:popUpToInclusive="true" />
         <argument
             android:name="activityEventDto"
-            app:argType="com.example.myproject.dto.activity_event.ActivityEventDto"
+            app:argType="com.example.myproject.dto.activities.ActivityEventDto"
             app:nullable="true"
             android:defaultValue="@null" />
     </fragment>
@@ -94,11 +99,6 @@
             app:destination="@id/profileFragment" />
     </fragment>
     <fragment
-        android:id="@+id/userHistoryFragment"
-        android:name="com.example.myproject.user_info.user_history.UserHistoryFragment"
-        android:label="fragment_user_history"
-        tools:layout="@layout/fragment_user_history" />
-    <fragment
         android:id="@+id/userListFragment"
         android:name="com.example.myproject.ui.user_list.UserListFragment"
         android:label="UserListFragment" >
@@ -113,5 +113,14 @@
             android:id="@+id/action_userListFragment_to_detailsActivityFragment"
             app:destination="@id/detailsActivityFragment" />
 
+    </fragment>
+    <fragment
+        android:id="@+id/validationListFragment"
+        android:name="com.example.myproject.ui.validation_list.ValidationListFragment"
+        android:label="fragment_validation_list"
+        tools:layout="@layout/fragment_validation_list" >
+        <argument
+            android:name="creatorId"
+            app:argType="integer" />
     </fragment>
 </navigation>

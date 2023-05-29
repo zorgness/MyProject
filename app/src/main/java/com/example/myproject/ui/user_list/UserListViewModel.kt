@@ -7,8 +7,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myproject.R
-import com.example.myproject.dto.activity_event.ActivityEventDto
-import com.example.myproject.dto.activity_event.GetActivitiesDto
+import com.example.myproject.dto.activities.ActivityEventDto
+import com.example.myproject.dto.activities.GetActivitiesDto
 import com.example.myproject.network.ApiService
 import com.example.myproject.utils.MySharedPref
 import dagger.hilt.android.lifecycle.HiltViewModel

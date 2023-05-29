@@ -25,9 +25,10 @@
     <!-- ERROR-->
 
     <string name="server_error">erreur du serveur</string>
+    <string name="token_expired">token expiré</string>
     <string name="unauthorized">probléme d\'autorisation</string>
     <string name="error_parameter">probléme de paramétres</string>
-    <string name="unprocessable_entity">création impossible</string>
+    <string name="unprocessable_entity">non traitable</string>
     <string name="empty_fields">tous les champs doivent être remplis</string>
     <string name="obligatory_fields">remplir les champs obligatoires</string>
     <string name="no_connection">pas de connection</string>
@@ -104,10 +105,14 @@
     <string name="historique">historique</string>
     <string name="editer">Editer</string>
     <string name="annuler">Annuler</string>
-    <string name="ev_nement_complet">Evénement complet</string>
+    <string name="ev_nement_complet">complet</string>
     <string name="participants">participants :</string>
     <string name="confirmer">confirmer</string>
     <string name="en_attente">en attente</string>
+    <string name="valider">valider</string>
+    <string name="reject">refuser</string>
+    <string name="validation">validation</string>
+    <string name="icon_validation">icon_validation</string>
 
 
 </resources>

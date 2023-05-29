@@ -1,5 +1,7 @@
 package com.example.myproject.ui.activities_list
 
+import ERROR_401
+import ERROR_403
 import android.content.Context
 import android.system.ErrnoException
 import androidx.lifecycle.LiveData
@@ -7,8 +9,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myproject.R
-import com.example.myproject.dto.activity_event.ActivityEventDto
-import com.example.myproject.dto.activity_event.GetActivitiesDto
+import com.example.myproject.dto.activities.ActivityEventDto
+import com.example.myproject.dto.activities.GetActivitiesDto
 import com.example.myproject.network.ApiService
 import com.example.myproject.utils.MySharedPref
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -32,7 +34,7 @@ class ActivitiesListViewModel @Inject constructor(
     val listToShowLiveData: LiveData<List<ActivityEventDto>>
         get() = _listToShowLiveData
 
-    // USE TO PASS PARCELABLE TO DETAILS FRAGMENT WITH NAV ARGS
+    // USE TO PASS ACTIVITY_DTO PARCELABLE TO DETAILS FRAGMENT WITH NAV ARGS
     private val _activityEventLiveData = MutableLiveData<ActivityEventDto>()
 
     val activityEventLiveData: LiveData<ActivityEventDto>
@@ -86,8 +88,10 @@ class ActivitiesListViewModel @Inject constructor(
                         _progressBarVisibilityLiveData.value = false
                     }
 
+                    responseActivityByCategory.code() == ERROR_401->
+                        _messageLiveData.value = context.getString(R.string.token_expired)
 
-                    responseActivityByCategory.code() == 403 ->
+                    responseActivityByCategory.code() == ERROR_403->
                         _messageLiveData.value = context.getString(R.string.unauthorized)
                 }
 

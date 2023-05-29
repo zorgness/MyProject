@@ -27,27 +27,27 @@ class ActivitiesListFragment : Fragment() {
 
         activitiesByCategoryAdapter = ActivitiesByCategoryAdapter()
 
+        viewModel.fetchActivitiesByCategory(categoryId = args.categoryId)
+
         viewModel.messageLiveData.observe(this) {message ->
             requireContext().myToast(message)
         }
 
-
-        viewModel.fetchActivitiesByCategory(categoryId = args.categoryId)
-
-        viewModel.listToShowLiveData.observe(this)  { activitiesEventsByCategory->
-                activitiesByCategoryAdapter.submitList(activitiesEventsByCategory)
-                if(activitiesEventsByCategory.isEmpty()) {
+        viewModel.listToShowLiveData.observe(this)  { activitiesByCategory->
+                activitiesByCategoryAdapter.submitList(activitiesByCategory)
+                if(activitiesByCategory.isEmpty()) {
                     binding.tvEmptyCategory.visibility = View.VISIBLE
                 }
         }
 
-        activitiesByCategoryAdapter.setOnItemClick { activityEventItem->
-            viewModel.setActivityEvent(activityEventItem)
+        // SET THE ACTIVITY DTO TO BE PASS TO DETAILS FRAGMENT
+        activitiesByCategoryAdapter.setOnItemClick { activityItem->
+            viewModel.setActivityEvent(activityItem)
         }
 
-        viewModel.activityEventLiveData.observe(this) {activityEventItem->
+        viewModel.activityEventLiveData.observe(this) {activityDto->
            ActivitiesListFragmentDirections
-               .actionActivitiesByCategoryFragmentToDetailsActivityFragment(activityEventItem).let {
+               .actionActivitiesByCategoryFragmentToDetailsActivityFragment(activityDto).let {
                     findNavController().navigate(it)
                 }
         }

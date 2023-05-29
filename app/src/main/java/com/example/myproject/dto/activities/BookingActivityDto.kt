@@ -1,4 +1,4 @@
-package com.example.myproject.dto.activity_event
+package com.example.myproject.dto.activities
 
 import android.os.Parcelable
 import com.example.myproject.dto.category.CategoryDto

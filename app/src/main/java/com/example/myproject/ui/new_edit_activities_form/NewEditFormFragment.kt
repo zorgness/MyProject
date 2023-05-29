@@ -1,4 +1,4 @@
-package com.example.myproject.ui.activityEventForm
+package com.example.myproject.ui.new_edit_activities_form
 
 import CODE_200
 import android.os.Bundle
@@ -13,7 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.myproject.R
-import com.example.myproject.databinding.FragmentActivityEventFormBinding
+import com.example.myproject.databinding.FragmentNewEditActivityFormBinding
 import com.example.myproject.extensions.myToast
 import com.example.myproject.sharedviewmodel.SharedViewModel
 import com.example.myproject.utils.MyDatePicker
@@ -22,13 +22,13 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class ActivityEventFormFragment : Fragment() {
+class NewEditFormFragment : Fragment() {
 
-    private var _binding: FragmentActivityEventFormBinding? = null
+    private var _binding: FragmentNewEditActivityFormBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: ActivityEventFormViewModel by viewModels()
+    private val viewModel: NewEditFormViewModel by viewModels()
     private val sharedViewModel: SharedViewModel by activityViewModels()
-    private val args: ActivityEventFormFragmentArgs by navArgs()
+    private val args: NewEditFormFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,31 +43,31 @@ class ActivityEventFormFragment : Fragment() {
         }
 
 
-        /**
-         * Navigate to the list of activities by category relative to the new activity inserted
-         */
-       viewModel.newItemCategoryId.observe(this) { categoryId ->
-            ActivityEventFormFragmentDirections
-                .actionActivityEventFormFragmentToActivitiesByCategoryFragment(categoryId)
-                    .let {
-                        findNavController().navigate(it)
-                    }
-       }
-
-        viewModel.codeLiveData.observe(this) { code ->
-            if(code == CODE_200) {
-                sharedViewModel
-                    .refreshListByCategoryId(
-                        args.activityEventDto?.category?.id ?: 0
-                    )
-                ActivityEventFormFragmentDirections
-                    .actionActivityEventFormFragmentToActivitiesByCategoryFragment(
-                        args.activityEventDto?.category?.id ?: 0
-                    ).let {
-                                findNavController().navigate(it)
+    /**
+     * Navigate to the list of activities by category relative to the new activity inserted
+     */
+           viewModel.newItemCategoryId.observe(this) { categoryId ->
+                NewEditFormFragmentDirections
+                    .actionActivityEventFormFragmentToActivitiesByCategoryFragment(categoryId)
+                        .let {
+                            findNavController().navigate(it)
                         }
-                }
-        }
+           }
+
+            viewModel.codeLiveData.observe(this) { code ->
+                if(code == CODE_200) {
+                    sharedViewModel
+                        .refreshListByCategoryId(
+                            args.activityEventDto?.category?.id ?: 0
+                        )
+                    NewEditFormFragmentDirections
+                        .actionActivityEventFormFragmentToActivitiesByCategoryFragment(
+                            args.activityEventDto?.category?.id ?: 0
+                        ).let {
+                                    findNavController().navigate(it)
+                            }
+                    }
+            }
 
     }
 
@@ -79,7 +79,7 @@ class ActivityEventFormFragment : Fragment() {
 
         _binding = DataBindingUtil.inflate(
                         inflater,
-                        R.layout.fragment_activity_event_form,
+                        R.layout.fragment_new_edit_activity_form,
                         container,
                         false
                    )

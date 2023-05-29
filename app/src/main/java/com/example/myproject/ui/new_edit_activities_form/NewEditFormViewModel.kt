@@ -1,4 +1,4 @@
-package com.example.myproject.ui.activityEventForm
+package com.example.myproject.ui.new_edit_activities_form
 
 import CODE_201
 import ERROR_400
@@ -12,8 +12,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myproject.R
-import com.example.myproject.dto.activity_event.ActivityEventDto
-import com.example.myproject.dto.activity_event.ActivityEventPostDto
+import com.example.myproject.dto.activities.ActivityEventDto
+import com.example.myproject.dto.activities.ActivityEventPostDto
 import com.example.myproject.extensions.toHydraCategoryId
 import com.example.myproject.extensions.toHydraUserId
 import com.example.myproject.network.ApiService
@@ -27,7 +27,7 @@ import java.net.ConnectException
 import javax.inject.Inject
 
 @HiltViewModel
-class ActivityEventFormViewModel @Inject constructor(
+class NewEditFormViewModel @Inject constructor(
     private val apiService: ApiService,
     private val context: Context,
     private val sharedPref: MySharedPref,
@@ -36,23 +36,26 @@ class ActivityEventFormViewModel @Inject constructor(
 
     private val _messageLiveData = MutableLiveData<String>()
 
+    val messageLiveData: LiveData<String>
+        get() = _messageLiveData
+
     private val _newItemCategoryId = MutableLiveData<Int>()
 
-    private val _activityIdToUpdateLiveData = MutableLiveData<Int>()
+    val newItemCategoryId: LiveData<Int>
+        get() = _newItemCategoryId
+
 
     private val _codeLiveData = MutableLiveData<Int>()
 
-    val newItemCategoryId: LiveData<Int>
-       get() = _newItemCategoryId
+    val codeLiveData: LiveData<Int>
+        get() = _codeLiveData
 
-    val messageLiveData: LiveData<String>
-        get() = _messageLiveData
+    private val _activityIdToUpdateLiveData = MutableLiveData<Int>()
 
     private val activityIdToUpdateLiveData: LiveData<Int>
         get() = _activityIdToUpdateLiveData
 
-    val codeLiveData: LiveData<Int>
-        get() = _codeLiveData
+
 
     /**
      * Variables used for Two way binding in xml
@@ -170,6 +173,7 @@ class ActivityEventFormViewModel @Inject constructor(
     fun updateActivityEvent() {
 
         categoryId = positionSelectedLd.value?.plus(1)
+
         headers["Authorization"] = "Bearer ${sharedPref.getToken() ?: ""}"
 
         if (

@@ -27,11 +27,11 @@ class CategoryFragment : Fragment() {
 
         categoryAdapter = CategoryAdapter()
 
+        categoryViewModel.fetchAllCategories()
+
         categoryAdapter.setOnItemClick { categoryId ->
             categoryViewModel.setCategoryId(categoryId)
         }
-
-        categoryViewModel.fetchAllCategories()
 
         categoryViewModel.categoriesListLiveData.observe(this) { categoriesList ->
             categoryAdapter.submitList(categoriesList)

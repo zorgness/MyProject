@@ -2,7 +2,7 @@ package com.example.myproject.dto.profile
 
 
 import com.example.myproject.dto.booking.BookingDto
-import com.example.myproject.dto.activity_event.ActivityEventDto
+import com.example.myproject.dto.activities.ActivityEventDto
 import com.squareup.moshi.Json
 
 data class ProfileDto(

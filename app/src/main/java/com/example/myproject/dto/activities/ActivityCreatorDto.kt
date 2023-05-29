@@ -1,6 +1,7 @@
-package com.example.myproject.dto.activity_event
+package com.example.myproject.dto.activities
 
 
+import com.example.myproject.dto.profile.CreatorDto
 import com.squareup.moshi.Json
 
 data class ActivityCreatorDto(
@@ -15,5 +16,7 @@ data class ActivityCreatorDto(
     @Json(name = "maxOfPeople")
     val maxOfPeople: Int,
     @Json(name = "startAt")
-    val startAt: String
+    val startAt: String,
+    @Json(name = "creator")
+    val creator: CreatorDto,
 )

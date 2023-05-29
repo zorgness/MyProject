@@ -37,9 +37,9 @@ class UserListFragment : Fragment() {
 
         viewModel.listToShowLiveData.observe(this)  { activitiesEvent->
             userListAdapter.submitList(activitiesEvent)
-            if(activitiesEvent.isEmpty()) {
+            /*if(activitiesEvent.isEmpty()) {
                 binding.tvEmptyCategory.visibility = View.VISIBLE
-            }
+            }*/
         }
 
         userListAdapter.setOnItemClick { activityEventItem->
@@ -55,7 +55,9 @@ class UserListFragment : Fragment() {
                 }
         }
 
-
+        viewModel.progressBarVisibilityLiveData.observe(this) {
+            binding.progressBar.visibility = if(it) View.VISIBLE else View.GONE
+        }
 
     }
 

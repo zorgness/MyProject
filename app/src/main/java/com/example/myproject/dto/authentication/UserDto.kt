@@ -7,12 +7,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class UserDto(
-  /*  @Json(name = "@context")
-    val context: String,
-    @Json(name = "@id")
-    val idHydra: String,
-    @Json(name = "@type")
-    val type: String,*/
     @Json(name = "id")
     val id: Int,
     @Json(name = "email")

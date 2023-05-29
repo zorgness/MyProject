@@ -3,11 +3,11 @@ package com.example.myproject.ui.details_activity_event
 import CODE_201
 import CODE_204
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -19,7 +19,6 @@ import com.example.myproject.extensions.myToast
 import com.example.myproject.extensions.toHydraActivitiesId
 import com.example.myproject.sharedviewmodel.SharedViewModel
 import com.example.myproject.utils.ConfirmActionDialog
-import com.example.myproject.utils.MyCircleImage
 import com.example.myproject.utils.dateFormatter
 import com.example.myproject.utils.myPicassoFun
 import dagger.hilt.android.AndroidEntryPoint
@@ -42,21 +41,22 @@ class DetailsActivityFragment : Fragment() {
         }
 
         viewModel.currentUserIdLiveData.observe(this) { currentUserId ->
-            if(currentUserId == args.activityEvent.creator.id) {
+            if (currentUserId == args.activityEvent.creator.id) {
                 binding.btnJoin.visibility = View.GONE
                 binding.btnGroupUpdateDelete.visibility = View.VISIBLE
+                binding.ivValidation.visibility = View.VISIBLE
             }
 
             args.activityEvent.bookings.forEach { booking ->
-                if(currentUserId == booking.userAccount.id) {
+                if (currentUserId == booking.userAccount.id) {
                     bookingIdCurrentUser = booking.id
                     binding.btnJoin.visibility = View.GONE
                     binding.btnCancelBooking.visibility = View.VISIBLE
 
-                    if(booking.isPending)
+                    if (booking.isPending)
                         binding.tvStatusPending.visibility = View.VISIBLE
 
-                    if(booking.isAccepted)
+                    if (booking.isAccepted)
                         binding.tvStatusConfirmed.visibility = View.VISIBLE
                 }
             }
@@ -64,20 +64,14 @@ class DetailsActivityFragment : Fragment() {
 
 
         viewModel.codeLiveData.observe(this) { code ->
-            if(code == CODE_201) {
+            if (code == CODE_201 || code == CODE_204) {
                 sharedViewModel.refreshListByCategoryId(args.activityEvent.category.id)
                 DetailsActivityFragmentDirections
                     .actionDetailsActivityFragmentToProfileFragment().let {
                         findNavController().navigate(it)
                     }
             }
-            if(code == CODE_204) {
-                sharedViewModel.refreshListByCategoryId(args.activityEvent.category.id)
-                DetailsActivityFragmentDirections
-                    .actionDetailsActivityFragmentToProfileFragment().let {
-                        findNavController().navigate(it)
-                    }
-            }
+
         }
     }
 
@@ -95,11 +89,12 @@ class DetailsActivityFragment : Fragment() {
             binding.tvDescription.text = description
             binding.tvUsername.text = creator.username
             binding.tvCategory.text = category.name
-            binding.tvMaxPeople.text = requireContext().getString(R.string.nombre_de_personnes_1d).format(maxOfPeople - bookings.count())
+            binding.tvMaxPeople.text = requireContext().getString(R.string.nombre_de_personnes_1d)
+                .format(maxOfPeople - bookings.count())
 
             myPicassoFun(creator.imageUrl, binding.civUserImage)
 
-            if(maxOfPeople <= bookings.count()) {
+            if (maxOfPeople <= bookings.count()) {
                 binding.tvNoMoreBookings.visibility = View.VISIBLE
                 binding.btnJoin.visibility = View.GONE
             }
@@ -107,70 +102,82 @@ class DetailsActivityFragment : Fragment() {
             binding.civUserImage.setOnClickListener {
                 DetailsActivityFragmentDirections
                     .actionDetailsActivityFragmentToProfileFragment(creator.id)
-                        .let {
-                            findNavController().navigate(it)
-                        }
+                    .let {
+                        findNavController().navigate(it)
+                    }
             }
 
-            args.activityEvent.bookings.forEach {booking->
-                val density = requireContext().resources.displayMetrics.density
-                val circleImageView = CircleImageView(requireContext())
-                val params = LinearLayout.LayoutParams((65 * density).toInt(),(65 * density).toInt())
-                circleImageView.layoutParams = params
-                circleImageView.setPadding((8 * density).toInt(),0,0,0)
-
-                myPicassoFun(booking.userAccount.imageUrl, circleImageView)
-                binding.linearLayoutAvatar.addView(circleImageView)
-
-                circleImageView.setOnClickListener {
-                    DetailsActivityFragmentDirections
-                        .actionDetailsActivityFragmentToProfileFragment(booking.userAccount.id)
-                        .let {
-                            findNavController().navigate(it)
-                        }
-                }
-
-            }
-
-            binding.btnJoin.setOnClickListener() {
-                ConfirmActionDialog(
-                   onConfirm = {
-                       viewModel
-                           .createBooking(args.activityEvent.id.toHydraActivitiesId())
-                   },
-                   resId = R.string.comfirm_booking
-                ).show(childFragmentManager, ConfirmActionDialog.TAG)
-
-            }
-
-            binding.btnEdit.setOnClickListener {
+            binding.ivValidation.setOnClickListener {
                 DetailsActivityFragmentDirections
-                    .actionDetailsActivityFragmentToActivityEventFormFragment(args.activityEvent)
-                        .let {
-                            findNavController().navigate(it)
-                        }
+                    .actionDetailsActivityFragmentToValidationListFragment(creator.id)
+                    .let {
+                        findNavController().navigate(it)
+                    }
+
             }
 
-            binding.btnDelete.setOnClickListener {
-                ConfirmActionDialog(
-                    onConfirm = {
-                        viewModel
-                            .deleteActivity(args.activityEvent.id)
-                    },
-                    resId = R.string.confirm_delete
-                ).show(childFragmentManager, ConfirmActionDialog.TAG)
+        }
+
+        // DISPLAY AVATAR OF USERS HOW GOT A BOOKING FOR THE ACTIVITY
+        args.activityEvent.bookings.forEach { booking ->
+            val density = requireContext().resources.displayMetrics.density
+            val circleImageView = CircleImageView(requireContext())
+            val params = LinearLayout.LayoutParams((65 * density).toInt(), (65 * density).toInt())
+            circleImageView.layoutParams = params
+            circleImageView.setPadding((8 * density).toInt(), 0, 0, 0)
+
+            myPicassoFun(booking.userAccount.imageUrl, circleImageView)
+            binding.linearLayoutAvatar.addView(circleImageView)
+
+            circleImageView.setOnClickListener {
+                DetailsActivityFragmentDirections
+                    .actionDetailsActivityFragmentToProfileFragment(booking.userAccount.id)
+                    .let {
+                        findNavController().navigate(it)
+                    }
             }
 
-            binding.btnCancelBooking.setOnClickListener {
-                ConfirmActionDialog(
-                    onConfirm = {
-                        viewModel
-                            .cancelBooking(bookingIdCurrentUser ?: 0)
-                    },
-                    resId = R.string.comfirm_cancel
-                ).show(childFragmentManager, ConfirmActionDialog.TAG)
-            }
+        }
 
+
+
+        binding.btnJoin.setOnClickListener() {
+            ConfirmActionDialog(
+                onConfirm = {
+                    viewModel
+                        .createBooking(args.activityEvent.id.toHydraActivitiesId())
+                },
+                resId = R.string.comfirm_booking
+            ).show(childFragmentManager, ConfirmActionDialog.TAG)
+
+        }
+
+        binding.btnEdit.setOnClickListener {
+            DetailsActivityFragmentDirections
+                .actionDetailsActivityFragmentToActivityEventFormFragment(args.activityEvent)
+                .let {
+                    findNavController().navigate(it)
+                }
+        }
+
+        binding.btnDelete.setOnClickListener {
+            ConfirmActionDialog(
+                onConfirm = {
+                    viewModel
+                        .deleteActivity(args.activityEvent.id)
+                },
+                resId = R.string.confirm_delete
+            ).show(childFragmentManager, ConfirmActionDialog.TAG)
+        }
+
+        binding.btnCancelBooking.setOnClickListener {
+            ConfirmActionDialog(
+                onConfirm = {
+                    viewModel
+                        .cancelBooking(bookingIdCurrentUser ?: 0)
+                },
+                resId = R.string.comfirm_cancel
+            ).show(childFragmentManager, ConfirmActionDialog.TAG)
         }
 
 

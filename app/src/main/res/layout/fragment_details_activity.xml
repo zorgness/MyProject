@@ -26,10 +26,23 @@
             android:padding="20dp">
 
 
+            <TextView
+                android:id="@+id/tv_no_more_bookings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ev_nement_complet"
+                android:textColor="@color/my_red"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_alignParentEnd="true"
+                android:visibility="gone"
+                />
+
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/civ_user_image"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_centerVertical="true"
                 tools:src="@drawable/avatar" />
 
@@ -46,6 +59,20 @@
                 android:textSize="28sp"
                 android:textStyle="bold"
                 tools:text="username" />
+
+            <ImageView
+                android:id="@+id/iv_validation"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/icon_validation"
+                android:layout_alignParentEnd="true"
+                android:src="@android:drawable/ic_menu_agenda"
+                android:layout_toEndOf="@+id/tv_username"
+                android:visibility="gone"
+                />
+
+
 
 
         </RelativeLayout>
@@ -123,6 +150,8 @@
                             android:layout_weight="0.5"/>
 
                     </LinearLayout>
+
+
                 </LinearLayout>
 
                 <TextView
@@ -275,23 +304,11 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="20dp"
+                    android:layout_marginBottom="140dp"
                     tools:text="Description" />
 
 
-                <TextView
-                    android:id="@+id/tv_no_more_bookings"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_description"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="80dp"
-                    android:layout_marginBottom="140dp"
-                    android:text="@string/ev_nement_complet"
-                    android:textColor="@color/my_red"
-                    android:textSize="28sp"
-                    android:textStyle="bold"
-                    android:visibility="gone"
-                    />
+
 
 
             </RelativeLayout>

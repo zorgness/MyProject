@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.myproject.ui.activityEventForm.ActivityEventFormViewModel" />
+            type="com.example.myproject.ui.new_edit_activities_form.NewEditFormViewModel" />
 
     </data>
 
@@ -19,7 +19,7 @@
         android:id="@+id/frameLayout8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".ui.activityEventForm.ActivityEventFormFragment">
+        tools:context=".ui.new_edit_activities_form.NewEditFormFragment">
 
         <TextView
             android:id="@+id/tv_new_edit"
