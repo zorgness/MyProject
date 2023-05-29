@@ -178,12 +178,13 @@
 
             <Spinner
                 android:id="@+id/spinner_category_form"
-                android:layout_width="240dp"
+                android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_gravity="start"
                 android:layout_marginTop="16dp"
                 android:backgroundTint="@color/my_dark_blue"
                 android:selectedItemPosition="@={viewModel.positionSelectedLd}"
+                android:popupBackground="@color/my_grey"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
