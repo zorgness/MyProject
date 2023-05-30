@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="@string/nouvel_v_nement"
+            android:text="@string/new_activity_event"
             android:textColor="@color/my_dark_blue"
             android:textSize="28sp"
             android:textStyle="bold"
@@ -72,7 +72,7 @@
                 android:autofillHints="Contenu"
                 android:ems="10"
                 android:gravity="top|start"
-                android:hint="@string/contenu"
+                android:hint="@string/content"
                 android:inputType="textMultiLine"
                 android:lines="6"
                 android:text="@={viewModel.descriptionLd}"
@@ -113,7 +113,7 @@
                     android:autofillHints="meeting_point"
                     android:ems="10"
                     android:enabled="false"
-                    android:hint="@string/choisir_une_date"
+                    android:hint="@string/select_date"
                     android:inputType="text|date"
                     android:text="@={viewModel.startAtLd}"
                     android:textColorHint="@color/my_dark_blue" />
@@ -128,7 +128,7 @@
                 android:layout_marginTop="16dp"
                 android:autofillHints="meeting_point"
                 android:ems="10"
-                android:hint="@string/point_de_rencontre"
+                android:hint="@string/meeting_point"
                 android:inputType="textPersonName"
                 android:text="@={viewModel.meetingPointLd}"
                 android:textColorHint="@color/my_dark_blue" />
@@ -156,7 +156,7 @@
                     android:autofillHints="meeting_time"
                     android:ems="10"
                     android:enabled="false"
-                    android:hint="@string/choisir_l_heure_de_rencontre"
+                    android:hint="@string/select_meeting_time"
                     android:inputType="text|date"
                     android:text="@={viewModel.meetingTimeLd}"
                     android:textColorHint="@color/my_dark_blue" />
@@ -170,7 +170,7 @@
                 android:layout_marginTop="16dp"
                 android:autofillHints="max_people"
                 android:ems="10"
-                android:hint="@string/nombre_de_personnes"
+                android:hint="@string/number_people"
                 android:inputType="number"
                 android:text="@={viewModel.maxOfPeopleLd}"
                 android:textColorHint="@color/my_dark_blue" />
@@ -195,7 +195,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:onClick="@{() -> viewModel.createActivityEvent()}"
-                android:text="@string/enregister" />
+                android:text="@string/save" />
 
             <Button
                 android:id="@+id/btn_edit_activity"
@@ -203,7 +203,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:onClick="@{() -> viewModel.updateActivityEvent()}"
-                android:text="@string/mettre_jour"
+                android:text="@string/update"
                 android:visibility="gone"/>
 
         </LinearLayout>

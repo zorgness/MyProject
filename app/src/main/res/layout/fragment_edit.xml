@@ -60,7 +60,7 @@
                     android:autofillHints=""
                     android:background="@drawable/edit_text_background"
                     android:ems="10"
-                    android:hint="@string/nom_d_utilisateur"
+                    android:hint="@string/username"
                     android:inputType="textPersonName"
                     android:padding="16dp"
                     android:textSize="14sp" />
@@ -74,7 +74,7 @@
                     android:autofillHints=""
                     android:background="@drawable/edit_text_background"
                     android:ems="10"
-                    android:hint="@string/url_de_votre_image"
+                    android:hint="@string/your_url_image"
                     android:inputType="textUri"
                     android:padding="16dp"
                     android:textSize="14sp" />
@@ -101,7 +101,7 @@
                     android:autofillHints=""
                     android:background="@drawable/edit_text_background"
                     android:ems="10"
-                    android:hint="@string/votre_ville"
+                    android:hint="@string/city_label"
                     android:inputType="textPersonName"
                     android:padding="16dp"
                     android:textSize="14sp" />
@@ -122,7 +122,7 @@
                     android:background="@drawable/edit_text_background"
                     android:ems="10"
                     android:gravity="top|start"
-                    android:hint="@string/donnez_votre_description"
+                    android:hint="@string/give_description"
                     android:inputType="textMultiLine"
                     android:lines="6"
                     android:padding="16dp"
@@ -134,7 +134,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
-                    android:text="@string/mettre_jour" />
+                    android:text="@string/update" />
 
 
             </LinearLayout>

@@ -3,7 +3,6 @@ package com.example.myproject.ui.details_activity_event
 import CODE_201
 import CODE_204
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -94,7 +93,7 @@ class DetailsActivityFragment : Fragment() {
             binding.tvDescription.text = description
             binding.tvUsername.text = creator.username
             binding.tvCategory.text = category.name
-            binding.tvMaxPeople.text = requireContext().getString(R.string.nombre_de_personnes_1d)
+            binding.tvMaxPeople.text = requireContext().getString(R.string.max_people)
                 .format(maxOfPeople - bookings.count())
 
             myPicassoFun(creator.imageUrl, binding.civUserImage)

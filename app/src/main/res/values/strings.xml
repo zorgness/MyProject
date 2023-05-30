@@ -36,26 +36,26 @@
     <string name="non_obligatory">non obligatoire</string>
 
     <!--  ACTIVITIES EVENT-->
-    <string name="nouvel_v_nement">nouvel événement</string>
+    <string name="new_activity_event">nouvel événement</string>
     <string name="new_event">new</string>
     <string name="activity_event_create">événement ajouter</string>
     <string name="activity_event_updated">événement modifier</string>
     <string name="details">details</string>
-    <string name="rejoindre">Rejoindre</string>
-    <string name="heure_de_la_rencontre">heure de la rencontre</string>
-    <string name="nombre_de_personnes_1d">%1$d personne(s)</string>
+    <string name="join">Rejoindre</string>
+    <string name="meeting_time">heure de la rencontre</string>
+    <string name="max_people">%1$d personne(s)</string>
     <string name="calendar">calendar</string>
-    <string name="choisir_une_date">choisir une date</string>
+    <string name="select_date">choisir une date</string>
     <string name="clock">clock</string>
-    <string name="choisir_l_heure_de_rencontre">choisir l\'heure de rencontre</string>
+    <string name="select_meeting_time">choisir l\'heure de rencontre</string>
     <string name="description">Description</string>
-    <string name="donnez_votre_description">donnez votre description</string>
+    <string name="give_description">donnez votre description</string>
     <string name="image_url">image_url</string>
-    <string name="contenu">description</string>
+    <string name="content">description</string>
     <string name="titre_label">titre</string>
     <string name="localisation">localisation</string>
-    <string name="nombre_de_personnes">nombre de personnes</string>
-    <string name="point_de_rencontre">point de rencontre</string>
+    <string name="number_people">nombre de personnes</string>
+    <string name="meeting_point">point de rencontre</string>
     <string name="date">date</string>
     <string name="user_image_preview">user image preview</string>
     <string name="booking_request_success">Demande ajouté</string>
@@ -65,16 +65,16 @@
     <!-- PROFILE-->
 
     <string name="profile">profile</string>
-    <string name="nom_d_utilisateur">nom d\'utilisateur</string>
+    <string name="username">nom d\'utilisateur</string>
     <string name="email">email</string>
-    <string name="url_de_votre_image">url de votre image</string>
-    <string name="votre_ville">votre ville</string>
-    <string name="mot_de_passe">mot de passe</string>
-    <string name="confirmer_mot_de_passe">confirmer mot de passe</string>
-    <string name="nouveau_compte">Nouveau compte</string>
-    <string name="entrez_votre_email">entrez votre email</string>
-    <string name="entrez_votre_mot_de_passe">entrez votre mot de passe</string>
-    <string name="pas_de_compte_enregistrez_vous_ici">pas de compte ? enregistrez-vous ici !</string>
+    <string name="your_url_image">url de votre image</string>
+    <string name="city_label">votre ville</string>
+    <string name="password_label">mot de passe</string>
+    <string name="confirm_password">confirmer mot de passe</string>
+    <string name="new_account">Nouveau compte</string>
+    <string name="enter_email">entrez votre email</string>
+    <string name="enter_password">entrez votre mot de passe</string>
+    <string name="no_account_register_here">pas de compte ? enregistrez-vous ici !</string>
 
 
     <!-- BOOKING-->
@@ -88,11 +88,11 @@
     <string name="no">annuler</string>
     <string name="notification">notification</string>
     <string name="history">history</string>
-    <string name="enregister">enregister</string>
-    <string name="supprimer">supprimer</string>
-    <string name="mettre_jour">mettre à jour</string>
+    <string name="save">enregister</string>
+    <string name="delete">supprimer</string>
+    <string name="update">mettre à jour</string>
     <string name="pencil">pencil</string>
-    <string name="envoyer">Envoyer</string>
+    <string name="send">Envoyer</string>
     <string name="participation_s">participation(s)</string>
     <string name="cr_ation_s">création(s)</string>
     <string name="icon_participation">icon_participation</string>
@@ -101,15 +101,15 @@
     <string name="icon_location">icon_location</string>
     <string name="icon_date">icon_date</string>
     <string name="icon_people">icon_people</string>
-    <string name="pas_d_v_nement_pour_cette_categorie">Pas d\'événement pour cette categorie</string>
+    <string name="empty_category">Pas d\'événement pour cette categorie</string>
     <string name="historique">historique</string>
-    <string name="editer">Editer</string>
-    <string name="annuler">Annuler</string>
+    <string name="edit">Editer</string>
+    <string name="cancel">Annuler</string>
     <string name="ev_nement_complet">complet</string>
     <string name="participants">participants :</string>
-    <string name="confirmer">confirmer</string>
-    <string name="en_attente">en attente</string>
-    <string name="valider">valider</string>
+    <string name="confirm">confirmer</string>
+    <string name="pending">en attente</string>
+    <string name="validate">valider</string>
     <string name="reject">refuser</string>
     <string name="validation">validation</string>
     <string name="icon_validation">icon_validation</string>

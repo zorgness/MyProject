@@ -104,7 +104,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@string/rejoindre"
+                        android:text="@string/join"
                         />
 
                     <Button
@@ -113,7 +113,7 @@
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/my_red"
                         android:layout_gravity="center"
-                        android:text="@string/annuler"
+                        android:text="@string/cancel"
                         android:visibility="gone"
                         />
 
@@ -130,7 +130,7 @@
                             android:id="@+id/btn_edit"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/editer"
+                            android:text="@string/edit"
                             android:layout_gravity="start"
                             android:backgroundTint="@color/my_green"
                             android:layout_weight="1"/>
@@ -144,7 +144,7 @@
                             android:id="@+id/btn_delete"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/supprimer"
+                            android:text="@string/delete"
                             android:layout_gravity="end"
                             android:backgroundTint="@color/my_red"
                             android:layout_weight="0.5"/>
@@ -163,7 +163,7 @@
                     android:layout_marginStart="20dp"
                     android:textColor="@color/my_green"
                     android:textStyle="bold"
-                    android:text="@string/confirmer"
+                    android:text="@string/confirm"
                     android:visibility="gone"/>
 
                 <TextView
@@ -175,7 +175,7 @@
                     android:layout_marginStart="20dp"
                     android:textColor="@color/my_orange"
                     android:textStyle="bold"
-                    android:text="@string/en_attente"
+                    android:text="@string/pending"
                     android:visibility="gone"
                     />
 
@@ -248,7 +248,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="60dp"
                     android:layout_marginTop="30dp"
-                    android:text="@string/nombre_de_personnes_1d"
+                    android:text="@string/max_people"
                     android:textColor="@color/my_dark_blue"
                     tools:text="Number of People" />
 

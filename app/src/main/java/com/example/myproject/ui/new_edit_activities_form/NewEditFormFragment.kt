@@ -87,7 +87,7 @@ class NewEditFormFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         if (args.activityEventDto != null) {
-            binding.tvNewEdit.text = requireContext().getString(R.string.editer)
+            binding.tvNewEdit.text = requireContext().getString(R.string.edit)
             binding.btnSaveActivity.visibility = View.GONE
             binding.btnEditActivity.visibility = View.VISIBLE
         }
