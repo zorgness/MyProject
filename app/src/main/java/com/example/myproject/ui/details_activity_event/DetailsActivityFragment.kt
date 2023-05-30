@@ -114,7 +114,7 @@ class DetailsActivityFragment : Fragment() {
 
             binding.iconValidation.setOnClickListener {
                 DetailsActivityFragmentDirections
-                    .actionDetailsActivityFragmentToValidationListFragment(creator.id)
+                    .actionDetailsActivityFragmentToValidationListFragment(id)
                     .let {
                         findNavController().navigate(it)
                     }
@@ -133,6 +133,14 @@ class DetailsActivityFragment : Fragment() {
 
             myPicassoFun(booking.userAccount.imageUrl, circleImageView)
             binding.linearLayoutAvatar.addView(circleImageView)
+
+            if(booking.isAccepted) {
+                circleImageView.borderWidth = 4
+                circleImageView.borderColor = requireContext().getColor(R.color.my_green)
+            } else {
+                circleImageView.borderWidth = 4
+                circleImageView.borderColor = requireContext().getColor(R.color.my_orange)
+            }
 
             circleImageView.setOnClickListener {
                 DetailsActivityFragmentDirections

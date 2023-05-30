@@ -126,7 +126,7 @@
         android:label="fragment_validation_list"
         tools:layout="@layout/fragment_validation_list" >
         <argument
-            android:name="creatorId"
+            android:name="activityId"
             app:argType="integer" />
     </fragment>
 </navigation>

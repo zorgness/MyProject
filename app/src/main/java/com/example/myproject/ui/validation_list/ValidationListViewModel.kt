@@ -37,7 +37,7 @@ class ValidationListViewModel @Inject constructor(
     private val headers = HashMap<String, String>()
 
 
-    fun fetchAllBookings(creatorId: Int) {
+    fun fetchAllBookings(activityId: Int) {
 
         headers["Authorization"] = "Bearer ${sharedPref.token}"
 
@@ -51,7 +51,7 @@ class ValidationListViewModel @Inject constructor(
 
                     responseBookings.isSuccessful && (body != null) ->
                        _listToShowLiveData.value = body.bookings.filter { booking->
-                            booking.activity.creator.id == creatorId
+                            booking.activity.id == activityId
                         }
 
                     responseBookings.code() == ERROR_401 ->

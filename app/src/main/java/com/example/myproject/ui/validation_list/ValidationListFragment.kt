@@ -31,7 +31,7 @@ class ValidationListFragment : Fragment() {
 
         validationListAdapter = ValidationListAdapter()
 
-        viewModel.fetchAllBookings(args.creatorId)
+        viewModel.fetchAllBookings(args.activityId)
 
         viewModel.listToShowLiveData.observe(this) {bookings->
             validationListAdapter.submitList(bookings)
