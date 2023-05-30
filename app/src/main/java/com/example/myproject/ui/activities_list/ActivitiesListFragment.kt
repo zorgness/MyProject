@@ -27,7 +27,7 @@ class ActivitiesListFragment : Fragment() {
 
         activitiesByCategoryAdapter = ActivitiesByCategoryAdapter()
 
-        viewModel.fetchActivitiesByCategory(categoryId = args.categoryId)
+
 
         viewModel.messageLiveData.observe(this) {message ->
             requireContext().myToast(message)
@@ -38,6 +38,11 @@ class ActivitiesListFragment : Fragment() {
                 if(activitiesByCategory.isEmpty()) {
                     binding.tvEmptyCategory.visibility = View.VISIBLE
                 }
+        }
+
+        viewModel.isRefreshingLiveData.observe(this) {isRefreshing->
+            if(isRefreshing)
+                viewModel.fetchActivitiesByCategory(categoryId = args.categoryId)
         }
 
         // SET THE ACTIVITY DTO TO BE PASS TO DETAILS FRAGMENT
@@ -69,6 +74,21 @@ class ActivitiesListFragment : Fragment() {
         binding.rvActivityEvent.adapter = activitiesByCategoryAdapter
 
         binding.progressBar.visibility = View.GONE
+
+        viewModel.fetchActivitiesByCategory(args.categoryId)
+
+        with(binding.swipeContainer) {
+            setOnRefreshListener {
+                viewModel.refresh()
+                isRefreshing = false
+            }
+
+        }
+
+
+
+
+
 
         return binding.root
     }

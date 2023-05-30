@@ -15,6 +15,7 @@ import com.example.myproject.network.ApiService
 import com.example.myproject.utils.MySharedPref
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.Response
@@ -46,6 +47,11 @@ class ActivitiesListViewModel @Inject constructor(
     val progressBarVisibilityLiveData: LiveData<Boolean>
         get() = _progressBarVisibilityLiveData
 
+    private val _isRefreshingLiveData = MutableLiveData<Boolean>(false)
+
+    val isRefreshingLiveData: LiveData<Boolean>
+        get() = _isRefreshingLiveData
+
     // DISPLAY MESSAGE FOR USER
     private val _messageLiveData = MutableLiveData<String>()
 
@@ -58,6 +64,10 @@ class ActivitiesListViewModel @Inject constructor(
     // SET ACTIVITY TO BE PASSED TO DETAILS FRAGMENT
     fun setActivityEvent(activityEvent: ActivityEventDto){
         _activityEventLiveData.value = activityEvent
+    }
+
+    fun refresh() {
+        _isRefreshingLiveData.value = true
     }
 
 
@@ -87,6 +97,8 @@ class ActivitiesListViewModel @Inject constructor(
 
                         _listToShowLiveData.value = body.activitiesEvent
                         _progressBarVisibilityLiveData.value = false
+                        delay(500)
+                        _isRefreshingLiveData.value = false
                     }
 
                     responseActivityByCategory.code() == ERROR_401->
