@@ -3,7 +3,7 @@ package com.example.myproject.dto.activities
 import com.example.myproject.dto.SerializedName
 
 
-data class ActivityEventPostDto(
+data class ActivityToPostDto(
     @SerializedName("title") val title: String,
     @SerializedName("description") val description: String,
     @SerializedName("location") val location: String,

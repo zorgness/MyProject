@@ -27,7 +27,7 @@ class SplashViewModel @Inject constructor(
 
     private fun getDestination() {
 
-        _destinationLiveData.value = sharedPref.getToken().let {token->
+        _destinationLiveData.value = sharedPref.token.let {token->
                 if(token != null)
                     SplashFragmentDirections.actionSplashFragmentToMainFragment()
                 else

@@ -39,7 +39,7 @@ class ValidationListViewModel @Inject constructor(
 
     fun fetchAllBookings(creatorId: Int) {
 
-        headers["Authorization"] = "Bearer ${sharedPref.getToken() ?: ""}"
+        headers["Authorization"] = "Bearer ${sharedPref.token}"
 
         try {
             viewModelScope.launch {
@@ -55,15 +55,11 @@ class ValidationListViewModel @Inject constructor(
                         }
 
                     responseBookings.code() == ERROR_401 ->
-                        _messageLiveData.value = context.getString(R.string.wrong_credential)
+                        _messageLiveData.value = context.getString(R.string.error_parameter)
                 }
-
-
             }
-
-
         } catch (e: Exception) {
-
+            _messageLiveData.value = context.getString(R.string.no_connection)
         }
     }
 

@@ -65,8 +65,8 @@ class ProfileViewModel @Inject constructor(
 
     fun fetchUserProfile() {
 
-        val profileId = if(profileIdLiveData.value!! > 0) profileIdLiveData.value else sharedPref.getUserId()
-        headers["Authorization"] = "Bearer ${sharedPref.getToken()}"
+        val profileId = if(profileIdLiveData.value!! > 0) profileIdLiveData.value else sharedPref.userId
+        headers["Authorization"] = "Bearer ${sharedPref.token}"
 
         try {
             //_progressBarVisibilityLiveData.value = true

@@ -61,7 +61,7 @@ class EditViewModel @Inject constructor(
 
                         val responseUpdate: Response<UserDto>? = withContext(Dispatchers.IO) {
                             apiService.updateUser(
-                                sharedPref.getUserId(),
+                                sharedPref.userId ?: 0,
                                 UpdateDto(
                                     email,
                                     username,

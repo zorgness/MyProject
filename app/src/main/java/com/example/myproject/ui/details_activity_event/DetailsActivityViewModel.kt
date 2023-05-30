@@ -37,9 +37,9 @@ class DetailsActivityViewModel @Inject constructor(
 
     private val _codeLiveData = MutableLiveData<Int>()
 
-    private val _currentUserIdLiveData = MutableLiveData<Int>(sharedPref.getUserId())
+    private val _currentUserIdLiveData = MutableLiveData<Int>(sharedPref.userId)
 
-    val _bookingLiveData = MutableLiveData<BookingDto>()
+    private val _bookingLiveData = MutableLiveData<BookingDto>()
 
     val messageLiveData: LiveData<String>
         get() = _messageLiveData
@@ -58,8 +58,8 @@ class DetailsActivityViewModel @Inject constructor(
 
    fun createBooking(activityHydraId: String) {
 
-      val userId = sharedPref.getUserId().toHydraUserId()
-       headers["Authorization"] = "Bearer ${sharedPref.getToken() ?: ""}"
+      val userId = sharedPref.userId?.toHydraUserId() ?: ""
+       headers["Authorization"] = "Bearer ${sharedPref.token}"
 
       try {
           viewModelScope.launch {
@@ -105,7 +105,7 @@ class DetailsActivityViewModel @Inject constructor(
 
     fun deleteActivity(activityId: Int) {
 
-        headers["Authorization"] = "Bearer ${sharedPref.getToken() ?: ""}"
+        headers["Authorization"] = "Bearer ${sharedPref.token}"
 
         try {
             viewModelScope.launch {
@@ -145,7 +145,7 @@ class DetailsActivityViewModel @Inject constructor(
 
     fun cancelBooking(booKingId: Int) {
 
-        headers["Authorization"] = "Bearer ${sharedPref.getToken() ?: ""}"
+        headers["Authorization"] = "Bearer ${sharedPref.token}"
 
         try {
 

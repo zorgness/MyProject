@@ -13,8 +13,6 @@ data class BookingDto(
     val id: Int,
     @Json(name = "userAccount")
     val userAccount: UserDto,
-  /*  @Json(name = "activity")
-    val activity: ActivityEventDto,*/
     @Json(name = "isPending")
     val isPending: Boolean,
     @Json(name = "isAccepted")

@@ -52,7 +52,7 @@ interface ApiService {
     @POST(ApiRoutes.ACTIVITY_EVENT)
     suspend fun createActivityEvent(
         @HeaderMap headers: Map<String, String>,
-        @Body activityEventInfo: ActivityEventPostDto
+        @Body activityEventInfo: ActivityToPostDto
     ): Response<ActivityEventDto>?
 
     @Headers("Content-Type: application/json")
@@ -73,7 +73,7 @@ interface ApiService {
     suspend fun updateActivityEvent(
         @HeaderMap headers: Map<String, String>,
         @Path("activityId") activityId: Int,
-        @Body updateActivity: ActivityEventPostDto
+        @Body updateActivity: ActivityToPostDto
     ): Response<ActivityEventDto>?
 
     @Headers("Content-Type: application/json")

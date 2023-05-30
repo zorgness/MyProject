@@ -55,13 +55,14 @@ class ActivitiesListViewModel @Inject constructor(
     private val headers = HashMap<String, String>()
 
 
+    // SET ACTIVITY TO BE PASSED TO DETAILS FRAGMENT
     fun setActivityEvent(activityEvent: ActivityEventDto){
         _activityEventLiveData.value = activityEvent
     }
 
 
     fun fetchActivitiesByCategory(categoryId: Int) {
-        headers["Authorization"] = "Bearer ${sharedPref.getToken() ?: ""}"
+        headers["Authorization"] = "Bearer ${sharedPref.token}"
 
         try {
             viewModelScope.launch {

@@ -40,12 +40,17 @@ class DetailsActivityFragment : Fragment() {
             requireContext().myToast(message)
         }
 
+        // DEPEND IF USER IS AUTHOR, HE CAN ACCESS EDIT, DELETE AND VALIDATION OF
+        // PARTICIPANTS
+
         viewModel.currentUserIdLiveData.observe(this) { currentUserId ->
             if (currentUserId == args.activityEvent.creator.id) {
                 binding.btnJoin.visibility = View.GONE
                 binding.btnGroupUpdateDelete.visibility = View.VISIBLE
                 binding.iconValidation.visibility = View.VISIBLE
             }
+
+            // DEPEND IF USER IS PARTICIPANT, HE CAN ACCESS JOIN AND CANCEL
 
             args.activityEvent.bookings.forEach { booking ->
                 if (currentUserId == booking.userAccount.id) {
@@ -118,7 +123,7 @@ class DetailsActivityFragment : Fragment() {
 
         }
 
-        // DISPLAY AVATAR OF USERS HOW GOT A BOOKING FOR THE ACTIVITY
+        // DISPLAY AVATAR OF USERS HOW ARE PARTICIPANTS
         args.activityEvent.bookings.forEach { booking ->
             val density = requireContext().resources.displayMetrics.density
             val circleImageView = CircleImageView(requireContext())
@@ -140,7 +145,6 @@ class DetailsActivityFragment : Fragment() {
         }
 
 
-
         binding.btnJoin.setOnClickListener() {
             ConfirmActionDialog(
                 onConfirm = {
@@ -150,6 +154,16 @@ class DetailsActivityFragment : Fragment() {
                 resId = R.string.comfirm_booking
             ).show(childFragmentManager, ConfirmActionDialog.TAG)
 
+        }
+
+        binding.btnCancelBooking.setOnClickListener {
+            ConfirmActionDialog(
+                onConfirm = {
+                    viewModel
+                        .cancelBooking(bookingIdCurrentUser ?: 0)
+                },
+                resId = R.string.comfirm_cancel
+            ).show(childFragmentManager, ConfirmActionDialog.TAG)
         }
 
         binding.btnEdit.setOnClickListener {
@@ -170,15 +184,6 @@ class DetailsActivityFragment : Fragment() {
             ).show(childFragmentManager, ConfirmActionDialog.TAG)
         }
 
-        binding.btnCancelBooking.setOnClickListener {
-            ConfirmActionDialog(
-                onConfirm = {
-                    viewModel
-                        .cancelBooking(bookingIdCurrentUser ?: 0)
-                },
-                resId = R.string.comfirm_cancel
-            ).show(childFragmentManager, ConfirmActionDialog.TAG)
-        }
 
 
         return binding.root

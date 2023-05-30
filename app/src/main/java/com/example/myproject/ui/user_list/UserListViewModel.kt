@@ -59,7 +59,7 @@ class UserListViewModel @Inject constructor(
 
 
     fun fetchActivitiesByProfile(profileId: Int?, isCreator: Boolean) {
-        headers["Authorization"] = "Bearer ${sharedPref.getToken() ?: ""}"
+        headers["Authorization"] = "Bearer ${sharedPref.token}"
 
         try {
             viewModelScope.launch {

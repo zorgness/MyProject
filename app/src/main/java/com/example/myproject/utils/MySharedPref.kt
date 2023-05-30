@@ -17,6 +17,15 @@ class MySharedPref(context: Context) {
         sharedPreferences =  context.getSharedPreferences(SHAREDPREF_NAME, Context.MODE_PRIVATE)
     }
 
+    var token: String?
+        get() = sharedPreferences.getString(SHAREDPREF_SESSION_TOKEN, null)
+        set(value) = sharedPreferences.edit().putString(SHAREDPREF_SESSION_TOKEN, value).apply()
+
+    var userId: Int?
+        get() = sharedPreferences.getInt(SHAREDPREF_SESSION_USER_ID, 0)
+        set(value) = sharedPreferences.edit().putInt(SHAREDPREF_SESSION_USER_ID, value ?: 0).apply()
+
+/*
 
     private fun saveString(key: String, value: String) {
         sharedPreferences.edit().putString(key, value).apply()
@@ -43,9 +52,9 @@ class MySharedPref(context: Context) {
         return getString(SHAREDPREF_SESSION_USERNAME, null)
     }
 
-    fun getImageUrl(): String? {
-        return getString(SHAREDPREF_SESSION_IMAGE_URL, null)
-    }
+*/
+
+/*
 
     fun getToken(): String? {
         return getString(SHAREDPREF_SESSION_TOKEN, null)
@@ -59,20 +68,15 @@ class MySharedPref(context: Context) {
         saveString(SHAREDPREF_SESSION_USERNAME, username)
     }
 
-    fun saveImageUrl(imageUrl: String) {
-        saveString(SHAREDPREF_SESSION_IMAGE_URL, imageUrl)
-    }
-
     fun saveToken(token: String) {
         saveString(SHAREDPREF_SESSION_TOKEN, token)
     }
+*/
 
     fun clearSharedPref() {
         with(sharedPreferences) {
             edit()
                 .remove(SHAREDPREF_SESSION_TOKEN)
-                .remove(SHAREDPREF_SESSION_USERNAME)
-                .remove(SHAREDPREF_SESSION_IMAGE_URL)
                 .remove(SHAREDPREF_SESSION_USER_ID)
                 .apply()
         }

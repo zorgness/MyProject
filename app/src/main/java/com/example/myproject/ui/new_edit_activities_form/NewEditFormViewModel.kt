@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myproject.R
 import com.example.myproject.dto.activities.ActivityEventDto
-import com.example.myproject.dto.activities.ActivityEventPostDto
+import com.example.myproject.dto.activities.ActivityToPostDto
 import com.example.myproject.extensions.toHydraCategoryId
 import com.example.myproject.extensions.toHydraUserId
 import com.example.myproject.network.ApiService
@@ -94,7 +94,7 @@ class NewEditFormViewModel @Inject constructor(
     fun createActivityEvent() {
 
         categoryId = positionSelectedLd.value?.plus(1)
-        headers["Authorization"] = "Bearer ${sharedPref.getToken() ?: ""}"
+        headers["Authorization"] = "Bearer ${sharedPref.token}"
 
         if (
             titleLd.value?.isNotBlank() == true
@@ -119,7 +119,7 @@ class NewEditFormViewModel @Inject constructor(
                     val responseNewActivityEvent: Response<ActivityEventDto>? = withContext(Dispatchers.IO) {
                         apiService.createActivityEvent(
                             headers,
-                            ActivityEventPostDto(
+                            ActivityToPostDto(
                                 title = titleLd.value!!,
                                 description = descriptionLd.value!!,
                                 location = locationLd.value!!,
@@ -127,7 +127,7 @@ class NewEditFormViewModel @Inject constructor(
                                 maxOfPeople = maxOfPeopleLd.value?.toInt() ?: 1,
                                 startAt = startAtLd.value!!,
                                 category = categoryId?.toHydraCategoryId()!!,
-                                creator = sharedPref.getUserId().toHydraUserId(),
+                                creator = sharedPref.userId?.toHydraUserId() ?: "",
                                 meetingTime = meetingTimeLd.value!!
                             )
 
@@ -174,7 +174,7 @@ class NewEditFormViewModel @Inject constructor(
 
         categoryId = positionSelectedLd.value?.plus(1)
 
-        headers["Authorization"] = "Bearer ${sharedPref.getToken() ?: ""}"
+        headers["Authorization"] = "Bearer ${sharedPref.token}"
 
         if (
             titleLd.value?.isNotBlank() == true
@@ -200,7 +200,7 @@ class NewEditFormViewModel @Inject constructor(
                         apiService.updateActivityEvent(
                             headers,
                             activityId = activityIdToUpdateLiveData.value!!,
-                            ActivityEventPostDto(
+                            ActivityToPostDto(
                                 title = titleLd.value!!,
                                 description = descriptionLd.value!!,
                                 location = locationLd.value!!,
@@ -208,7 +208,7 @@ class NewEditFormViewModel @Inject constructor(
                                 maxOfPeople = maxOfPeopleLd.value?.toInt() ?: 1,
                                 startAt = startAtLd.value!!,
                                 category = categoryId?.toHydraCategoryId()!!,
-                                creator = sharedPref.getUserId().toHydraUserId(),
+                                creator = sharedPref.userId?.toHydraUserId() ?: "",
                                 meetingTime = meetingTimeLd.value!!
                             )
 

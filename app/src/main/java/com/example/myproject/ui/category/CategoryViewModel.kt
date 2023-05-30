@@ -64,7 +64,7 @@ class CategoryViewModel @Inject constructor(
     fun fetchAllCategories() {
         viewModelScope.launch {
 
-            headers["Authorization"] = "Bearer ${sharedPref.getToken()}"
+            headers["Authorization"] = "Bearer ${sharedPref.token}"
 
             try {
                 _progressBarVisibilityLiveData.value = true

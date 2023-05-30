@@ -55,7 +55,6 @@ class UserListAdapter():  ListAdapter<ActivityEventDto, UserListAdapter.UserList
 
         with(holder.binding) {
             tvTitleActivity.text = activityEvent.title
-            tvUsername.text = activityEvent.creator.username
             tvLocation.text = activityEvent.location
             tvDate.text = dateFormatter(activityEvent.startAt)
             myPicassoFun(activityEvent.creator.imageUrl, civUserImage)
