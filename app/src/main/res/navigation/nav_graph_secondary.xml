@@ -42,11 +42,13 @@
             app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_detailsActivityFragment_to_activityEventFormFragment"
-            app:destination="@id/activityEventFormFragment" />
+            app:destination="@id/activityEventFormFragment"
+            app:popUpTo="@id/detailsActivityFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_detailsActivityFragment_to_validationListFragment"
             app:destination="@id/validationListFragment"
-            app:popUpTo="@id/activitiesListFragment"
+            app:popUpTo="@id/categoryFragment"
             app:popUpToInclusive="false" />
     </fragment>
     <fragment
@@ -74,7 +76,9 @@
             android:defaultValue="0" />
         <action
             android:id="@+id/action_profileFragment_to_editFragment"
-            app:destination="@id/editFragment" />
+            app:destination="@id/editFragment"
+            app:popUpTo="@id/activitiesListFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_profileFragment_to_activitiesListFragment"
             app:destination="@id/activitiesListFragment"

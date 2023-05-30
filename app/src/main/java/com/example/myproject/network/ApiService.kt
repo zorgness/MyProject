@@ -69,7 +69,7 @@ interface ApiService {
     ): Response<BookingDto>?
 
     @Headers("Content-Type: application/merge-patch+json")
-    @PATCH(ApiRoutes.ACTIVITY_EVENT_DELETE)
+    @PATCH(ApiRoutes.ACTIVITY_BY_ID)
     suspend fun updateActivityEvent(
         @HeaderMap headers: Map<String, String>,
         @Path("activityId") activityId: Int,
@@ -77,7 +77,7 @@ interface ApiService {
     ): Response<ActivityEventDto>?
 
     @Headers("Content-Type: application/json")
-    @DELETE(ApiRoutes.ACTIVITY_EVENT_DELETE)
+    @DELETE(ApiRoutes.ACTIVITY_BY_ID)
     suspend fun deleteActivityEvent(
         @HeaderMap headers: Map<String, String>,
         @Path("activityId") activityId: Int
